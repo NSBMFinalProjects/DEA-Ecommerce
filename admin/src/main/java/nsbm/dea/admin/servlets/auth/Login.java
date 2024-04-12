@@ -24,6 +24,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @WebServlet(name = "login", value = "/auth/login")
+
 public class Login extends HttpServlet {
   private static final Gson gson = new Gson();
 
@@ -34,6 +35,7 @@ public class Login extends HttpServlet {
 
     @NotBlank(message = "Password cannot be empty")
     @NotNull(message = "Password cannot be empty")
+
     private String password;
 
     public void setEmail(String email) {

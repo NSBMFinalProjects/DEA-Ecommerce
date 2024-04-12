@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebFilter(urlPatterns = {
     // Add more routes as needed
-    "/user/*"
+    "/auth/*"
 }, filterName = "AuthFilter", description = "Protect routes by checking for authentication")
 public class Auth implements Filter {
   private ServletContext context;

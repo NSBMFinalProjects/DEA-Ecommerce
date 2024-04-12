@@ -40,3 +40,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# Tmp file
+./admin/src/main/java/nsbm/dea/admin/config/Env.java
