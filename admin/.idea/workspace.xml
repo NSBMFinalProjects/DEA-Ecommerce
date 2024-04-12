@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2f508f2-310d-4631-a072-38d952bb216b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/nsbm/dea/admin/servlets/user/GetUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nsbm/dea/admin/servlets/user/GetUsers.java" afterDir="false" />
-    </list>
+    <list default="true" id="e2f508f2-310d-4631-a072-38d952bb216b" name="Changes" comment="Added the env example file" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -186,11 +184,24 @@
       <option name="presentableId" value="Default" />
       <updated>1712725472782</updated>
       <workItem from="1712725473827" duration="4173000" />
-      <workItem from="1712947386541" duration="32000" />
+      <workItem from="1712947386541" duration="1907000" />
     </task>
+    <task id="LOCAL-00001" summary="Added the env example file">
+      <option name="closed" value="true" />
+      <created>1712949716329</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712949716329</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added the env example file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the env example file" />
   </component>
 </project>
