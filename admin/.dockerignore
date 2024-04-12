@@ -1,0 +1,12 @@
+# Ignore gradle files
+./gradlew.bat
+.gradle
+
+# Ignore build files
+build
+
+# Ignore IDEA files
+.idea
+
+# Ignore tests
+src/test

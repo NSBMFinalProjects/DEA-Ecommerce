@@ -1,0 +1,41 @@
+plugins {
+  id 'java'
+  id 'war'
+  id 'com.github.sahara3.tomcat-runner' version '0.3.0'
+}
+
+group 'nsbm.dea'
+version ''
+
+repositories {
+  mavenCentral()
+}
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+tasks.withType(JavaCompile) {
+  options.encoding = 'UTF-8'
+}
+
+dependencies {
+  compileOnly('jakarta.platform:jakarta.jakartaee-api:9.1.0')
+  implementation 'com.google.code.gson:gson:2.10.1'
+  implementation 'jakarta.validation:jakarta.validation-api:2.0.2'
+}
+
+tomcat {
+    version = '10.1.20'
+    port = 8080
+
+    webapp file('./build/libs/web.war')
+}
+
+tasks.unzipWebapps.mustRunAfter tasks.war
+tasks.unzipWebapps.mustRunAfter tasks.war
+
+tasks.register("dev") {
+  tasks.build.finalizedBy tasks.tomcatRun
+  dependsOn('build')
+}
+

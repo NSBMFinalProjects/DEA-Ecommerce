@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  web:
+    container_name: "web"
+    build: ./web/
+    ports:
+      - 8080:8080
+    develop:
+      watch:
+        - action: sync
+          path: ./web/build/libs/web-1.0-SNAPSHOT.war
+          target: /usr/local/tomcat/webapps/ROOT.war
+
+        - action: rebuild
+          path: ./web
+
+  admin:
+    container_name: "admin"
+    build: ./admin/
+    ports:
+      - 8081:8080
+    develop:
+      watch:
+        - action: sync
+          path: ./admin/build/libs/admin-1.0-SNAPSHOT.war
+          target: /usr/local/tomcat/webapps/ROOT.war
+
+        - action: rebuild
+          path: ./admin
+
+  db:
+    container_name: "db"
+    image: postgres:latest
+    ports:
+      - 6500:5432
+    volumes:
+      - postgresDB:/data/postgres
+    env_file:
+      - ./.env
+
+volumes:
+  postgresDB:
