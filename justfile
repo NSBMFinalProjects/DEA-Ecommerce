@@ -14,7 +14,8 @@ admin:
     exit 1
   fi
 
-  fd --full-path admin/src/main -e java -e jsp | entr -r gradle dev
+  cd admin
+  fd --full-path src/main -e java -e jsp | entr -r gradle dev
 
 web:
   #!/bin/bash
@@ -30,7 +31,8 @@ web:
     exit 1
   fi
 
-  fd --full-path web/src/main -e java -e jsp | entr -r gradle dev
+  cd web
+  fd --full-path src/main -e java -e jsp | entr -r gradle dev
 
 
 db:
