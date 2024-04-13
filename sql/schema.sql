@@ -124,9 +124,32 @@ CREATE INDEX IF NOT EXISTS idx_product_tags_tag_id ON dea.product_tags (tag_id);
 
 CREATE TABLE IF NOT EXISTS dea.categories (
   id SERIAL,
+  product_id INT NOT NULL,
   slug VARCHAR(100) NOT NULL UNIQUE,
   name VARCHAR(100) NOT NULL,
 
-  PRIMARY KEY(id)
+  PRIMARY KEY(id),
+
+  FOREIGN KEY(product_id) REFERENCES dea.products(id),
+  CONSTRAINT fk_categories_product_id FOREIGN KEY (product_id)
+    REFERENCES dea.products(id)
 );
 CREATE INDEX IF NOT EXISTS idx_categories_slug ON dea.categories (slug);
+CREATE INDEX IF NOT EXISTS idx_categories_product_id ON dea.categories (product_id);
+
+CREATE TABLE IF NOT EXISTS dea.colors (
+  id SERIAL,
+  category_id INT NOT NULL,
+  slug VARCHAR(100) NOT NULL UNIQUE,
+  name VARCHAR(100) NOT null,
+  hex VARCHAR(100) NOT NULL,
+  qty INT NOT NULL,
+
+  PRIMARY KEY(id),
+
+  FOREIGN KEY(category_id) REFERENCES dea.categories(id),
+  CONSTRAINT fk_colors_category_id FOREIGN KEY (category_id)
+    REFERENCES dea.categories(id)
+);
+CREATE INDEX IF NOT EXISTS idx_colors_slug ON dea.colors (slug);
+CREATE INDEX IF NOT EXISTS idx_colors_category_id ON dea.colors (category_id);
