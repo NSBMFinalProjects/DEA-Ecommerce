@@ -152,4 +152,4 @@ CREATE TABLE IF NOT EXISTS dea.colors (
     REFERENCES dea.categories(id)
 );
 CREATE INDEX IF NOT EXISTS idx_colors_slug ON dea.colors (slug);
-CREATE INDEX IF NOT EXISTS idx_colors_category_id ON dea.colors (category_id);
+CREATE INDEX IF NOT EXISTS idx_colors_category_id ON dea.colors (category_id)
