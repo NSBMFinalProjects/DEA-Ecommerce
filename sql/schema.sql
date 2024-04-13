@@ -121,3 +121,12 @@ CREATE TABLE IF NOT EXISTS dea.product_tags (
 );
 CREATE INDEX IF NOT EXISTS idx_product_tags_product_id ON dea.product_tags (product_id);
 CREATE INDEX IF NOT EXISTS idx_product_tags_tag_id ON dea.product_tags (tag_id);
+
+CREATE TABLE IF NOT EXISTS dea.categories (
+  id SERIAL,
+  slug VARCHAR(100) NOT NULL UNIQUE,
+  name VARCHAR(100) NOT NULL,
+
+  PRIMARY KEY(id)
+);
+CREATE INDEX IF NOT EXISTS idx_categories_slug ON dea.categories (slug);
