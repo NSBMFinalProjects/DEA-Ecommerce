@@ -67,6 +67,15 @@ CREATE TABLE IF NOT EXISTS dea.collections (
 );
 CREATE INDEX IF NOT EXISTS idx_collections_slug ON dea.collections (slug);
 
+CREATE TABLE IF NOT EXISTS dea.tags (
+  id SERIAL,
+  slug VARCHAR(100) NOT NULL UNIQUE,
+  name VARCHAR(255) NOT NULL,
+
+  PRIMARY KEY(id)
+);
+CREATE INDEX IF NOT EXISTS idx_tags_slug ON dea.tags (slug);
+
 CREATE TABLE IF NOT EXISTS dea.products (
   id SERIAL,
   slug VARCHAR(100) NOT NULL UNIQUE,
@@ -93,5 +102,22 @@ CREATE TABLE IF NOT EXISTS dea.product_collections (
   CONSTRAINT fk_product_collections_collection_id FOREIGN KEY (collection_id)
     REFERENCES dea.collections(id)
 );
-CREATE INDEX IF NOT EXISTS idx_products_collections_product_id ON dea.product_collections (product_id);
-CREATE INDEX IF NOT EXISTS idx_products_collections_collection_id ON dea.product_collections (collection_id);
+CREATE INDEX IF NOT EXISTS idx_product_collections_product_id ON dea.product_collections (product_id);
+CREATE INDEX IF NOT EXISTS idx_product_collections_collection_id ON dea.product_collections (collection_id);
+
+CREATE TABLE IF NOT EXISTS dea.product_tags (
+  product_id INT NOT NULL,
+  tag_id INT NOT NULL,
+
+  PRIMARY KEY(product_id, tag_id),
+
+  FOREIGN KEY(product_id) REFERENCES dea.products(id),
+  CONSTRAINT fk_product_tags_product_id FOREIGN KEY (product_id)
+    REFERENCES dea.products(id),
+
+  FOREIGN KEY(tag_id) REFERENCES dea.tags(id),
+  CONSTRAINT fk_product_tags_tag_id FOREIGN KEY (tag_id)
+    REFERENCES dea.tags(id)
+);
+CREATE INDEX IF NOT EXISTS idx_product_tags_product_id ON dea.product_tags (product_id);
+CREATE INDEX IF NOT EXISTS idx_product_tags_tag_id ON dea.product_tags (tag_id);
