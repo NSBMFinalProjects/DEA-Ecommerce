@@ -14,7 +14,7 @@ public class UserDAO {
     List<User> users = new ArrayList<>();
 
     try (Connection connection = DB.getConnection()) {
-      PreparedStatement statement = connection.prepareStatement("SELECT * FROM users");
+      PreparedStatement statement = connection.prepareStatement("SELECT * FROM dea.users");
       ResultSet resultSet = statement.executeQuery();
 
       while (resultSet.next()) {
