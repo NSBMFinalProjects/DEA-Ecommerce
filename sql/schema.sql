@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS dea.users (
   id ulid NOT NULL DEFAULT gen_ulid(),
   email VARCHAR(255) NOT NULL UNIQUE,
   username VARCHAR(255) NOT NULL UNIQUE,
+  name VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   photo_url VARCHAR(255) NOT NULL,
 
@@ -60,6 +61,7 @@ CREATE TABLE IF NOT EXISTS dea.admins(
     id ulid NOT NULL DEFAULT gen_ulid(),
     username VARCHAR(255) NOT NULL UNIQUE,
     email VARCHAR(50) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     photo_url VARCHAR(255) NOT NULL,
 
