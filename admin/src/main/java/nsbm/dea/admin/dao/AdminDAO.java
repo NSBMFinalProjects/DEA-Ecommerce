@@ -33,6 +33,20 @@ public class AdminDAO {
         resultSet.getString("photo_url"));
   }
 
+  public void create(Admin admin) throws SQLException {
+    try (Connection connection = DB.getConnection()) {
+      try (PreparedStatement statement = connection
+          .prepareStatement("INSERT INTO dea.admins (email, username, name, password) VALUES (?, ?, ?, ?)")) {
+        statement.setString(1, admin.getEmail());
+        statement.setString(2, admin.getUsername());
+        statement.setString(3, admin.getName());
+        statement.setString(4, admin.getPassword());
+
+        statement.executeQuery();
+      }
+    }
+  }
+
   public Optional<Admin> getByID(String id) throws SQLException {
     String query = "SELECT * FROM dea.admins WHERE email = ? LIMIT 1";
     try (Connection connection = DB.getConnection()) {
