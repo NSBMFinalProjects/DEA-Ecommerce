@@ -14,7 +14,7 @@ admin:
     exit 1
   fi
 
-  cd admin
+
   fd --full-path src/main -e java -e jsp | entr -r gradle dev
 
 web:
@@ -31,7 +31,6 @@ web:
     exit 1
   fi
 
-  cd web
   fd --full-path src/main -e java -e jsp | entr -r gradle dev
 
 
