@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import jakarta.ejb.DuplicateKeyException;
 import nsbm.dea.admin.connections.DB;
+import nsbm.dea.admin.errors.DuplicateKeyException;
 import nsbm.dea.admin.model.Admin;
 
 public class AdminDAO {
