@@ -185,4 +185,38 @@ public class AdminDAO {
       }
     }
   }
+
+  public boolean isUsernameAvailable(String username) throws SQLException {
+    try (Connection connection = DB.getConnection()) {
+      try (PreparedStatement statement = connection
+          .prepareStatement("SELECT id FROM dea.admins WHERE username = ? LIMIT 1")) {
+        statement.setString(1, username);
+
+        try (ResultSet resultSet = statement.executeQuery()) {
+          if (resultSet.next()) {
+            return false;
+          }
+
+          return true;
+        }
+      }
+    }
+  }
+
+  public boolean isEmailAvailable(String email) throws SQLException {
+    try (Connection connection = DB.getConnection()) {
+      try (PreparedStatement statement = connection
+          .prepareStatement("SELECT id FROM dea.admins WHERE email = ? LIMIT 1")) {
+        statement.setString(1, email);
+
+        try (ResultSet resultSet = statement.executeQuery()) {
+          if (resultSet.next()) {
+            return false;
+          }
+
+          return true;
+        }
+      }
+    }
+  }
 }
