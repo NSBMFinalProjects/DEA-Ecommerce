@@ -13,6 +13,16 @@ BEGIN
 END;
 $$ language 'plpgsql';
 
+CREATE OR REPLACE FUNCTION update_photourl()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF NEW.photo_url IS NULL THEN
+    NEW.photo_url = 'https://api.dicebear.com/8.x/initials/svg?seed=' || NEW.name;
+  END IF;
+  RETURN NEW;
+END;
+$$ language 'plpgsql';
+
 CREATE TABLE IF NOT EXISTS dea.users (
   id ulid NOT NULL DEFAULT gen_ulid(),
   email VARCHAR(255) NOT NULL UNIQUE,
@@ -25,6 +35,9 @@ CREATE TABLE IF NOT EXISTS dea.users (
 );
 CREATE INDEX IF NOT EXISTS idx_user_email ON dea.users (email);
 CREATE INDEX IF NOT EXISTS idx_user_username ON dea.users (username);
+
+DROP TRIGGER IF EXISTS update_user_photo_url on dea.users;
+CREATE TRIGGER update_user_photo_url BEFORE INSERT ON dea.users FOR EACH ROW EXECUTE PROCEDURE update_photourl();
 
 CREATE TABLE IF NOT EXISTS dea.delivery_details (
   id ulid NOT NULL DEFAULT gen_ulid(),
@@ -54,6 +67,9 @@ CREATE TABLE IF NOT EXISTS dea.admins(
 );
 CREATE INDEX IF NOT EXISTS idx_admins_email ON dea.admins (email);
 CREATE INDEX IF NOT EXISTS idx_admins_username ON dea.admins (username);
+
+DROP TRIGGER IF EXISTS update_admin_photo_url on dea.admins;
+CREATE TRIGGER update_admin_photo_url BEFORE INSERT ON dea.admins FOR EACH ROW EXECUTE PROCEDURE update_photourl();
 
 CREATE TABLE IF NOT EXISTS dea.collections (
   id SERIAL,
