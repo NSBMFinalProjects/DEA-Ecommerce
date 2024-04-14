@@ -42,7 +42,7 @@ public class AdminDAO {
         statement.setString(3, admin.getName());
         statement.setString(4, admin.getPassword());
 
-        statement.executeQuery();
+        statement.executeUpdate();
       }
     }
   }
@@ -137,7 +137,7 @@ public class AdminDAO {
         statement.setString(1, username);
         statement.setString(2, id);
 
-        statement.executeQuery();
+        statement.executeUpdate();
       }
     }
   }
@@ -160,7 +160,7 @@ public class AdminDAO {
         statement.setString(1, email);
         statement.setString(2, id);
 
-        statement.executeQuery();
+        statement.executeUpdate();
       }
     }
   }
@@ -171,7 +171,7 @@ public class AdminDAO {
         statement.setString(1, name);
         statement.setString(2, id);
 
-        statement.executeQuery();
+        statement.executeUpdate();
       }
     }
   }
@@ -183,7 +183,7 @@ public class AdminDAO {
         statement.setString(1, photoURL);
         statement.setString(2, id);
 
-        statement.executeQuery();
+        statement.executeUpdate();
       }
     }
   }
@@ -195,7 +195,7 @@ public class AdminDAO {
         statement.setString(1, password);
         statement.setString(2, id);
 
-        statement.executeQuery();
+        statement.executeUpdate();
       }
     }
   }
