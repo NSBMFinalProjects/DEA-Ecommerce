@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import nsbm.dea.admin.enums.Status;
 
 public class Lib {
-  public static void sendResponse(HttpServletResponse response, int code, Status status, String message)
+  public static void sendJSONResponse(HttpServletResponse response, int code, Status status, String message)
       throws IOException {
     response.setContentType("application/json");
     response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

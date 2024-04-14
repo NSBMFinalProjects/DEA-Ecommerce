@@ -112,20 +112,20 @@ public class Register extends HttpServlet {
 
       Set<ConstraintViolation<RegisterData>> violations = validator.validate(data);
       if (!violations.isEmpty()) {
-        Lib.sendResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST,
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST,
             violations.iterator().next().getMessage());
         return;
       }
 
       AdminDAO adminDAO = new AdminDAO();
       if (!adminDAO.isUsernameAvailable(data.getUsername())) {
-        Lib.sendResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.USERNAME_ALREADY_USED,
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.USERNAME_ALREADY_USED,
             "username already used");
         return;
       }
 
       if (!adminDAO.isEmailAvailable(data.getEmail())) {
-        Lib.sendResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.EMAIL_ALREADY_USED,
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.EMAIL_ALREADY_USED,
             "email already used");
         return;
       }
@@ -138,11 +138,11 @@ public class Register extends HttpServlet {
 
       adminDAO.create(admin);
 
-      Lib.sendResponse(response, HttpServletResponse.SC_OK, Status.OK, "created the admin account sucessfully");
+      Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "created the admin account sucessfully");
       return;
     } catch (Exception e) {
       System.err.println(e.getStackTrace());
-      Lib.sendResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
+      Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
           "something went wrong");
       return;
     }
