@@ -251,6 +251,7 @@ CREATE TABLE IF NOT EXISTS dea.colors (
   name VARCHAR(100) NOT null,
   hex VARCHAR(100) NOT NULL,
   qty INT NOT NULL,
+  price DECIMAL NOT NULL,
   created TIMESTAMP default now(),
   modified TIMESTAMP default now(),
 
