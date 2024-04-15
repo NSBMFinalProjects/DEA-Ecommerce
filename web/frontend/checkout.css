@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+*{
+    font-family: 'poppins';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    transition: all.2s linear;
+
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    min-height: 100vh;
+    background-color:#E7E7E7;
+    padding-bottom: 70px;
+    
+}
+
+.container form{
+    padding: 20px;
+    width: 400px;
+    height: 710px;
+    background: #203C55;
+
+}
+
+.container form.row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.column{
+    float: left;
+    flex:50%;
+
+}
+.left{
+    width: 50%;
+}
+.right{
+    width: 50%;
+   
+}
+.row::after{
+    content: "";
+    
+}
+
+.title{
+    font-size: 18px;
+    color:#FFFFFF;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.note{
+    font-size: 10px;
+    color: #FFFFFF;
+    font-weight: normal;
+
+}
+
+.inputbox{
+    margin: 15px 0;
+    font-size: 10px;
+    color: #FFFFFF;
+    float: left;
+    
+    
+    
+}
+
+.dropdown{
+    margin: 15px 0;
+    font-size: 10px;
+    color: #FFFFFF;
+    
+}
+.inputbox span{
+    margin-bottom:5px;
+    display:inline-block;
+    font-size: 10px;
+}
+.checkbox{
+    font-size: 10px;
+}
+.inputbox input,.dropdown select{
+    font-size: 10px;
+    width: 150px;
+    height: 30px;
+    background-color: #E7E7E7;
+}
+
+
+.title2{
+    font-size: 14px;
+    color:#FFFFFF;
+    padding-bottom: 5px;
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+
+}
+
+.note2{
+    font-size: 10px;
+    color:#FFFFFF;
+    padding-bottom: 5px;
+    text-align: left;
+    width: 100%;
+    font-weight:normal;
+   
+}
+
+.checkbox{
+    font-size: 10px;
+    color:#FFFFFF;
+    margin-top: 10px;
+        
+}
+.line{
+    display: block;
+    width: 360px;
+    background-color: #FFFFFF;
+    text-align: center;
+    border-style: inset;
+    border-width: 1px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.line1{
+    display: block;
+    width: 360px;
+    background-color: #FFFFFF;
+    text-align: center;
+    border-style: inset;
+    border-width: 1px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+
+}
+
+.pr p{
+    font-size: 10px;
+    color: #FFFFFF;
+    font-weight:normal;
+}
+.price{
+    font-size: 10px;
+    color: #FFFFFF;
+    font-weight:normal;
+    float: right;
+}
+
+
+/*.button{
+    background-color: #FFFFFF;
+    border: none;
+    color:#203C55;
+    width: 360px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;   
+    display: flex;
+    font-size: 12px;  
+    cursor: pointer;
+}*/
+.square{
+    width: 360px;
+    height: 40px;
+    background-color: #FFFFFF;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.button{
+    background-color:#203C55;
+    border: none;
+    color:#FFFFFF;
+    width: 150px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    font-size: 10px;  
+    cursor: pointer;
+    margin: auto;
+   
+}
+
