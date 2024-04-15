@@ -15,7 +15,7 @@ public class ProductDAO {
         List<Product> products = new ArrayList<Product>();
 
         try (Connection connection= DB.getConnection()){
-            PreparedStatement statement=connection.prepareStatement("select * from product");
+            PreparedStatement statement=connection.prepareStatement("select * from dea.product");
             ResultSet resultSet=statement.executeQuery();
 
             while(resultSet.next()){
@@ -24,12 +24,14 @@ public class ProductDAO {
                 product.setName(resultSet.getString("name"));
                 product.setDescription(resultSet.getString("description"));
                 product.setSlug(resultSet.getString("slug"));
-                product.setCategoryId(resultSet.getInt("categoryID"));
-                product.setSubcategoryId(resultSet.getInt("subcategoryID"));
-                product.setPrice(resultSet.getBigDecimal("price"));
-                product.setQuantity(resultSet.getInt("quantity"));
-                product.setSize(resultSet.getString("size"));
-                product.setAdminId(resultSet.getInt("adminID"));
+                product.setCreatedBy(resultSet.getString("created by"));
+
+                String photoUrl=resultSet.getString("photo_url");
+                String[] photoUrls=photoUrl.split(",");
+
+                product.setPhotoUrls(photoUrls);
+                product.setCreated(resultSet.getTimestamp("created").toInstant());
+                product.setModified(resultSet.getTimestamp("modified").toInstant());
 
                 products.add(product);
             }
@@ -43,17 +45,13 @@ public class ProductDAO {
     public boolean addProduct(Product product) throws SQLException{
 
         try (Connection connection= DB.getConnection()){
-            String sql="insert into product(slug, name, price, category_id, subcategory_id, size, description, quantity, admin_id) values(?,?,?,?,?,?,?,?,?)";
+            String sql="insert into dea.product(slug, name, description, admin_id, photoUrls) values(?,?,?,?,?)";
             PreparedStatement statement=connection.prepareStatement(sql);
             statement.setString(1, product.getSlug());
             statement.setString(2,product.getName());
             statement.setString(3,product.getDescription());
-            statement.setInt(4,product.getCategoryId());
-            statement.setInt(5,product.getSubcategoryId());
-            statement.setBigDecimal(6,product.getPrice());
-            statement.setInt(7,product.getQuantity());
-            statement.setString(8,product.getSize());
-            statement.setInt(9,product.getAdminId());
+            statement.setString(4,product.getCreatedBy());
+            statement.setString(5, String.join(",", product.getPhotoUrls()));
 
             int result=statement.executeUpdate();
             return result>0;
@@ -66,14 +64,12 @@ public class ProductDAO {
     public boolean updateProduct(Product product) throws SQLException{
 
         try (Connection connection= DB.getConnection()){
-            String sql="update product set name=?,price=?,description=?,quantity=?,size=? where id=?";
+            String sql="update dea.product set name=?,description=?,photoUrls=? where id=?";
             PreparedStatement statement=connection.prepareStatement(sql);
 
             statement.setString(1,product.getName());
-            statement.setBigDecimal(2,product.getPrice());
-            statement.setString(3,product.getDescription());
-            statement.setInt(4,product.getQuantity());
-            statement.setString(5,product.getSize());
+            statement.setString(2,product.getDescription());
+            statement.setString(3, String.join(",", product.getPhotoUrls()));
 
             int updateResult=statement.executeUpdate();
             return updateResult>0;
@@ -85,7 +81,7 @@ public class ProductDAO {
 
     public boolean deleteProduct(Product product) throws SQLException{
         try (Connection connection= DB.getConnection()){
-            String sql="delete from product where id=?";
+            String sql="delete from dea.product where id=?";
             PreparedStatement statement=connection.prepareStatement(sql);
             statement.setInt(1,product.getId());
             int result=statement.executeUpdate();
