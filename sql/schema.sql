@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS dea.delivery_details (
   PRIMARY KEY(id),
   FOREIGN KEY(user_id) REFERENCES dea.users(id),
   CONSTRAINT fk_delivery_details_users FOREIGN KEY (user_id)
-    REFERENCES dea.users(id)
+    REFERENCES dea.users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_delivery_details_user_id ON dea.delivery_details (user_id);
 
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS dea.collections (
 
   FOREIGN KEY(created_by) REFERENCES dea.admins(id),
   CONSTRAINT fk_collections_created_by FOREIGN KEY (created_by)
-    REFERENCES dea.admins(id)
+    REFERENCES dea.admins(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_collections_slug ON dea.collections (slug);
 CREATE INDEX IF NOT EXISTS idx_collections_created_by ON dea.collections (created_by);
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS dea.tags (
 
   FOREIGN KEY(created_by) REFERENCES dea.admins(id),
   CONSTRAINT fk_tags_created_by FOREIGN KEY (created_by)
-    REFERENCES dea.admins(id)
+    REFERENCES dea.admins(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_tags_slug ON dea.tags (slug);
 CREATE INDEX IF NOT EXISTS idx_tags_created_by ON dea.tags (created_by);
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS dea.products (
 
   FOREIGN KEY(created_by) REFERENCES dea.admins(id),
   CONSTRAINT fk_products_created_by FOREIGN KEY (created_by)
-    REFERENCES dea.admins(id)
+    REFERENCES dea.admins(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_products_slug ON dea.products (slug);
 CREATE INDEX IF NOT EXISTS idx_products_created_by ON dea.products (created_by);
@@ -188,11 +188,11 @@ CREATE TABLE IF NOT EXISTS dea.product_collections (
 
   FOREIGN KEY(product_id) REFERENCES dea.products(id),
   CONSTRAINT fk_product_collections_product_id FOREIGN KEY (product_id)
-    REFERENCES dea.products(id),
+    REFERENCES dea.products(id) ON UPDATE CASCADE ON DELETE CASCADE,
 
   FOREIGN KEY(collection_id) REFERENCES dea.collections(id),
   CONSTRAINT fk_product_collections_collection_id FOREIGN KEY (collection_id)
-    REFERENCES dea.collections(id)
+    REFERENCES dea.collections(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_product_collections_product_id ON dea.product_collections (product_id);
 CREATE INDEX IF NOT EXISTS idx_product_collections_collection_id ON dea.product_collections (collection_id);
@@ -205,11 +205,11 @@ CREATE TABLE IF NOT EXISTS dea.product_tags (
 
   FOREIGN KEY(product_id) REFERENCES dea.products(id),
   CONSTRAINT fk_product_tags_product_id FOREIGN KEY (product_id)
-    REFERENCES dea.products(id),
+    REFERENCES dea.products(id) ON UPDATE CASCADE ON DELETE CASCADE,
 
   FOREIGN KEY(tag_id) REFERENCES dea.tags(id),
   CONSTRAINT fk_product_tags_tag_id FOREIGN KEY (tag_id)
-    REFERENCES dea.tags(id)
+    REFERENCES dea.tags(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_product_tags_product_id ON dea.product_tags (product_id);
 CREATE INDEX IF NOT EXISTS idx_product_tags_tag_id ON dea.product_tags (tag_id);
@@ -227,11 +227,11 @@ CREATE TABLE IF NOT EXISTS dea.categories (
 
   FOREIGN KEY(product_id) REFERENCES dea.products(id),
   CONSTRAINT fk_categories_product_id FOREIGN KEY (product_id)
-    REFERENCES dea.products(id),
+    REFERENCES dea.products(id) ON UPDATE CASCADE ON DELETE CASCADE,
 
   FOREIGN KEY(created_by) REFERENCES dea.admins(id),
   CONSTRAINT fk_categories_created_by FOREIGN KEY (created_by)
-    REFERENCES dea.admins(id)
+    REFERENCES dea.admins(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_categories_slug ON dea.categories (slug);
 CREATE INDEX IF NOT EXISTS idx_categories_product_id ON dea.categories (product_id);
@@ -259,11 +259,11 @@ CREATE TABLE IF NOT EXISTS dea.colors (
 
   FOREIGN KEY(category_id) REFERENCES dea.categories(id),
   CONSTRAINT fk_colors_category_id FOREIGN KEY (category_id)
-    REFERENCES dea.categories(id),
+    REFERENCES dea.categories(id) ON UPDATE CASCADE ON DELETE CASCADE,
 
   FOREIGN KEY(created_by) REFERENCES dea.admins(id),
   CONSTRAINT fk_colors_created_by FOREIGN KEY (created_by)
-    REFERENCES dea.admins(id)
+    REFERENCES dea.admins(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS idx_colors_slug ON dea.colors (slug);
 CREATE INDEX IF NOT EXISTS idx_colors_category_id ON dea.colors (category_id);
