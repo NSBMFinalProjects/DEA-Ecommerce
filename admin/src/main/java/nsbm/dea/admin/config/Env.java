@@ -21,11 +21,23 @@ public class Env {
     return dotenv.get("REFRESH_TOKEN_SECRET");
   }
 
+  public static long getRefreshTokenExp() {
+    return Long.parseLong(dotenv.get("REFRESH_TOKEN_EXP"));
+  }
+
   public static String getAccessTokenSecret() {
     return dotenv.get("ACCESS_TOKEN_SECRET");
   }
 
+  public static long getAccessTokenExp() {
+    return Long.parseLong(dotenv.get("ACCESS_TOKEN_EXP"));
+  }
+
   public static String getSessionTokenSecret() {
     return dotenv.get("SESSION_TOKEN_SECRET");
+  }
+
+  public static long getSessionTokenExp() {
+    return Long.parseLong(dotenv.get("SESSION_TOKEN_EXP"));
   }
 }
