@@ -40,4 +40,8 @@ public class Env {
   public static long getSessionTokenExp() {
     return Long.parseLong(dotenv.get("SESSION_TOKEN_EXP"));
   }
+
+  public static String getRedisURL() {
+    return dotenv.get("REDIS_URL");
+  }
 }
