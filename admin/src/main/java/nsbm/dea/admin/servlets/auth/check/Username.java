@@ -60,25 +60,27 @@ public class Username extends HttpServlet {
     try {
       JsonObject payload = Lib.getJSONPayloadFromRequest(request);
 
-      ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-      Validator validator = factory.getValidator();
+      try (ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
+        Validator validator = factory.getValidator();
 
-      Data data = new Data();
-      data.setUsername(payload.get("username").getAsString());
+        Data data = new Data();
+        data.setUsername(payload.get("username").getAsString());
 
-      Set<ConstraintViolation<Data>> violations = validator.validate(data);
-      if (!violations.isEmpty()) {
-        this.sendResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.USERNAME_NOT_VALID, false);
+        Set<ConstraintViolation<Data>> violations = validator.validate(data);
+        if (!violations.isEmpty()) {
+          this.sendResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.USERNAME_NOT_VALID, false);
+          return;
+        }
+
+        AdminDAO adminDAO = new AdminDAO();
+        if (!adminDAO.isUsernameAvailable(data.getUsername())) {
+          this.sendResponse(response, HttpServletResponse.SC_OK, Status.OK, false);
+          return;
+        }
+
+        this.sendResponse(response, HttpServletResponse.SC_OK, Status.OK, true);
         return;
       }
-
-      AdminDAO adminDAO = new AdminDAO();
-      if (!adminDAO.isUsernameAvailable(data.getUsername())) {
-        this.sendResponse(response, HttpServletResponse.SC_OK, Status.OK, false);
-        return;
-      }
-
-      this.sendResponse(response, HttpServletResponse.SC_OK, Status.OK, true);
     } catch (Exception e) {
       System.err.println(e.getStackTrace());
       this.sendResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR, false);
