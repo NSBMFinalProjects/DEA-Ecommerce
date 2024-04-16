@@ -16,4 +16,16 @@ public class Env {
   public static String getDBPassword() {
     return dotenv.get("DB_PASSWWORD");
   }
+
+  public static String getRefreshTokenSecret() {
+    return dotenv.get("REFRESH_TOKEN_SECRET");
+  }
+
+  public static String getAccessTokenSecret() {
+    return dotenv.get("ACCESS_TOKEN_SECRET");
+  }
+
+  public static String getSessionTokenSecret() {
+    return dotenv.get("SESSION_TOKEN_SECRET");
+  }
 }
