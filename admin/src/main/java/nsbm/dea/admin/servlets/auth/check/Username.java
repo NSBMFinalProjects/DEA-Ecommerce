@@ -68,7 +68,7 @@ public class Username extends HttpServlet {
 
       Set<ConstraintViolation<Data>> violations = validator.validate(data);
       if (!violations.isEmpty()) {
-        this.sendResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.USERNAME_ALREADY_USED, false);
+        this.sendResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.USERNAME_NOT_VALID, false);
         return;
       }
 
