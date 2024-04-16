@@ -107,23 +107,23 @@ public class Login extends HttpServlet {
 
         Cookie refreshTokenC = new Cookie("refresh_token", rt);
         refreshTokenC.setMaxAge(Math.toIntExact(Env.getRefreshTokenExp()));
-        refreshTokenC.setDomain("localhost");
+        refreshTokenC.setDomain(Env.getDomain());
         refreshTokenC.setPath("/");
-        refreshTokenC.setSecure(false);
+        refreshTokenC.setSecure(Env.getEnv() == "PROD" ? false : true);
         refreshTokenC.setHttpOnly(true);
 
         Cookie accessTokenC = new Cookie("access_token", at);
         accessTokenC.setMaxAge(Math.toIntExact(Env.getAccessTokenExp()));
-        accessTokenC.setDomain("localhost");
+        accessTokenC.setDomain(Env.getDomain());
         accessTokenC.setPath("/");
-        accessTokenC.setSecure(false);
+        accessTokenC.setSecure(Env.getEnv() == "PROD" ? false : true);
         accessTokenC.setHttpOnly(false);
 
         Cookie sessionTokenC = new Cookie("session", st);
         sessionTokenC.setMaxAge(Math.toIntExact(Env.getSessionTokenExp()));
-        sessionTokenC.setDomain("localhost");
+        sessionTokenC.setDomain(Env.getDomain());
         sessionTokenC.setPath("/");
-        sessionTokenC.setSecure(false);
+        sessionTokenC.setSecure(Env.getEnv() == "PROD" ? false : true);
         sessionTokenC.setHttpOnly(false);
 
         response.addCookie(refreshTokenC);
