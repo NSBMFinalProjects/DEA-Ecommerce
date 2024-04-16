@@ -27,6 +27,7 @@ dependencies {
   implementation 'io.github.cdimascio:dotenv-java:3.0.0'
   implementation 'org.postgresql:postgresql:42.7.3'
   implementation 'com.auth0:java-jwt:4.4.0'
+  implementation 'com.github.f4b6a3:ulid-creator:5.2.3'
 }
 
 tomcat {
