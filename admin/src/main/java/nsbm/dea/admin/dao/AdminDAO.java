@@ -48,7 +48,7 @@ public class AdminDAO {
   }
 
   public Optional<Admin> getByID(String id) throws SQLException {
-    String query = "SELECT * FROM dea.admins WHERE email = ? LIMIT 1";
+    String query = "SELECT * FROM dea.admins WHERE id = ? LIMIT 1";
     try (Connection connection = DB.getConnection()) {
       try (PreparedStatement statement = connection.prepareStatement(query)) {
         statement.setString(1, id);
