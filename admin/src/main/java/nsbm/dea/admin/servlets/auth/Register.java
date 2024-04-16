@@ -1,11 +1,8 @@
 package nsbm.dea.admin.servlets.auth;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Set;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
@@ -30,7 +27,6 @@ import nsbm.dea.admin.model.Admin;
 
 @WebServlet(name = "register", value = "/auth/register")
 public class Register extends HttpServlet {
-  private static final Gson gson = new Gson();
 
   private class RegisterData {
     @NotNull(message = "email cannot be empty")
@@ -92,14 +88,8 @@ public class Register extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()))) {
-      StringBuilder jsonStr = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null) {
-        jsonStr.append(line);
-      }
-
-      JsonObject payload = gson.fromJson(jsonStr.toString(), JsonObject.class);
+    try {
+      JsonObject payload = Lib.getJSONPayloadFromRequest(request);
 
       ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
       Validator validator = factory.getValidator();
