@@ -18,7 +18,7 @@ public class Lib {
   public static void sendJSONResponse(HttpServletResponse response, int code, Status status, String message)
       throws IOException {
     response.setContentType("application/json");
-    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    response.setStatus(code);
     PrintWriter out = response.getWriter();
 
     JsonObject object = new JsonObject();

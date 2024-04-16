@@ -91,45 +91,46 @@ public class Register extends HttpServlet {
     try {
       JsonObject payload = Lib.getJSONPayloadFromRequest(request);
 
-      ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-      Validator validator = factory.getValidator();
+      try (ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
+        Validator validator = factory.getValidator();
 
-      RegisterData data = new RegisterData();
-      data.setEmail(payload.get("email").getAsString());
-      data.setUsername(payload.get("username").getAsString());
-      data.setName(payload.get("name").getAsString());
-      data.setPassword(payload.get("password").getAsString());
+        RegisterData data = new RegisterData();
+        data.setEmail(payload.get("email").getAsString());
+        data.setUsername(payload.get("username").getAsString());
+        data.setName(payload.get("name").getAsString());
+        data.setPassword(payload.get("password").getAsString());
 
-      Set<ConstraintViolation<RegisterData>> violations = validator.validate(data);
-      if (!violations.isEmpty()) {
-        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST,
-            violations.iterator().next().getMessage());
+        Set<ConstraintViolation<RegisterData>> violations = validator.validate(data);
+        if (!violations.isEmpty()) {
+          Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST,
+              violations.iterator().next().getMessage());
+          return;
+        }
+
+        AdminDAO adminDAO = new AdminDAO();
+        if (!adminDAO.isUsernameAvailable(data.getUsername())) {
+          Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.USERNAME_ALREADY_USED,
+              "username already used");
+          return;
+        }
+
+        if (!adminDAO.isEmailAvailable(data.getEmail())) {
+          Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.EMAIL_ALREADY_USED,
+              "email already used");
+          return;
+        }
+
+        Admin admin = new Admin();
+        admin.setEmail(data.getEmail());
+        admin.setUsername(data.getUsername());
+        admin.setName(data.getName());
+        admin.setPassword(data.getPassword());
+
+        adminDAO.create(admin);
+
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "created the admin account sucessfully");
         return;
       }
-
-      AdminDAO adminDAO = new AdminDAO();
-      if (!adminDAO.isUsernameAvailable(data.getUsername())) {
-        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.USERNAME_ALREADY_USED,
-            "username already used");
-        return;
-      }
-
-      if (!adminDAO.isEmailAvailable(data.getEmail())) {
-        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.EMAIL_ALREADY_USED,
-            "email already used");
-        return;
-      }
-
-      Admin admin = new Admin();
-      admin.setEmail(data.getEmail());
-      admin.setUsername(data.getUsername());
-      admin.setName(data.getName());
-      admin.setPassword(data.getPassword());
-
-      adminDAO.create(admin);
-
-      Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "created the admin account sucessfully");
-      return;
     } catch (Exception e) {
       System.err.println(e.getStackTrace());
       Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
