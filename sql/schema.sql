@@ -54,21 +54,6 @@ CREATE TABLE IF NOT EXISTS dea.delivery_details (
 );
 CREATE INDEX IF NOT EXISTS idx_delivery_details_user_id ON dea.delivery_details (user_id);
 
-CREATE INDEX IF NOT EXISTS idx_user_email ON dea.users (email);
-
-CREATE TABLE IF NOT EXISTS dea.category(
-    ID INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    slug VARCHAR(50) UNIQUE,
-    PRIMARY KEY (ID)
-);
-
-CREATE TABLE IF NOT EXISTS dea.subcategory(
-    ID INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    slug VARCHAR(50) UNIQUE,
-    PRIMARY KEY (ID)
-);
 
 CREATE TABLE IF NOT EXISTS dea.admins(
     id ulid NOT NULL DEFAULT gen_ulid(),
