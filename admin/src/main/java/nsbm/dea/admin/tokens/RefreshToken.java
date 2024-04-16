@@ -5,10 +5,9 @@ import java.time.Instant;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.github.f4b6a3.ulid.Ulid;
 import com.github.f4b6a3.ulid.UlidCreator;
 
 import nsbm.dea.admin.config.Env;
@@ -32,12 +31,11 @@ public class RefreshToken {
 
   public String generate(String id) {
     long now = Instant.now(Clock.systemUTC()).getEpochSecond();
-    Ulid ulid = UlidCreator.getUlid();
 
+    this.ulid = UlidCreator.getUlid().toString();
     this.iat = now;
     this.nbf = now;
     this.exp = now + Env.getRefreshTokenExp();
-    this.ulid = ulid.toString();
     this.sub = id;
 
     try (JedisPool pool = Redis.getPool()) {
