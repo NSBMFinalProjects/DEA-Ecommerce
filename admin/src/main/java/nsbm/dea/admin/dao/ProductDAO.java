@@ -3,10 +3,7 @@ package nsbm.dea.admin.dao;
 import nsbm.dea.admin.connections.DB;
 import nsbm.dea.admin.model.Product;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +12,7 @@ public class ProductDAO {
         List<Product> products = new ArrayList<Product>();
 
         try (Connection connection= DB.getConnection()){
-            PreparedStatement statement=connection.prepareStatement("select * from dea.product");
+            PreparedStatement statement=connection.prepareStatement("select * from dea.products");
             ResultSet resultSet=statement.executeQuery();
 
             while(resultSet.next()){
@@ -30,8 +27,8 @@ public class ProductDAO {
                 String[] photoUrls=photoUrl.split(",");
 
                 product.setPhotoUrls(photoUrls);
-                product.setCreated(resultSet.getTimestamp("created").toInstant());
-                product.setModified(resultSet.getTimestamp("modified").toInstant());
+                product.setCreated(Timestamp.from(resultSet.getTimestamp("created").toInstant()));
+                product.setModified(Timestamp.from(resultSet.getTimestamp("modified").toInstant()));
 
                 products.add(product);
             }
@@ -45,7 +42,7 @@ public class ProductDAO {
     public boolean addProduct(Product product) throws SQLException{
 
         try (Connection connection= DB.getConnection()){
-            String sql="insert into dea.product(slug, name, description, admin_id, photoUrls) values(?,?,?,?,?)";
+            String sql="insert into dea.products(slug, name, description, admin_id, photoUrls) values(?,?,?,?,?)";
             PreparedStatement statement=connection.prepareStatement(sql);
             statement.setString(1, product.getSlug());
             statement.setString(2,product.getName());
@@ -64,7 +61,7 @@ public class ProductDAO {
     public boolean updateProduct(Product product) throws SQLException{
 
         try (Connection connection= DB.getConnection()){
-            String sql="update dea.product set name=?,description=?,photoUrls=? where id=?";
+            String sql="update dea.products set name=?,description=?,photoUrls=? where id=?";
             PreparedStatement statement=connection.prepareStatement(sql);
 
             statement.setString(1,product.getName());
@@ -81,7 +78,7 @@ public class ProductDAO {
 
     public boolean deleteProduct(Product product) throws SQLException{
         try (Connection connection= DB.getConnection()){
-            String sql="delete from dea.product where id=?";
+            String sql="delete from dea.products where id=?";
             PreparedStatement statement=connection.prepareStatement(sql);
             statement.setInt(1,product.getId());
             int result=statement.executeUpdate();

@@ -1,5 +1,6 @@
 package nsbm.dea.admin.model;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 
 public class Product {
@@ -9,14 +10,14 @@ public class Product {
     private String name;
     private String[] photoUrls;
     private String description;
-    private Instant created;
-    private Instant modified;
+    private Timestamp created;
+    private Timestamp modified;
 
 
 
     public Product() {}
 
-    public Product(String createdBy, String slug, String name, String[] photoUrls, String description, Instant created, Instant modified) {
+    public Product(String createdBy, String slug, String name, String[] photoUrls, String description, Timestamp created, Timestamp modified) {
         this.createdBy = createdBy;
         this.slug = slug;
         this.name = name;
@@ -74,19 +75,19 @@ public class Product {
         this.description = description;
     }
 
-    public Instant getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(Instant created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public Instant getModified() {
+    public Timestamp getModified() {
         return modified;
     }
 
-    public void setModified(Instant modified) {
+    public void setModified(Timestamp modified) {
         this.modified = modified;
     }
 }
