@@ -26,6 +26,7 @@ dependencies {
   implementation 'at.favre.lib:bcrypt:0.10.2'
   implementation 'io.github.cdimascio:dotenv-java:3.0.0'
   implementation 'org.postgresql:postgresql:42.7.3'
+  implementation 'com.auth0:java-jwt:4.4.0'
 }
 
 tomcat {
