@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      * {
+        font-family: "Poppins", sans-serif !important;
+      }
+      li {
+        list-style: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      a {
+        text-decoration: none;
+      }
+      .topcard:hover {
+        box-shadow: 5px 5px 0px #ffffff7c !important;
+        transform: scale(0.99) !important;
+      }
+      .buttonCommon:hover {
+        box-shadow: 3px 3px 0px #ffffff7c !important;
+        transform: scale(0.99) !important;
+      }
+      .inputField {
+        height: 50px;
+        width: 100%;
+        font-size: 16px;
+        margin-top: -10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-right: 50px;
+      }
+      .inputFieldContainer {
+        font-size: 10px;
+        color: #ffffff;
+        float: left;
+        width: 100%;
+        padding-right: 20px;
+        margin-bottom: 20px;
+      }
+      .inputHeadding {
+        font-size: 14px;
+        font-weight: 600;
+        color: white;
+      }
+      .itemName {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .itemPrice {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .itemContainer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: -15px;
+      }
+    </style>
+
+    <section class="header">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="width: 100% !important">
+          <a class="navbar-brand" href="#"
+            ><img src="assets/headerLogo.svg" alt=""
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse"
+            id="navbarSupportedContent"
+            style="width: 100px !important"
+          >
+            <ul class="navbar-nav mb-2 mb-lg-0" style="margin-left: auto">
+              <li class="nav-item px-3 m-auto">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item px-3 m-auto">
+                <a class="nav-link" href="#">Collection</a>
+              </li>
+              <li class="nav-item px-3 m-auto">
+                <a class="nav-link" href="#">Shop</a>
+              </li>
+              <li class="nav-item px-3 m-auto">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                  ><img src="assets/searchIcon.svg" alt=""
+                /></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                  ><img src="assets/profileIcon.svg" alt=""
+                /></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <section
+      class="viewportCheckout"
+      style="
+        width: 100%;
+        display: flex;
+        background-color: #e7e7e7;
+        padding: 50px 0px 50px 0px;
+      "
+    >
+      <div
+        style="
+          width: 80%;
+          background-color: #203c55;
+          margin: auto;
+          box-shadow: 10px 10px 0px #ffffff;
+          padding: 40px;
+        "
+      >
+        <p style="font-size: 40px; color: #ffffff; font-weight: 600">
+          Checkout
+        </p>
+        <p
+          style="
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: normal;
+            margin-top: -20px;
+          "
+        >
+          Enter your checkout details to purchase
+        </p>
+        <form>
+          <div style="display: flex">
+            <div class="inputFieldContainer">
+              <p class="inputHeadding">First Name:</p>
+              <input
+                type="text"
+                class="inputField"
+                placeholder="  Enter your first name"
+              />
+            </div>
+            <div class="inputFieldContainer">
+              <p class="inputHeadding">Last Name:</p>
+              <input
+                type="text"
+                class="inputField"
+                placeholder="  Enter your last name"
+              />
+            </div>
+          </div>
+          <div style="display: flex">
+            <div class="inputFieldContainer">
+              <p class="inputHeadding">Contact number:</p>
+              <input
+                type="text"
+                class="inputField"
+                placeholder="  Enter your contact number"
+              />
+            </div>
+            <div class="inputFieldContainer">
+              <p class="inputHeadding">Email:</p>
+              <input
+                type="email"
+                class="inputField"
+                placeholder="  Enter your email address"
+              />
+            </div>
+          </div>
+          <div style="display: flex">
+            <div class="inputFieldContainer">
+              <p class="inputHeadding">Address:</p>
+              <input
+                type="text"
+                class="inputField"
+                style="width: 100%"
+                placeholder="  Enter your shipping address"
+              />
+            </div>
+          </div>
+
+          <p
+            style="
+              font-size: 30px;
+              color: #ffffff;
+              font-weight: 600;
+              margin-top: 20px;
+            "
+          >
+            Note:
+          </p>
+          <p
+            style="
+              font-size: 18px;
+              color: #ffffff;
+              font-weight: normal;
+              margin-top: -15px;
+            "
+          >
+            Payment method:Cash On Delivery. <br />
+            Order will delivered within 2 to 4 business days across island wide.
+          </p>
+
+          <div
+            style="
+              display: flex;
+              height: 100%;
+              width: 100%;
+              align-items: center;
+            "
+          >
+            <input type="checkbox" value="checkbox" />
+            <p
+              style="
+                font-size: 14px;
+                margin-left: 20px;
+                margin-top: 15px;
+                font-weight: bold;
+                color: white;
+              "
+            >
+              Accept our terms and conditions
+            </p>
+          </div>
+
+          <div
+            style="
+              width: 100%;
+              height: 5px;
+              margin-bottom: 30px;
+              background-color: #ffffff;
+            "
+          ></div>
+
+          <div>
+            <div class="itemContainer">
+              <p class="itemName">item 1</p>
+              <p class="itemPrice">LKR 2490</p>
+            </div>
+            <div class="itemContainer">
+              <p class="itemName">item 2</p>
+              <p class="itemPrice">LKR 2490</p>
+            </div>
+            <div class="itemContainer">
+              <p class="itemName">item 3</p>
+              <p class="itemPrice">LKR 2490</p>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between">
+            <p
+              style="
+                font-size: 18px;
+                color: #ffffff;
+                font-weight: 600;
+                margin-top: 20px;
+              "
+            >
+              Subtotal
+            </p>
+            <p
+              style="
+                font-size: 18px;
+                color: #ffffff;
+                font-weight: 600;
+                margin-top: 20px;
+              "
+            >
+              LKR 5000
+            </p>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              margin-top: -35px;
+            "
+          >
+            <p
+              style="
+                font-size: 18px;
+                color: #ffffff;
+                font-weight: 600;
+                margin-top: 20px;
+              "
+            >
+              Tax
+            </p>
+            <p
+              style="
+                font-size: 18px;
+                color: #ffffff;
+                font-weight: 600;
+                margin-top: 20px;
+              "
+            >
+              -LKR 500
+            </p>
+          </div>
+
+          <div
+            style="
+              width: 100%;
+              height: 5px;
+              margin-bottom: 30px;
+              background-color: #ffffff;
+            "
+          ></div>
+
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              margin-top: -35px;
+            "
+          >
+            <p
+              style="
+                font-size: 24px;
+                color: #ffffff;
+                font-weight: 600;
+                margin-top: 20px;
+              "
+            >
+              Total
+            </p>
+            <p
+              style="
+                font-size: 24px;
+                color: #ffffff;
+                font-weight: 600;
+                margin-top: 20px;
+              "
+            >
+              LKR 4500
+            </p>
+          </div>
+
+          <div style="width: 80%; padding: 20px; margin-left: auto; margin-right: auto; margin-top: 50px; background-color: #e7e7e7">
+            <a href="#"
+              ><div
+                class="buttonCommon"
+                style="
+                  background-color: #203c55;
+                  width: 80%;
+                  color: white;
+                  font-size: 22px;
+                  font-weight: bold;
+                  padding-left: 15px;
+                  padding-right: 15px;
+                  box-shadow: 6px 6px 0px #ffffff;
+                  transition: 0.4s ease-in-out;
+                  margin-left: auto;
+                  margin-right: auto;
+                  margin-top: 20px;
+                "
+              >
+                <center>
+                  <p
+                    class="pe-none"
+                    style="padding-top: 5px; padding-bottom: 5px"
+                  >
+                    Checkout
+                  </p>
+                </center>
+              </div></a
+            >
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="footer">
+      <div class="container" style="max-width: 100% !important; padding: 0">
+        <footer
+          class="text-white text-center text-lg-start"
+          style="background-color: #fbfbfb; margin: 0 !important"
+        >
+          <div class="container p-4">
+            <div class="row mt-4">
+              <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                <img src="assets/foooterIcon.svg" alt="" role="button" />
+
+                <p class="mt-3 p-2 pe-none" style="color: #203c55 !important">
+                  29 Visaka Road,<br />
+                  Duplication Rd, 00400,<br />
+                  Sri Lanka.
+                </p>
+
+                <div class="mt-4">
+                  <img
+                    src="assets/Footer social icons/LinkedIn.svg"
+                    alt=""
+                    role="button"
+                  />
+                  <img
+                    src="assets/Footer social icons/TwitterX.svg"
+                    alt=""
+                    role="button"
+                  />
+                  <img
+                    src="assets/Footer social icons/Instagram.svg"
+                    alt=""
+                    role="button"
+                  />
+                  <img
+                    src="assets/Footer social icons/Facebook.svg"
+                    alt=""
+                    role="button"
+                  />
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0"></div>
+              <div
+                class="col-lg-5 col-md-6 mb-4 mb-md-0 d-flex"
+                style="justify-content: space-evenly !important"
+              >
+                <div>
+                  <h5
+                    class="text-uppercase pb-1 px-4 pe-none"
+                    style="
+                      color: #203c55 !important;
+                      padding-left: 30px !important;
+                    "
+                  >
+                    Help
+                  </h5>
+                  <ul>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        padding-left: -10px !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      FAQ
+                    </li>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      Return Policy
+                    </li>
+                    <li style="color: #203c55 !important" role="button">
+                      Accessibility
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h5
+                    class="text-uppercase pb-1 px-4 pe-none"
+                    style="
+                      color: #203c55 !important;
+                      padding-left: 30px !important;
+                    "
+                  >
+                    Account
+                  </h5>
+                  <ul>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        padding-left: -10px !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      Membership
+                    </li>
+                    <li style="color: #203c55 !important" role="button">
+                      Profile
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h5
+                    class="text-uppercase pb-1 px-4 pe-none"
+                    style="
+                      color: #203c55 !important;
+                      padding-left: 30px !important;
+                    "
+                  >
+                    Contact Us
+                  </h5>
+                  <ul>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        padding-left: -10px !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      Location
+                    </li>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      Email
+                    </li>
+                    <li style="color: #203c55 !important" role="button">
+                      Telephone
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="text-center p-3 pe-none"
+            style="background-color: #203c55"
+          >
+            © 2024 BLOOM CLTHING, All Rights Reserved
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
