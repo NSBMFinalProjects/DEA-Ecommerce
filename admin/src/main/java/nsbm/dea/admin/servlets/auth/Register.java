@@ -92,14 +92,8 @@ public class Register extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()))) {
-      StringBuilder jsonStr = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null) {
-        jsonStr.append(line);
-      }
-
-      JsonObject payload = gson.fromJson(jsonStr.toString(), JsonObject.class);
+    try {
+      JsonObject payload = Lib.getJSONPayloadFromRequest(request);
 
       ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
       Validator validator = factory.getValidator();
