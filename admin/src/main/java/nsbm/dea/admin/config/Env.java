@@ -44,4 +44,12 @@ public class Env {
   public static String getRedisURL() {
     return dotenv.get("REDIS_URL");
   }
+
+  public static String getEnv() {
+    return dotenv.get("ENV");
+  }
+
+  public static String getDomain() {
+    return dotenv.get("DOMAIN");
+  }
 }
