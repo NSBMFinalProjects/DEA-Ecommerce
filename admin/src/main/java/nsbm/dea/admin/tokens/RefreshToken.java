@@ -26,7 +26,7 @@ public class RefreshToken {
   private String ulid;
   private String sub;
 
-  public String getKeyForRedis(String key) {
+  public static String getKeyForRedis(String key) {
     return String.format("admin_refresh_token-%s", key);
   }
 
@@ -42,7 +42,7 @@ public class RefreshToken {
 
     try (JedisPool pool = Redis.getPool()) {
       try (Jedis jedis = pool.getResource()) {
-        jedis.setex(this.getKeyForRedis(this.ulid), Env.getRefreshTokenExp(), "default");
+        jedis.setex(RefreshToken.getKeyForRedis(this.ulid), Env.getRefreshTokenExp(), "default");
       }
     }
 
@@ -64,7 +64,7 @@ public class RefreshToken {
 
       try (JedisPool pool = Redis.getPool()) {
         try (Jedis jedis = pool.getResource()) {
-          String value = jedis.get(this.getKeyForRedis(this.ulid));
+          String value = jedis.get(RefreshToken.getKeyForRedis(this.ulid));
           if (value == null) {
             return false;
           }
