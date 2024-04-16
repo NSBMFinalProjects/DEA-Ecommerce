@@ -1,11 +1,8 @@
 package nsbm.dea.admin.servlets.auth;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Set;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
@@ -30,7 +27,6 @@ import nsbm.dea.admin.model.Admin;
 
 @WebServlet(name = "register", value = "/auth/register")
 public class Register extends HttpServlet {
-  private static final Gson gson = new Gson();
 
   private class RegisterData {
     @NotNull(message = "email cannot be empty")
