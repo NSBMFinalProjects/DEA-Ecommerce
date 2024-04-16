@@ -65,9 +65,9 @@ public class AccessToken {
         .sign(algorithm);
   }
 
-  public boolean isValid(String token, String id) {
+  public boolean isValid(String token) {
     try {
-      JWTVerifier verifier = JWT.require(algorithm).withIssuer(AccessToken.iss).withClaim("sub", id).build();
+      JWTVerifier verifier = JWT.require(algorithm).withIssuer(AccessToken.iss).build();
 
       DecodedJWT jwt = verifier.verify(token);
       this.ulid = jwt.getClaim("token_id").asString();
@@ -80,7 +80,7 @@ public class AccessToken {
             return false;
           }
 
-          if (!value.equals(id)) {
+          if (!value.equals(this.sub)) {
             return false;
           }
         }

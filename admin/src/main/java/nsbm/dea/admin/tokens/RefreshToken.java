@@ -51,10 +51,9 @@ public class RefreshToken {
         .sign(algorithm);
   }
 
-  public boolean isValid(String token, String id) {
+  public boolean isValid(String token) {
     try {
-      JWTVerifier verifier = JWT.require(algorithm).withIssuer(RefreshToken.iss).withClaim("sub", id)
-          .build();
+      JWTVerifier verifier = JWT.require(algorithm).withIssuer(RefreshToken.iss).build();
 
       DecodedJWT jwt = verifier.verify(token);
       this.ulid = jwt.getClaim("token_id").asString();
