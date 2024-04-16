@@ -26,7 +26,7 @@ public class RefreshToken {
   private String ulid;
   private String sub;
 
-  private String getKeyForRedis(String key) {
+  public String getKeyForRedis(String key) {
     return String.format("admin_refresh_token-%s", key);
   }
 
