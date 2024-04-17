@@ -59,6 +59,7 @@ public class AccessToken {
     }
 
     return JWT.create().withIssuer(AccessToken.iss).withClaim("sub", this.sub).withClaim("token_id", this.ulid)
+        .withClaim("refresh_token_id", this.refreshTokenId)
         .withClaim("iat", this.iat)
         .withClaim("nbf", this.nbf)
         .withClaim("exp", this.exp)
@@ -72,6 +73,7 @@ public class AccessToken {
       DecodedJWT jwt = verifier.verify(token);
       this.ulid = jwt.getClaim("token_id").asString();
       this.sub = jwt.getClaim("sub").asString();
+      this.refreshTokenId = jwt.getClaim("refresh_token_id").asString();
 
       try (JedisPool pool = Redis.getPool()) {
         try (Jedis jedis = pool.getResource()) {
@@ -81,6 +83,13 @@ public class AccessToken {
           }
 
           if (!value.equals(this.sub)) {
+            return false;
+          }
+          String atk = jedis.get(RefreshToken.getKeyForRedis(this.refreshTokenId));
+          if (atk == null) {
+            return false;
+          }
+          if (!AccessToken.getKeyForRedis(this.ulid).equals(atk)) {
             return false;
           }
         }
