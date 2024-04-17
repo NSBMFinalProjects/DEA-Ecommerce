@@ -117,7 +117,7 @@ public class Login extends HttpServlet {
         accessTokenC.setDomain(Env.getDomain());
         accessTokenC.setPath("/");
         accessTokenC.setSecure(Env.getEnv() == "PROD" ? false : true);
-        accessTokenC.setHttpOnly(false);
+        accessTokenC.setHttpOnly(true);
 
         Cookie sessionTokenC = new Cookie("session", st);
         sessionTokenC.setMaxAge(Math.toIntExact(Env.getSessionTokenExp()));
