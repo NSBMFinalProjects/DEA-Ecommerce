@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: #1e3a6b;
+      color: rgb(245, 241, 241); 
+    }
+
+    .profile {
+      width: 500px;
+      margin: 0 auto;
+      border: 1px solid #1e3a6b;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      background-color: #1e3a6b; 
+      display: flex;  
+    }
+
+    .profile img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-right: 20px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); 
+    }
+
+    .profile h1 {
+      margin-top: 0;
+      flex: 1; 
+      color: rgb(241, 238, 238);  
+    }
+
+    .details {
+      display: flex;  
+      flex-direction: column;  
+      justify-content: space-between;  
+    }
+
+    .details p {
+      margin-bottom: 0;
+      display: flex;
+      align-items: baseline;
+    }
+
+    .details p.address {
+      margin-bottom: 10px;
+    }
+
+    .details p span {
+      margin-right: 10px;
+    }
+
+    .order {
+      margin-top: 30px;
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+    }
+
+    .order h2 {
+      margin-top: 0;
+    }
+
+    .order-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .order-table th,
+    .order-table td {
+      padding: 10px;
+      text-align: left;
+      border: none;  
+      color: white;  
+    }
+
+    .order-table th {
+      background-color: #1e3a6bf2;
+    }
+
+    .edit-profile-button {
+      display: block;
+      margin-top: 20px;
+      background-color: #dedfe4;
+      color: rgb(10, 10, 10);
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);  
+    }
+  </style>
+</head>
+<body>
+  <div class="profile">
+    <img src="image.jpg" alt="User Image">
+    <div class="details">
+      <h1>User Details</h1>
+      <p><span>Email address:</span>Email@example.com</p>
+      <p><span>Phone:</span>1234567890</p>
+      <p class="address"><span>Address:</span>1234 Main St, Anytown, USA</p>
+      <button class="edit-profile-button">Edit Profile</button>
+    </div>
+  </div>
+  <div class="order">
+    <h2>Order Details</h2>
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Ordered Date</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Current State</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>TEXT PRINT T-SHIRT</td>
