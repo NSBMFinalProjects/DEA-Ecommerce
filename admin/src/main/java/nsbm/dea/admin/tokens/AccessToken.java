@@ -81,10 +81,10 @@ public class AccessToken {
           if (value == null) {
             return false;
           }
-
           if (!value.equals(this.sub)) {
             return false;
           }
+
           String atk = jedis.get(RefreshToken.getKeyForRedis(this.refreshTokenId));
           if (atk == null) {
             return false;
@@ -99,6 +99,18 @@ public class AccessToken {
     } catch (JWTVerificationException e) {
       System.err.println(e.getMessage());
       return false;
+    }
+  }
+
+  public void delete(String token) throws UnauthorizedException {
+    if (!this.isValid(token)) {
+      throw new UnauthorizedException("access token is not valid");
+    }
+
+    try (JedisPool pool = Redis.getPool()) {
+      try (Jedis jedis = pool.getResource()) {
+        jedis.del(AccessToken.getKeyForRedis(this.ulid));
+      }
     }
   }
 
