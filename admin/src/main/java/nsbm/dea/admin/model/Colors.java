@@ -1,5 +1,6 @@
 package nsbm.dea.admin.model;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class Colors {
@@ -10,19 +11,21 @@ public class Colors {
     private String name;
     private String hex;
     private int quantity;
+    private BigDecimal price;
     private Timestamp created;
     private Timestamp modified;
 
     public Colors(){
     }
 
-    public Colors(int id,int categoryId,String createdBy,String slug,String name,String hex,int quantity,Timestamp created,Timestamp modified){
+    public Colors(int id,int categoryId,String createdBy,String slug,String name,String hex,BigDecimal price,int quantity,Timestamp created,Timestamp modified){
         this.id = id;
         this.categoryId = categoryId;
         this.createdBy = createdBy;
         this.slug = slug;
         this.name = name;
         this.hex = hex;
+        this.price = price;
         this.quantity = quantity;
         this.created = created;
         this.modified = modified;
@@ -63,6 +66,12 @@ public class Colors {
     }
     public void setHex(String hex) {
         this.hex = hex;
+    }
+    public BigDecimal getPrice() {
+        return price;
+    }
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
     public int getQuantity() {
         return quantity;
