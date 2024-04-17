@@ -4,10 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import nsbm.dea.admin.enums.Status;
@@ -38,5 +42,18 @@ public class Lib {
 
       return gson.fromJson(jsonStr.toString(), JsonObject.class);
     }
+  }
+
+  public static Optional<Cookie> getCookieByName(HttpServletRequest request, String name) {
+    Map<String, Cookie> map = new HashMap<>();
+    for (Cookie cookie : request.getCookies()) {
+      map.put(cookie.getName(), cookie);
+    }
+
+    if (!map.containsKey(name)) {
+      return Optional.empty();
+    }
+
+    return Optional.of(map.get(name));
   }
 }
