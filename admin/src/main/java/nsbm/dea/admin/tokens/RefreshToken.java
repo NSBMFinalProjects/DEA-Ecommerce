@@ -12,6 +12,7 @@ import com.github.f4b6a3.ulid.UlidCreator;
 
 import nsbm.dea.admin.config.Env;
 import nsbm.dea.admin.connections.Redis;
+import nsbm.dea.admin.errors.UnauthorizedException;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -72,6 +73,25 @@ public class RefreshToken {
     } catch (JWTVerificationException e) {
       System.err.println(e.getMessage());
       return false;
+    }
+  }
+
+  public void delete(String token) throws UnauthorizedException {
+    if (!this.isValid(token)) {
+      throw new UnauthorizedException("refresh token is not valid");
+    }
+
+    try (JedisPool pool = Redis.getPool()) {
+      try (Jedis jedis = pool.getResource()) {
+        String rtk = jedis.get(RefreshToken.getKeyForRedis(this.ulid));
+        if (rtk == null) {
+          throw new UnauthorizedException("refresh token is not valid");
+        }
+        if (rtk != "default") {
+          jedis.del(rtk);
+        }
+        jedis.del(RefreshToken.getKeyForRedis(this.ulid));
+      }
     }
   }
 
