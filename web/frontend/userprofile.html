@@ -1,121 +1,455 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body {
-      background-color: #1e3a6b;
-      color: rgb(245, 241, 241); 
-    }
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-    .profile {
-      width: 500px;
-      margin: 0 auto;
-      border: 1px solid #1e3a6b;
-      padding: 20px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      background-color: #1e3a6b; 
-      display: flex;  
-    }
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
 
-    .profile img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-right: 20px;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); 
-    }
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-    .profile h1 {
-      margin-top: 0;
-      flex: 1; 
-      color: rgb(241, 238, 238);  
-    }
+      * {
+        font-family: "Poppins", sans-serif !important;
+      }
+      li {
+        list-style: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="header1">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="width: 100% !important">
+          <a class="navbar-brand" href="#"
+            ><img src="assets/headerLogo.svg" alt=""
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse"
+            id="navbarSupportedContent"
+            style="width: 100px !important"
+          >
+            <ul class="navbar-nav mb-2 mb-lg-0" style="margin-left: auto">
+              <li class="nav-item px-3 m-auto">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item px-3 m-auto">
+                <a class="nav-link" href="#">Collection</a>
+              </li>
+              <li class="nav-item px-3 m-auto">
+                <a class="nav-link" href="#">Shop</a>
+              </li>
+              <li class="nav-item px-3 m-auto">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
 
-    .details {
-      display: flex;  
-      flex-direction: column;  
-      justify-content: space-between;  
-    }
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                  ><img src="assets/searchIcon.svg" alt=""
+                /></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                  ><img src="assets/profileIcon.svg" alt=""
+                /></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </section>
 
-    .details p {
-      margin-bottom: 0;
-      display: flex;
-      align-items: baseline;
-    }
+    <style>
+      a {
+        text-decoration: none;
+      }
+      .topcard:hover {
+        box-shadow: 5px 5px 0px #ffffff7c !important;
+        transform: scale(0.99) !important;
+      }
+      .buttonCommon:hover {
+        box-shadow: 3px 3px 0px #ffffff7c !important;
+        transform: scale(0.99) !important;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+      }
 
-    .details p.address {
-      margin-bottom: 10px;
-    }
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+        color: #ffffff;
+      }
+    </style>
 
-    .details p span {
-      margin-right: 10px;
-    }
+    <section>
+      <div
+        style="
+          width: 100%;
+          background-color: #c7c7c7c7;
+          display: flex;
+          padding: 50px 0px 50px 0px;
+        "
+      >
+        <div
+          style="
+            width: 80%;
+            padding: 40px;
+            background-color: #203c55;
+            margin: auto;
+            box-shadow: 10px 10px 0px #ffffff;
+          "
+        >
+          <div style="display: flex; width: 100%">
+            <div style="width: 25%; padding: 20px">
+              <div
+                style="
+                  width: 100%;
+                  height: 250px;
+                  background-color: #ffffff;
+                  box-shadow: 10px 10px 0px #c3c3c3;
+                  overflow: hidden;
+                  justify-content: center;
+                  display: flex;
+                "
+              >
+                <img
+                  src="assets/profilePlaceholder.jpg"
+                  style="width: auto"
+                  alt=""
+                />
+              </div>
+              <a href="#"
+                ><div
+                  class="buttonCommon"
+                  style="
+                    background-color: #ffffff;
+                    width: 100%;
+                    color: #203c55;
+                    font-size: 22px;
+                    font-weight: bold;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    box-shadow: 6px 6px 0px #c3c3c3;
+                    transition: 0.4s ease-in-out;
+                    margin-top: 50px;
+                  "
+                >
+                  <center>
+                    <p
+                      class="pe-none"
+                      style="padding-top: 5px; padding-bottom: 5px"
+                    >
+                      Edit profile
+                    </p>
+                  </center>
+                </div></a
+              >
+            </div>
+            <div style="width: 75%; padding: 20px 40px 20px 40px">
+              <p style="color: #ffffff; font-size: 30px; font-weight: 600">
+                User Details
+              </p>
+              <div
+                style="
+                  background-color: #ffffff;
+                  width: 100%;
+                  height: 2px;
+                  margin-top: -10px;
+                "
+              ></div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-top: 40px;
+                "
+              >
+                <p style="font-size: 18px; color: #ffffff; font-weight: 600">
+                  First Name
+                </p>
+                <p style="font-size: 18px; color: #ffffff; font-weight: 600">
+                  Hello
+                </p>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-top: -10px;
+                "
+              >
+                <p style="font-size: 18px; color: #ffffff; font-weight: 600">
+                  Last Name
+                </p>
+                <p style="font-size: 18px; color: #ffffff; font-weight: 600">
+                  World
+                </p>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-top: -10px;
+                "
+              >
+                <p style="font-size: 18px; color: #ffffff; font-weight: 600">
+                  Email
+                </p>
+                <p style="font-size: 18px; color: #ffffff; font-weight: 600">
+                  helloworld@gmail.com
+                </p>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-top: -10px;
+                "
+              >
+                <p style="font-size: 18px; color: #ffffff; font-weight: 600">
+                  Contact Number
+                </p>
+                <p style="font-size: 18px; color: #ffffff; font-weight: 600">
+                  1234567890
+                </p>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-top: -10px;
+                "
+              >
+                <p style="font-size: 18px; color: #ffffff; font-weight: 600">
+                  Shipping Address
+                </p>
+                <p style="font-size: 18px; color: #ffffff; font-weight: 600">
+                  No 150, testing, testing.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 20px; margin-top: -10px">
+            <p style="color: #ffffff; font-size: 30px; font-weight: 600">
+              Order Details
+            </p>
+            <div
+              style="background-color: #ffffff; width: 100%; height: 2px"
+            ></div>
 
-    .order {
-      margin-top: 30px;
-      border-top: 1px solid #ccc;
-      padding-top: 20px;
-    }
+            <div style="overflow-x: auto">
+              <table>
+                <tr>
+                  <th>Item Name</th>
+                  <th>Ordered Date</th>
+                  <th>Quantity</th>
+                  <th>Prize</th>
+                  <th>Current State</th>
+                </tr>
+                <tr>
+                  <td>TEXT PRINT T-SHIRT</td>
+                  <td>2024.03.29</td>
+                  <td>3</td>
+                  <td>LKR 5000</td>
+                  <td>Shipped</td>
+                </tr>
+                <tr>
+                  <td>HERACLIO FOURNIER SWEATSHIRT</td>
+                  <td>2024.04.03</td>
+                  <td>2</td>
+                  <td>LKR 3000</td>
+                  <td>Delivered</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    .order h2 {
-      margin-top: 0;
-    }
+    <section class="footer1">
+      <div class="container" style="max-width: 100% !important; padding: 0">
+        <footer
+          class="text-white text-center text-lg-start"
+          style="background-color: #fbfbfb; margin: 0 !important"
+        >
+          <div class="container p-4">
+            <div class="row mt-4">
+              <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                <img src="assets/foooterIcon.svg" alt="" role="button" />
 
-    .order-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+                <p class="mt-3 p-2 pe-none" style="color: #203c55 !important">
+                  29 Visaka Road,<br />
+                  Duplication Rd, 00400,<br />
+                  Sri Lanka.
+                </p>
 
-    .order-table th,
-    .order-table td {
-      padding: 10px;
-      text-align: left;
-      border: none;  
-      color: white;  
-    }
+                <div class="mt-4">
+                  <img
+                    src="assets/Footer social icons/LinkedIn.svg"
+                    alt=""
+                    role="button"
+                  />
+                  <img
+                    src="assets/Footer social icons/TwitterX.svg"
+                    alt=""
+                    role="button"
+                  />
+                  <img
+                    src="assets/Footer social icons/Instagram.svg"
+                    alt=""
+                    role="button"
+                  />
+                  <img
+                    src="assets/Footer social icons/Facebook.svg"
+                    alt=""
+                    role="button"
+                  />
+                </div>
+              </div>
 
-    .order-table th {
-      background-color: #1e3a6bf2;
-    }
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0"></div>
+              <div
+                class="col-lg-5 col-md-6 mb-4 mb-md-0 d-flex"
+                style="justify-content: space-evenly !important"
+              >
+                <div>
+                  <h5
+                    class="text-uppercase pb-1 px-4 pe-none"
+                    style="
+                      color: #203c55 !important;
+                      padding-left: 30px !important;
+                    "
+                  >
+                    Help
+                  </h5>
+                  <ul>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        padding-left: -10px !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      FAQ
+                    </li>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      Return Policy
+                    </li>
+                    <li style="color: #203c55 !important" role="button">
+                      Accessibility
+                    </li>
+                  </ul>
+                </div>
 
-    .edit-profile-button {
-      display: block;
-      margin-top: 20px;
-      background-color: #dedfe4;
-      color: rgb(10, 10, 10);
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);  
-    }
-  </style>
-</head>
-<body>
-  <div class="profile">
-    <img src="image.jpg" alt="User Image">
-    <div class="details">
-      <h1>User Details</h1>
-      <p><span>Email address:</span>Email@example.com</p>
-      <p><span>Phone:</span>1234567890</p>
-      <p class="address"><span>Address:</span>1234 Main St, Anytown, USA</p>
-      <button class="edit-profile-button">Edit Profile</button>
-    </div>
-  </div>
-  <div class="order">
-    <h2>Order Details</h2>
-    <table class="order-table">
-      <thead>
-        <tr>
-          <th>Item Name</th>
-          <th>Ordered Date</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Current State</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>TEXT PRINT T-SHIRT</td>
+                <div>
+                  <h5
+                    class="text-uppercase pb-1 px-4 pe-none"
+                    style="
+                      color: #203c55 !important;
+                      padding-left: 30px !important;
+                    "
+                  >
+                    Account
+                  </h5>
+                  <ul>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        padding-left: -10px !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      Membership
+                    </li>
+                    <li style="color: #203c55 !important" role="button">
+                      Profile
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h5
+                    class="text-uppercase pb-1 px-4 pe-none"
+                    style="
+                      color: #203c55 !important;
+                      padding-left: 30px !important;
+                    "
+                  >
+                    Contact Us
+                  </h5>
+                  <ul>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        padding-left: -10px !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      Location
+                    </li>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      Email
+                    </li>
+                    <li style="color: #203c55 !important" role="button">
+                      Telephone
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="text-center p-3 pe-none"
+            style="background-color: #203c55"
+          >
+            © 2024 BLOOM CLTHING, All Rights Reserved
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
