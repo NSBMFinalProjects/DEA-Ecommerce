@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import nsbm.dea.admin.connections.DB;
 import nsbm.dea.admin.errors.DuplicateKeyException;
 import nsbm.dea.admin.model.Admin;
@@ -48,7 +49,7 @@ public class AdminDAO {
   }
 
   public Optional<Admin> getByID(String id) throws SQLException {
-    String query = "SELECT * FROM dea.admins WHERE email = ? LIMIT 1";
+    String query = "SELECT * FROM dea.admins WHERE id = ? LIMIT 1";
     try (Connection connection = DB.getConnection()) {
       try (PreparedStatement statement = connection.prepareStatement(query)) {
         statement.setString(1, id);
@@ -192,7 +193,7 @@ public class AdminDAO {
     try (Connection connection = DB.getConnection()) {
       try (PreparedStatement statement = connection
           .prepareStatement("UPDATE dea.admins SET password = ? WHERE id = ?")) {
-        statement.setString(1, password);
+        statement.setString(1, BCrypt.withDefaults().hashToString(12, password.toCharArray()));
         statement.setString(2, id);
 
         statement.executeUpdate();
