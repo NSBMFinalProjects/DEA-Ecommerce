@@ -64,6 +64,7 @@ public class SessionToken {
       this.ulid = jwt.getClaim("token_id").asString();
       JsonObject payload = gson.fromJson(jwt.getClaim("user").asString(), JsonObject.class);
 
+      this.admin = new Admin();
       this.admin.setId(payload.get("id").getAsString());
       this.admin.setUsername(payload.get("username").getAsString());
       this.admin.setEmail(payload.get("email").getAsString());
