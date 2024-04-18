@@ -112,8 +112,8 @@ CREATE TABLE IF NOT EXISTS dea.collections (
   name VARCHAR(255) NOT NULL,
   photo_urls TEXT[3] NOT NULL,
   description TEXT,
-  created TIMESTAMP default now(), 
-  modified TIMESTAMP default now(),
+  created TIMESTAMP DEFAULT now(), 
+  modified TIMESTAMP DEFAULT now(),
 
   PRIMARY KEY(id),
 
@@ -135,8 +135,8 @@ CREATE TABLE IF NOT EXISTS dea.tags (
   created_by ulid NOT NULL,
   slug VARCHAR(100) NOT NULL UNIQUE,
   name VARCHAR(255) NOT NULL,
-  created TIMESTAMP default now(), 
-  modified TIMESTAMP default now(),
+  created TIMESTAMP DEFAULT now(), 
+  modified TIMESTAMP DEFAULT now(),
 
   PRIMARY KEY(id),
 
@@ -160,8 +160,8 @@ CREATE TABLE IF NOT EXISTS dea.products (
   name VARCHAR(255) NOT NULL,
   photo_urls TEXT[3] NOT NULL,
   description TEXT,
-  created TIMESTAMP default now(),
-  modified TIMESTAMP default now(),
+  created TIMESTAMP DEFAULT now(),
+  modified TIMESTAMP DEFAULT now(),
 
   PRIMARY KEY(id),
 
@@ -220,8 +220,8 @@ CREATE TABLE IF NOT EXISTS dea.categories (
   product_id INT NOT NULL,
   slug VARCHAR(100) NOT NULL,
   name VARCHAR(100) NOT NULL,
-  created TIMESTAMP default now(),
-  modified TIMESTAMP default now(),
+  created TIMESTAMP DEFAULT now(),
+  modified TIMESTAMP DEFAULT now(),
 
   PRIMARY KEY(id),
 
@@ -251,8 +251,8 @@ CREATE TABLE IF NOT EXISTS dea.colors (
   hex VARCHAR(100) NOT NULL,
   qty INT NOT NULL,
   price DECIMAL NOT NULL,
-  created TIMESTAMP default now(),
-  modified TIMESTAMP default now(),
+  created TIMESTAMP DEFAULT now(),
+  modified TIMESTAMP DEFAULT now(),
 
   PRIMARY KEY(id),
 
@@ -272,3 +272,61 @@ CREATE TRIGGER update_colors_modtime BEFORE UPDATE ON dea.colors FOR EACH ROW EX
 
 DROP TRIGGER IF EXISTS generate_colors_slug on dea.colors;
 CREATE TRIGGER generate_colors_slug BEFORE INSERT ON dea.colors FOR EACH ROW EXECUTE PROCEDURE generate_slug();
+
+DROP TYPE IF EXISTS dea.order_status;
+CREATE TYPE dea.order_status AS ENUM('processing', 'delivering', 'delivered');
+
+CREATE TABLE IF NOT EXISTS dea.orders (
+  id SERIAL,
+  ordered_by ulid NOT NULL,
+  delivery_address ulid NOT NULL,
+  created TIMESTAMP DEFAULT now(),
+  status dea.ORDER_STATUS DEFAULT 'processing'::dea.ORDER_STATUS,
+  qty INT NOT NULL,
+  total DECIMAL NOT NULL,
+
+  PRIMARY KEY(id),
+
+  FOREIGN KEY(ordered_by) REFERENCES dea.users(id),
+  CONSTRAINT fk_orders_ordered_by FOREIGN KEY (ordered_by)
+    REFERENCES dea.users(id) ON UPDATE CASCADE ON DELETE CASCADE,
+
+  FOREIGN KEY(delivery_address) REFERENCES dea.delivery_details(id),
+  CONSTRAINT fk_orders_delivery_address FOREIGN KEY (delivery_address)
+    REFERENCES dea.delivery_details(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_orders_ordered_by ON dea.orders (ordered_by);
+CREATE INDEX IF NOT EXISTS idx_orders_delivery_address ON dea.orders (delivery_address);
+CREATE INDEX IF NOT EXISTS idx_orders_status ON dea.orders (status);
+
+CREATE TABLE IF NOT EXISTS dea.user_orders (
+  id SERIAL,
+  order_id INT NOT NULL,
+  product_id INT NOT NULL,
+  category_id INT NOT NULL,
+  color_id INT NOT NULL,
+  price DECIMAL NOT NULL,
+  qty INT NOT NULL,
+
+  PRIMARY KEY(id),
+
+  FOREIGN KEY(order_id) REFERENCES dea.orders(id),
+  CONSTRAINT fk_user_orders_order_id FOREIGN KEY (order_id)
+    REFERENCES dea.orders(id) ON UPDATE CASCADE ON DELETE CASCADE,
+
+  FOREIGN KEY(product_id) REFERENCES dea.products(id),
+  CONSTRAINT fk_user_orders_product_id FOREIGN KEY (product_id)
+    REFERENCES dea.products(id) ON UPDATE CASCADE ON DELETE CASCADE,
+
+  FOREIGN KEY(category_id) REFERENCES dea.categories(id),
+  CONSTRAINT fk_user_orders_category_id FOREIGN KEY (category_id)
+    REFERENCES dea.categories(id) ON UPDATE CASCADE ON DELETE CASCADE,
+
+  FOREIGN KEY(color_id) REFERENCES dea.colors(id),
+  CONSTRAINT fk_user_orders_color_id FOREIGN KEY (color_id)
+    REFERENCES dea.colors(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_user_orders_order_id ON dea.user_orders (order_id);
+CREATE INDEX IF NOT EXISTS idx_user_orders_product_id ON dea.user_orders (product_id);
+CREATE INDEX IF NOT EXISTS idx_user_orders_category_id ON dea.user_orders (category_id);
+CREATE INDEX IF NOT EXISTS idx_user_orders_color_id ON dea.user_orders (color_id);
