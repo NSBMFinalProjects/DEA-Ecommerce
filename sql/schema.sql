@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS dea.categories (
   id SERIAL,
   created_by ulid NOT NULL,
   product_id INT NOT NULL,
-  slug VARCHAR(100) NOT NULL UNIQUE,
+  slug VARCHAR(100) NOT NULL,
   name VARCHAR(100) NOT NULL,
   created TIMESTAMP default now(),
   modified TIMESTAMP default now(),
@@ -233,7 +233,6 @@ CREATE TABLE IF NOT EXISTS dea.categories (
   CONSTRAINT fk_categories_created_by FOREIGN KEY (created_by)
     REFERENCES dea.admins(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
-CREATE INDEX IF NOT EXISTS idx_categories_slug ON dea.categories (slug);
 CREATE INDEX IF NOT EXISTS idx_categories_product_id ON dea.categories (product_id);
 CREATE INDEX IF NOT EXISTS idx_categories_created_by ON dea.categories (created_by);
 
@@ -247,7 +246,7 @@ CREATE TABLE IF NOT EXISTS dea.colors (
   id SERIAL,
   category_id INT NOT NULL,
   created_by ulid NOT NULL,
-  slug VARCHAR(100) NOT NULL UNIQUE,
+  slug VARCHAR(100) NOT NULL,
   name VARCHAR(100) NOT null,
   hex VARCHAR(100) NOT NULL,
   qty INT NOT NULL,
@@ -265,7 +264,6 @@ CREATE TABLE IF NOT EXISTS dea.colors (
   CONSTRAINT fk_colors_created_by FOREIGN KEY (created_by)
     REFERENCES dea.admins(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
-CREATE INDEX IF NOT EXISTS idx_colors_slug ON dea.colors (slug);
 CREATE INDEX IF NOT EXISTS idx_colors_category_id ON dea.colors (category_id);
 CREATE INDEX IF NOT EXISTS idx_colors_created_by ON dea.colors (created_by);
 
