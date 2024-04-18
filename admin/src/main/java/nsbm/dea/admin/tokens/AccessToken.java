@@ -43,6 +43,15 @@ public class AccessToken {
 
     try (JedisPool pool = Redis.getPool()) {
       try (Jedis jedis = pool.getResource()) {
+        String previousAccessToken = jedis.get(RefreshToken.getKeyForRedis(this.refreshTokenId));
+        if (previousAccessToken == null) {
+          throw new UnauthorizedException(
+              String.format("there is no refresh token in redis with the Id : %s", this.refreshTokenId));
+        }
+        if (previousAccessToken != "default") {
+          jedis.del(previousAccessToken);
+        }
+
         String value = jedis.get(RefreshToken.getKeyForRedis(this.refreshTokenId));
         if (value == null) {
           throw new UnauthorizedException(
