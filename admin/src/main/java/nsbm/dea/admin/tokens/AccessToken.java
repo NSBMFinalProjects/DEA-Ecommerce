@@ -89,7 +89,7 @@ public class AccessToken {
           if (atk == null) {
             return false;
           }
-          if (!AccessToken.getKeyForRedis(this.ulid).equals(atk)) {
+          if (!this.ulid.equals(atk)) {
             return false;
           }
         }
