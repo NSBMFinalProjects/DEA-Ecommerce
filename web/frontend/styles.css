@@ -1,0 +1,83 @@
+/* styles.css */
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: #e7e7e7;
+	font-family: 'Poppins', sans-serif;
+}
+.filter-section {
+	flex-wrap: nowrap;
+    background-color: #203c55;
+    padding: 20px;
+	display: flex;
+	color: white;
+	width: 180px;
+	display: flex;
+	justify-content: center;
+	
+}
+.p-text{
+	 text-align: left;
+}
+.form{
+	align: center;
+}
+.high-label{
+	text-align: right;
+}
+
+.product-part {
+    background-color: #e7e7e7;
+	text-align: center;
+	padding-left: 30px;
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+.shop-type {
+	font-size: 30px;
+	text-align: center;
+}
+.p {
+	font-size: 16px;
+}
+ .card{
+	 max-width: 330px;
+	 margin: auto;
+    background-color: #d9d9d9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	 text-align: left;
+	 /*
+	 background-color: #d9d9d9;
+  box-shadow: 8px 8px white;
+  max-width: 330px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+*/}
+.p-img{
+	padding: 20px;
+	align-items: center;
+}
+.filter-p{
+	font-size:20px;
+}
+.p-text{
+	padding-left: 20px;
+}
+.p-name{
+	color: black;
+	font-size: 20px;
+}
+.p-price {
+  color: #203c55;
+  font-size: 20px;
+}
+
+.p-code {
+	color: #203c55;
+	font-size: 15px;
+}
