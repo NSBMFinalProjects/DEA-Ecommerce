@@ -9,7 +9,6 @@ import com.google.gson.JsonObject;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,7 +21,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import nsbm.dea.admin.config.Env;
 import nsbm.dea.admin.dao.AdminDAO;
 import nsbm.dea.admin.enums.Status;
 import nsbm.dea.admin.lib.Lib;
@@ -31,7 +29,7 @@ import nsbm.dea.admin.tokens.AccessToken;
 import nsbm.dea.admin.tokens.RefreshToken;
 import nsbm.dea.admin.tokens.SessionToken;
 
-@WebServlet(name = "login", value = "/auth/login")
+@WebServlet(name = "/auth/login", value = "/auth/login")
 public class Login extends HttpServlet {
   public class LoginData {
     @NotNull(message = "email should not be emtpy")
@@ -97,38 +95,17 @@ public class Login extends HttpServlet {
         }
 
         RefreshToken refreshToken = new RefreshToken();
-        String rt = refreshToken.generate(admin.getId());
+        refreshToken.generate(admin.getId());
+        refreshToken.cookie(response);
 
         AccessToken accessToken = new AccessToken();
-        String at = accessToken.generate(admin.getId(), refreshToken.getUlid());
+        accessToken.generate(admin.getId(), refreshToken.getUlid());
+        accessToken.cookie(response);
 
         SessionToken sessionToken = new SessionToken();
-        String st = sessionToken.generate(admin);
+        sessionToken.generate(admin);
+        sessionToken.cookie(response);
 
-        Cookie refreshTokenC = new Cookie("refresh_token", rt);
-        refreshTokenC.setMaxAge(Math.toIntExact(Env.getRefreshTokenExp()));
-        refreshTokenC.setDomain(Env.getDomain());
-        refreshTokenC.setPath("/");
-        refreshTokenC.setSecure(Env.getEnv() == "PROD" ? false : true);
-        refreshTokenC.setHttpOnly(true);
-
-        Cookie accessTokenC = new Cookie("access_token", at);
-        accessTokenC.setMaxAge(Math.toIntExact(Env.getAccessTokenExp()));
-        accessTokenC.setDomain(Env.getDomain());
-        accessTokenC.setPath("/");
-        accessTokenC.setSecure(Env.getEnv() == "PROD" ? false : true);
-        accessTokenC.setHttpOnly(true);
-
-        Cookie sessionTokenC = new Cookie("session", st);
-        sessionTokenC.setMaxAge(Math.toIntExact(Env.getSessionTokenExp()));
-        sessionTokenC.setDomain(Env.getDomain());
-        sessionTokenC.setPath("/");
-        sessionTokenC.setSecure(Env.getEnv() == "PROD" ? false : true);
-        sessionTokenC.setHttpOnly(false);
-
-        response.addCookie(refreshTokenC);
-        response.addCookie(accessTokenC);
-        response.addCookie(sessionTokenC);
         Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "Okay");
         return;
       }
