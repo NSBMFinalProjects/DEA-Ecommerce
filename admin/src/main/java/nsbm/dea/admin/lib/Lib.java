@@ -45,8 +45,13 @@ public class Lib {
   }
 
   public static Optional<Cookie> getCookieByName(HttpServletRequest request, String name) {
+    Cookie[] cookies = request.getCookies();
+    if (cookies == null) {
+      return Optional.empty();
+    }
+
     Map<String, Cookie> map = new HashMap<>();
-    for (Cookie cookie : request.getCookies()) {
+    for (Cookie cookie : cookies) {
       map.put(cookie.getName(), cookie);
     }
 
