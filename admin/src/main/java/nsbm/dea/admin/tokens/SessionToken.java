@@ -12,6 +12,8 @@ import com.github.f4b6a3.ulid.UlidCreator;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import nsbm.dea.admin.config.Env;
 import nsbm.dea.admin.model.Admin;
 
@@ -25,6 +27,8 @@ public class SessionToken {
   private long exp;
   private String ulid;
   private Admin admin;
+
+  private String token;
 
   public String generate(Admin admin) {
     long now = Instant.now(Clock.systemUTC()).getEpochSecond();
@@ -42,13 +46,14 @@ public class SessionToken {
     object.addProperty("name", this.admin.getName());
     object.addProperty("photo_url", this.admin.getPhotoURL());
 
-    return JWT.create().withIssuer(SessionToken.iss).withClaim("sub", this.admin.getId())
+    this.token = JWT.create().withIssuer(SessionToken.iss).withClaim("sub", this.admin.getId())
         .withClaim("token_id", this.ulid)
         .withClaim("iat", this.iat)
         .withClaim("user", object.toString())
         .withClaim("nbf", this.nbf)
         .withClaim("exp", this.exp)
         .sign(algorithm);
+    return this.token;
   }
 
   public boolean isValid(String token) {
@@ -65,11 +70,23 @@ public class SessionToken {
       this.admin.setName(payload.get("name").getAsString());
       this.admin.setPhotoURL(payload.get("photo_url").getAsString());
 
+      this.token = token;
       return true;
     } catch (JWTVerificationException e) {
       System.err.println(e.getMessage());
       return false;
     }
+  }
+
+  public void cookie(HttpServletResponse response) {
+    Cookie cookie = new Cookie("session", this.token);
+    cookie.setMaxAge(Math.toIntExact(Env.getSessionTokenExp()));
+    cookie.setDomain(Env.getDomain());
+    cookie.setPath("/");
+    cookie.setSecure(Env.getEnv() == "PROD" ? false : true);
+    cookie.setHttpOnly(false);
+
+    response.addCookie(cookie);
   }
 
   public long getIat() {
@@ -90,5 +107,9 @@ public class SessionToken {
 
   public Admin getAdmin() {
     return admin;
+  }
+
+  public String getToken() {
+    return token;
   }
 }

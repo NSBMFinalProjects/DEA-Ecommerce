@@ -10,6 +10,8 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.github.f4b6a3.ulid.UlidCreator;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import nsbm.dea.admin.config.Env;
 import nsbm.dea.admin.connections.Redis;
 import nsbm.dea.admin.errors.UnauthorizedException;
@@ -25,6 +27,8 @@ public class RefreshToken {
   private long exp;
   private String ulid;
   private String sub;
+
+  private String token;
 
   public static String getKeyForRedis(String key) {
     return String.format("admin_refresh_token-%s", key);
@@ -45,11 +49,12 @@ public class RefreshToken {
       }
     }
 
-    return JWT.create().withIssuer(RefreshToken.iss).withClaim("sub", this.sub).withClaim("token_id", this.ulid)
+    this.token = JWT.create().withIssuer(RefreshToken.iss).withClaim("sub", this.sub).withClaim("token_id", this.ulid)
         .withClaim("iat", this.iat)
         .withClaim("nbf", this.nbf)
         .withClaim("exp", this.exp)
         .sign(algorithm);
+    return this.token;
   }
 
   public boolean isValid(String token) {
@@ -69,6 +74,7 @@ public class RefreshToken {
         }
       }
 
+      this.token = token;
       return true;
     } catch (JWTVerificationException e) {
       System.err.println(e.getMessage());
@@ -95,6 +101,17 @@ public class RefreshToken {
     }
   }
 
+  public void cookie(HttpServletResponse response) {
+    Cookie cookie = new Cookie("refresh_token", this.token);
+    cookie.setMaxAge(Math.toIntExact(Env.getRefreshTokenExp()));
+    cookie.setDomain(Env.getDomain());
+    cookie.setPath("/");
+    cookie.setSecure(Env.getEnv() == "PROD" ? false : true);
+    cookie.setHttpOnly(true);
+
+    response.addCookie(cookie);
+  }
+
   public static String getIss() {
     return iss;
   }
@@ -117,5 +134,9 @@ public class RefreshToken {
 
   public String getSub() {
     return sub;
+  }
+
+  public String getToken() {
+    return token;
   }
 }
