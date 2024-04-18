@@ -45,6 +45,7 @@ public class Logout extends HttpServlet {
       return;
     } catch (UnauthorizedException e) {
       System.err.println(e.getMessage());
+      Auth.removeAuthCookies(request, response);
       Lib.sendJSONResponse(response, HttpServletResponse.SC_UNAUTHORIZED, Status.UNAUTHORIZED,
           "unable to logout the user");
     } catch (Exception e) {
