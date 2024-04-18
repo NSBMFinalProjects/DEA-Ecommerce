@@ -7,6 +7,6 @@
 <body>
 <h1><%= "This is the admin Dashboard" %></h1>
 <br/>
-<a href="auth/login">Login</a>
+<a href="login">Login</a>
 </body>
 </html>
