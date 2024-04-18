@@ -11,7 +11,7 @@ import java.util.List;
 public class TagDAO {
 
     public void create(Tags tag) throws SQLException {
-        String sql = "INSERT INTO dea.tags (created_by, name) VALUES (?,?)";
+        String sql = "INSERT INTO dea.tags (created_by, name) VALUES (CAST(? as ulid),?)";
         try(Connection connection= DB.getConnection()){
             try(PreparedStatement statement=connection.prepareStatement(sql)){
                 statement.setString(1, tag.getCreatedBy());

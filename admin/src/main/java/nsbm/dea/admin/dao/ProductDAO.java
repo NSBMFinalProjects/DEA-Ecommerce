@@ -46,23 +46,25 @@ public class ProductDAO {
         return products;
     }
 
-    public boolean addProduct(Product product) throws SQLException{
-        try (Connection connection= DB.getConnection()){
-            String createdBy= "01HVJJBZNAAXKBT6KA816QW41N";
-            String sql="insert into dea.products(created_by, name, photo_urls, description) values(?,?,?,?)";
-            try(PreparedStatement statement=connection.prepareStatement(sql)) {
-                statement.setObject(1,createdBy );
+    public int addProduct(Product product) throws SQLException {
+        try (Connection connection = DB.getConnection()) {
+            String sql = "insert into dea.products(created_by, name, photo_urls, description) values(CAST(? as ulid),?,?,?) returning id;";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setObject(1, product.getCreatedBy());
                 statement.setString(2, product.getName());
                 statement.setArray(3, connection.createArrayOf("text", product.getPhotoUrls()));
                 statement.setString(4, product.getDescription());
-                int rowsAffected=statement.executeUpdate();
-                 return rowsAffected>0;
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return resultSet.getInt("id");
+
+                    }
+                }
+                throw new SQLException("failed to create product");
             }
         }
-        catch (SQLException e){
-            throw new SQLException(e.getMessage());
-        }
     }
+
 
     public boolean updateProduct(Product product) throws SQLException{
 

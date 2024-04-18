@@ -9,12 +9,15 @@ import java.sql.SQLException;
 
 public class ColorsDAO {
 
-    public void create(Colors colors,int categoryId,String createdBy) throws SQLException {
-        String sql="insert into dea.colors(category_id, created_by, name, hex, qty, price) values(?,?,?,?,?,?)";
+    public ColorsDAO() {
+
+    }
+    public void create(Colors colors) throws SQLException {
+        String sql="insert into dea.colors(category_id, created_by, name, hex, qty, price) values(?,CAST(? as ulid),?,?,?,?)";
         try(Connection connection= DB.getConnection()) {
             try (PreparedStatement statement=connection.prepareStatement(sql)) {
-                statement.setInt(1, categoryId);
-                statement.setString(2, createdBy);
+                statement.setInt(1, colors.getCategoryId());
+                statement.setString(2, colors.getCreatedBy());
                 statement.setString(3, colors.getName());
                 statement.setString(4, colors.getHex());
                 statement.setInt(5, colors.getQuantity());

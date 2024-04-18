@@ -48,7 +48,7 @@ public class CollectionDAO {
     }
 
     public Collection addCollection(Collection collection) throws SQLException {
-        String query = "insert into dea.collections (name, description,created_by) values (?,?,?)";
+        String query = "insert into dea.collections (name, description,created_by) values (?,?,cast( ? as ulid))";
         try(Connection connection=DB.getConnection()){
             try(PreparedStatement statement =connection.prepareStatement(query)){
                 statement.setString(1, collection.getName());
