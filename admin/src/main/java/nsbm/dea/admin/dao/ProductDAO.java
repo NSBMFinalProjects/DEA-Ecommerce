@@ -6,8 +6,15 @@ import nsbm.dea.admin.model.Product;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 
 public class ProductDAO {
+
+    public ProductDAO(){
+
+    }
+
     public List<Product> getAllProducts() throws SQLException{
         List<Product> products = new ArrayList<Product>();
 
@@ -40,20 +47,19 @@ public class ProductDAO {
     }
 
     public boolean addProduct(Product product) throws SQLException{
-
         try (Connection connection= DB.getConnection()){
-            String sql="insert into dea.products(slug, name, description, admin_id, photoUrls) values(?,?,?,?,?)";
-            PreparedStatement statement=connection.prepareStatement(sql);
-            statement.setString(1, product.getSlug());
-            statement.setString(2,product.getName());
-            statement.setString(3,product.getDescription());
-            statement.setString(4,product.getCreatedBy());
-            statement.setString(5, String.join(",", product.getPhotoUrls()));
-
-            int result=statement.executeUpdate();
-            return result>0;
-
-        }catch (SQLException e){
+            String createdBy= "01HVJJBZNAAXKBT6KA816QW41N";
+            String sql="insert into dea.products(created_by, name, photo_urls, description) values(?,?,?,?)";
+            try(PreparedStatement statement=connection.prepareStatement(sql)) {
+                statement.setObject(1,createdBy );
+                statement.setString(2, product.getName());
+                statement.setArray(3, connection.createArrayOf("text", product.getPhotoUrls()));
+                statement.setString(4, product.getDescription());
+                int rowsAffected=statement.executeUpdate();
+                 return rowsAffected>0;
+            }
+        }
+        catch (SQLException e){
             throw new SQLException(e.getMessage());
         }
     }
@@ -61,7 +67,7 @@ public class ProductDAO {
     public boolean updateProduct(Product product) throws SQLException{
 
         try (Connection connection= DB.getConnection()){
-            String sql="update dea.products set name=?,description=?,photoUrls=? where id=?";
+            String sql="update dea.products set name=?,description=?,photo_urls=? where id=?";
             PreparedStatement statement=connection.prepareStatement(sql);
 
             statement.setString(1,product.getName());

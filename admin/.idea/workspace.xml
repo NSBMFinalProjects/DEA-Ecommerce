@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2f508f2-310d-4631-a072-38d952bb216b" name="Changes" comment="Added the env example file">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54/storage_v2/_src_/database/verceldb.hSjLiA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54/storage_v2/_src_/database/verceldb.hSjLiA/schema/public.abK9xQ.meta" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +34,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+<<<<<<< Updated upstream
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
   "lastFilter": {
     "state": "OPEN",
@@ -41,6 +47,8 @@
     "accountId": "a448d2b0-6489-40e5-97b4-c045bfe91c1e"
   }
 }]]></component>
+=======
+>>>>>>> Stashed changes
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
@@ -70,7 +78,11 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Tomcat Server.Tomcat 10.1.20-admin.executor": "Run",
     "Tomcat Server.Tomcat 10.1.20.executor": "Run",
+<<<<<<< Updated upstream
     "git-widget-placeholder": "product",
+=======
+    "git-widget-placeholder": "db",
+>>>>>>> Stashed changes
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

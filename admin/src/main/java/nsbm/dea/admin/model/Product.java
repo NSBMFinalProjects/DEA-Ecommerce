@@ -27,6 +27,7 @@ public class Product {
         this.modified = modified;
     }
 
+
     public int getId() {
         return id;
     }
