@@ -53,7 +53,7 @@ public class AccessToken {
               String.format("there is no refresh token in redis with the Id : %s", this.refreshTokenId));
         }
         if (previousAccessToken != "default") {
-          jedis.del(previousAccessToken);
+          jedis.del(AccessToken.getKeyForRedis(previousAccessToken));
         }
 
         String value = jedis.get(RefreshToken.getKeyForRedis(this.refreshTokenId));
