@@ -36,6 +36,7 @@ public class Logout extends HttpServlet {
       try {
         accessToken.delete(accessTokenOptional.get().getValue());
       } catch (UnauthorizedException e) {
+        System.err.println(e.getMessage());
       }
       refreshToken.delete(refreshTokenOptional.get().getValue());
 
