@@ -56,4 +56,11 @@ public class Lib {
 
     return Optional.of(map.get(name));
   }
+
+  public static String getPath(String path) {
+    if (path.endsWith("/")) {
+      return String.format("/admin%s", path);
+    }
+    return String.format("/admin/%s", path);
+  }
 }
