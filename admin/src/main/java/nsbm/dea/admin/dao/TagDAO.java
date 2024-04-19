@@ -40,28 +40,27 @@ public class TagDAO {
         return tags;
     }
 
-    public Tags delete(int id,String createdBy) throws SQLException {
-        String sql = "DELETE FROM dea.tags WHERE id = ? & created_by = ?";
+    public void delete(Tags tags) throws SQLException {
+        String sql = "DELETE FROM dea.tags WHERE id = ? AND created_by = cast(? as ulid)";
         try(Connection connection= DB.getConnection()){
             try(PreparedStatement statement=connection.prepareStatement(sql)){
-                statement.setInt(1, id);
-                statement.setString(2, createdBy);
+                statement.setInt(1, tags.getId());
+                statement.setString(2, tags.getCreatedBy());
                 statement.executeUpdate();
             }
         }
-        return null;
     }
 
-    public Tags update(Tags tag,int id) throws SQLException {
-        String sql = "UPDATE dea.tags SET name = ? WHERE id = ?";
+    public void update(Tags tag) throws SQLException {
+        String sql = "UPDATE dea.tags SET created_by = ? WHERE id = ?";
         try(Connection connection= DB.getConnection()){
             try(PreparedStatement statement=connection.prepareStatement(sql)){
-                statement.setString(1, tag.getName());
-                statement.setInt(2, id);
+                statement.setString(1, tag.getCreatedBy());
+                statement.setInt(2, tag.getId());
                 statement.executeUpdate();
             }
         }
-        return tag;
+
     }
 
 

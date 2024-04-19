@@ -28,11 +28,9 @@ public class ProductDAO {
         product.setName(resultSet.getString("name"));
         product.setDescription(resultSet.getString("description"));
         product.setSlug(resultSet.getString("slug"));
-        product.setCreatedBy(resultSet.getString("created by"));
-
-        String photoUrl = resultSet.getString("photo_url");
+        product.setCreatedBy(resultSet.getString("created_by"));
+        String photoUrl = resultSet.getString("photo_urls");
         String[] photoUrls = photoUrl.split(",");
-
         product.setPhotoUrls(photoUrls);
         product.setCreated(Timestamp.from(resultSet.getTimestamp("created").toInstant()));
         product.setModified(Timestamp.from(resultSet.getTimestamp("modified").toInstant()));
@@ -88,7 +86,6 @@ public class ProductDAO {
           String sql = "delete from dea.products where id=?";
           PreparedStatement statement = connection.prepareStatement(sql);
           statement.setInt(1, product.getId());
-
       } catch (SQLException e) {
           throw new SQLException(e.getMessage());
       }
