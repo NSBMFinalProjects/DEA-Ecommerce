@@ -22,6 +22,7 @@ dependencies {
   compileOnly('jakarta.platform:jakarta.jakartaee-api:9.1.0')
   implementation 'com.google.code.gson:gson:2.10.1'
   implementation 'jakarta.validation:jakarta.validation-api:2.0.2'
+  implementation 'io.github.cdimascio:dotenv-java:3.0.0'
 }
 
 tomcat {
