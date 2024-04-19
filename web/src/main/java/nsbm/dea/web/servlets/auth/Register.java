@@ -128,7 +128,7 @@ public class Register extends HttpServlet {
 
         userDAO.create(user);
 
-        Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "created the admin account sucessfully");
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "created the account sucessfully");
         return;
       }
     } catch (Exception e) {
