@@ -30,8 +30,8 @@ public class UserDAO {
         resultSet.getString("username"),
         resultSet.getString("email"),
         resultSet.getString("name"),
-        resultSet.getString("password"),
-        resultSet.getString("photo_url"));
+        resultSet.getString("photo_url"),
+        resultSet.getString("password"));
   }
 
   public void create(User user) throws SQLException {
