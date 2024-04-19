@@ -23,6 +23,7 @@ dependencies {
   implementation 'com.google.code.gson:gson:2.10.1'
   implementation 'jakarta.validation:jakarta.validation-api:2.0.2'
   implementation 'io.github.cdimascio:dotenv-java:3.0.0'
+  implementation 'org.postgresql:postgresql:42.7.3'
 }
 
 tomcat {
