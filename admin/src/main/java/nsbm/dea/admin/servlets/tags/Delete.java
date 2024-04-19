@@ -1,6 +1,7 @@
 package nsbm.dea.admin.servlets.tags;
 
-import com.google.gson.JsonObject;
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,34 +10,31 @@ import jakarta.servlet.http.HttpServletResponse;
 import nsbm.dea.admin.dao.TagDAO;
 import nsbm.dea.admin.enums.Status;
 import nsbm.dea.admin.lib.Lib;
-import nsbm.dea.admin.model.Tags;
 
-import java.io.IOException;
-import java.sql.SQLException;
-
-@WebServlet(name = "tags_delete",value = "/tags/delete")
+@WebServlet(name = "delete_tag", value = "/tags/delete")
 public class Delete extends HttpServlet {
+  @Override
+  protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    try {
+      int tagId;
+      try {
+        tagId = Integer.parseInt(request.getParameter("id"));
+      } catch (Exception e) {
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST, "id is not valid");
+        return;
+      }
 
-    @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      TagDAO tagDAO = new TagDAO();
+      tagDAO.delete(tagId);
 
-        try {
-            response.setContentType("text/html");
-            String adminID="01HVT9ZYMRTVGZRGJFXMMCMY8Y";
-            int tagID=Integer.parseInt(request.getParameter("ID"));
-            System.out.println(tagID);
-            Tags tags=new Tags();
-            tags.setCreatedBy(adminID);
-            tags.setId(tagID);
-
-            TagDAO tagDAO=new TagDAO();
-            tagDAO.delete(tags);
-
-            Lib.sendJSONResponse(response,HttpServletResponse.SC_OK, Status.OK,"Tag deleted successfully");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
-        }
-
+      Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "deleted tag");
+    } catch (Exception e) {
+      e.printStackTrace();
+      Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
+          "something went wrong");
+      return;
     }
+
+  }
 }
