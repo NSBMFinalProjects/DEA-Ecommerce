@@ -27,6 +27,7 @@ dependencies {
   implementation 'redis.clients:jedis:5.2.0-beta1'
   implementation 'at.favre.lib:bcrypt:0.10.2'
   implementation 'com.auth0:java-jwt:4.4.0'
+  implementation 'com.github.f4b6a3:ulid-creator:5.2.3'
 }
 
 tomcat {
