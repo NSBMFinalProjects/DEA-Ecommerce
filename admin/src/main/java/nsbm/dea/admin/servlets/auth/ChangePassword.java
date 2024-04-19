@@ -26,7 +26,7 @@ import nsbm.dea.admin.lib.Lib;
 import nsbm.dea.admin.model.Admin;
 
 public class ChangePassword extends HttpServlet {
-  public class ChangePasswordData {
+  public class Data {
     @NotNull(message = "email cannot be empty")
     @NotBlank(message = "email cannot be empty")
     @Size(min = 5, max = 200, message = "email address is invalid")
@@ -71,45 +71,49 @@ public class ChangePassword extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     try {
       JsonObject payload = Lib.getJSONPayloadFromRequest(request);
+      Data data = new Data();
 
       try (ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
         Validator validator = factory.getValidator();
 
-        ChangePasswordData data = new ChangePasswordData();
         data.setEmail(payload.get("email").getAsString());
         data.setPassword(payload.get("password").getAsString());
         data.setNewPassword(payload.get("new_password").getAsString());
 
-        Set<ConstraintViolation<ChangePasswordData>> violations = validator.validate(data);
+        Set<ConstraintViolation<Data>> violations = validator.validate(data);
         if (!violations.isEmpty()) {
           Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST,
               violations.iterator().next().getMessage());
           return;
         }
-
-        AdminDAO adminDAO = new AdminDAO();
-        Optional<Admin> adminOptional = adminDAO.getByEmail(data.getEmail());
-        if (adminOptional.isEmpty()) {
-          Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.EMAIL_NOT_FOUND,
-              "account with the given email address could not be found");
-          return;
-        }
-
-        Admin admin = adminOptional.get();
-
-        if (!BCrypt.verifyer().verify(data.getPassword().toCharArray(), admin.getPassword().toCharArray()).verified) {
-          Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.WRONG_PASSWORD,
-              "password you entered is incorrect");
-          return;
-        }
-
-        adminDAO.updatePassword(admin.getId(), data.getNewPassword());
-
-        Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "password changed sucsessfully");
+      } catch (Exception e) {
+        e.printStackTrace();
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST, "bad request");
         return;
       }
+
+      AdminDAO adminDAO = new AdminDAO();
+      Optional<Admin> adminOptional = adminDAO.getByEmail(data.getEmail());
+      if (adminOptional.isEmpty()) {
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.EMAIL_NOT_FOUND,
+            "account with the given email address could not be found");
+        return;
+      }
+
+      Admin admin = adminOptional.get();
+
+      if (!BCrypt.verifyer().verify(data.getPassword().toCharArray(), admin.getPassword().toCharArray()).verified) {
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.WRONG_PASSWORD,
+            "password you entered is incorrect");
+        return;
+      }
+
+      adminDAO.updatePassword(admin.getId(), data.getNewPassword());
+
+      Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "password changed sucsessfully");
+      return;
     } catch (Exception e) {
-      System.err.println(e.getMessage());
+      e.printStackTrace();
       Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
           "something went wrong");
       return;

@@ -36,7 +36,7 @@ public class Logout extends HttpServlet {
       try {
         accessToken.delete(accessTokenOptional.get().getValue());
       } catch (UnauthorizedException e) {
-        System.err.println(e.getMessage());
+        e.printStackTrace();
       }
       refreshToken.delete(refreshTokenOptional.get().getValue());
 
@@ -44,12 +44,12 @@ public class Logout extends HttpServlet {
       Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "Okay");
       return;
     } catch (UnauthorizedException e) {
-      System.err.println(e.getMessage());
+      e.printStackTrace();
       Auth.removeAuthCookies(request, response);
       Lib.sendJSONResponse(response, HttpServletResponse.SC_UNAUTHORIZED, Status.UNAUTHORIZED,
           "unable to logout the user");
     } catch (Exception e) {
-      System.err.println(e.getMessage());
+      e.printStackTrace();
       Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
           "something went wrong");
       return;
