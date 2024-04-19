@@ -21,7 +21,14 @@ tasks.withType(JavaCompile) {
 dependencies {
   compileOnly('jakarta.platform:jakarta.jakartaee-api:9.1.0')
   implementation 'com.google.code.gson:gson:2.10.1'
-  implementation 'jakarta.validation:jakarta.validation-api:2.0.2'
+  implementation 'jakarta.validation:jakarta.validation-api:3.1.0-M2'
+  implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
+  implementation 'io.github.cdimascio:dotenv-java:3.0.0'
+  implementation 'org.postgresql:postgresql:42.7.3'
+  implementation 'redis.clients:jedis:5.2.0-beta1'
+  implementation 'at.favre.lib:bcrypt:0.10.2'
+  implementation 'com.auth0:java-jwt:4.4.0'
+  implementation 'com.github.f4b6a3:ulid-creator:5.2.3'
 }
 
 tomcat {
