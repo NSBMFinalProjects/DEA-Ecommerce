@@ -16,6 +16,30 @@ public class Category {
 
   }
 
+  public Category(int id, String createdBy, String slug, String name) {
+    this.id = id;
+    this.createdBy = createdBy;
+    this.slug = slug;
+    this.name = name;
+  }
+
+  public Category(int id, String createdBy, String slug, String name, Color[] colors) {
+    this.id = id;
+    this.createdBy = createdBy;
+    this.slug = slug;
+    this.name = name;
+    this.colors = colors;
+  }
+
+  public Category(int id, String createdBy, String slug, String name, Timestamp createdAt, Timestamp modifiedAt) {
+    this.id = id;
+    this.createdBy = createdBy;
+    this.slug = slug;
+    this.name = name;
+    this.createdAt = createdAt;
+    this.modifiedAt = modifiedAt;
+  }
+
   public Category(int id, String createdBy, String slug, String name, Timestamp createdAt, Timestamp modifiedAt,
       Color[] colors) {
     this.id = id;

@@ -16,6 +16,24 @@ public class Product {
   public Product() {
   }
 
+  public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description) {
+    this.createdBy = createdBy;
+    this.slug = slug;
+    this.name = name;
+    this.photoUrls = photoUrls;
+    this.description = description;
+  }
+
+  public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
+      Category[] categories) {
+    this.createdBy = createdBy;
+    this.slug = slug;
+    this.name = name;
+    this.photoUrls = photoUrls;
+    this.description = description;
+    this.categories = categories;
+  }
+
   public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
       Timestamp created,
       Timestamp modified) {

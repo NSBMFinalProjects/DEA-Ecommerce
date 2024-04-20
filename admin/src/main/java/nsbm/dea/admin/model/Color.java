@@ -19,6 +19,18 @@ public class Color {
   }
 
   public Color(int id, int categoryId, String createdBy, String slug, String name, String hex, BigDecimal price,
+      int quantity) {
+    this.id = id;
+    this.categoryId = categoryId;
+    this.createdBy = createdBy;
+    this.slug = slug;
+    this.name = name;
+    this.hex = hex;
+    this.price = price;
+    this.quantity = quantity;
+  }
+
+  public Color(int id, int categoryId, String createdBy, String slug, String name, String hex, BigDecimal price,
       int quantity, Timestamp created, Timestamp modified) {
     this.id = id;
     this.categoryId = categoryId;
