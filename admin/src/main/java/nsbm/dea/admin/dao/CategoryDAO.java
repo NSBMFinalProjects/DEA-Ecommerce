@@ -1,7 +1,7 @@
 package nsbm.dea.admin.dao;
 
 import nsbm.dea.admin.connections.DB;
-import nsbm.dea.admin.model.Categories;
+import nsbm.dea.admin.model.Category;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,24 +10,27 @@ import java.sql.SQLException;
 
 public class CategoryDAO {
 
-    public CategoryDAO() {
+  public CategoryDAO() {
+  }
 
-    }
-
-    public int createCategory(Categories category) throws SQLException {
-        String sql="insert into dea.categories(created_by, product_id, name) values(CAST(? as ulid),?,?) returning id";
-        try(Connection connection= DB.getConnection()){
-            try(PreparedStatement statement=connection.prepareStatement(sql)){
-                statement.setString(1,category.getCreatedBy());
-                statement.setInt(2,category.getProductId());
-                statement.setString(3, category.getName());
-                try(ResultSet resultSet=statement.executeQuery()){
-                    if(resultSet.next()){
-                        return resultSet.getInt(1);
-                    }
-                }
-                throw new SQLException("Create category failed");
+  public void create(Category[] categories) throws SQLException {
+    String sql = "INSERT INTO dea.categories(created_by, product_id, name) VALUES (CAST(? as ulid), ?, ?) RETURNING id";
+    try (Connection connection = DB.getConnection()) {
+      for (Category category : categories) {
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+          statement.setString(1, category.getCreatedBy());
+          statement.setInt(2, category.getProductId());
+          statement.setString(3, category.getName());
+          try (ResultSet resultSet = statement.executeQuery()) {
+            if (!resultSet.next()) {
+              throw new SQLException("category creation failed");
             }
+
+            ColorDAO colorDAO = new ColorDAO();
+            colorDAO.create(category.getColors(), resultSet.getInt("id"));
+          }
         }
+      }
     }
+  }
 }
