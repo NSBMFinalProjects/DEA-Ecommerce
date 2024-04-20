@@ -1,12 +1,14 @@
 package nsbm.dea.admin.dao;
 
-import nsbm.dea.admin.connections.DB;
-import nsbm.dea.admin.model.Tag;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import nsbm.dea.admin.connections.DB;
+import nsbm.dea.admin.model.Tag;
 
 public class TagDAO {
   private Tag getTagFromResultSet(ResultSet resultSet) throws SQLException {
@@ -64,6 +66,32 @@ public class TagDAO {
     try (Connection connection = DB.getConnection()) {
       try (PreparedStatement statement = connection.prepareStatement(sql)) {
         statement.setInt(1, id);
+
+        statement.executeUpdate();
+      }
+    }
+  }
+
+  public void linkWithProduct(Integer[] tagIds, int productId) throws SQLException {
+    if (tagIds.length == 0) {
+      return;
+    }
+
+    String sql = "INSERT INTO dea.product_tags (product_id, tag_id) VALUES";
+    for (int index = 0; index < tagIds.length; index++) {
+      sql = String.format("%s (?, ?)", sql);
+      if (index != tagIds.length - 1) {
+        sql = String.format("%s,", sql);
+      }
+    }
+
+    try (Connection connection = DB.getConnection()) {
+      try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        int index = 1;
+        for (int tagId : tagIds) {
+          statement.setInt(index++, productId);
+          statement.setInt(index++, tagId);
+        }
 
         statement.executeUpdate();
       }

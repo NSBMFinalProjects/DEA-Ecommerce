@@ -5,10 +5,11 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
+import org.hibernate.validator.constraints.URL;
+
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import jakarta.servlet.ServletException;
@@ -16,103 +17,216 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import nsbm.dea.admin.dao.CategoryDAO;
-import nsbm.dea.admin.dao.ColorsDAO;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Valid;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import nsbm.dea.admin.dao.CollectionDAO;
 import nsbm.dea.admin.dao.ProductDAO;
 import nsbm.dea.admin.dao.TagDAO;
 import nsbm.dea.admin.enums.Status;
 import nsbm.dea.admin.lib.Lib;
-import nsbm.dea.admin.model.Categories;
-import nsbm.dea.admin.model.Colors;
+import nsbm.dea.admin.model.Category;
+import nsbm.dea.admin.model.Color;
 import nsbm.dea.admin.model.Product;
-import nsbm.dea.admin.model.Tags;
 
-
-@WebServlet(name = "product_create", value = "/product/create")
-
+@WebServlet(name = "create_product", value = "/products/create")
 public class Create extends HttpServlet {
-          @Override
-          protected void doPost (HttpServletRequest request, HttpServletResponse response) throws
-          ServletException, IOException {
-              try {
-                  response.setContentType("application/json");
-                  JsonObject object = Lib.getJSONPayloadFromRequest(request);
+  private class Data {
+    @Valid
+    private ProductData product;
 
-                  String adminId = "01HVT9ZYMRTVGZRGJFXMMCMY8Y";
-                  String name = object.get("name").getAsString();
-                  String description = object.get("description").getAsString();
-                  JsonArray photos = object.getAsJsonArray("photos");
-                  List<String> photoUrls = new ArrayList<>();
-                  for (JsonElement photo : photos) {
-                      String photoName = photo.getAsString();
-                      photoUrls.add(photoName);
-                  }
+    public ProductData getProduct() {
+      return product;
+    }
+  }
 
-                  String[] photoUrlArray = photoUrls.toArray(new String[0]);
+  private class ProductData {
+    @NotEmpty(message = "product name should not be emtpy")
+    @NotNull(message = "product name should not be emtpy")
+    @Size(min = 3, max = 100, message = "product is not valid")
+    private String name;
 
-                  Product product = new Product();
-                  product.setName(name);
-                  product.setDescription(description);
-                  product.setPhotoUrls(photoUrlArray);
-                  product.setCreatedBy(adminId);
-                  ProductDAO productDAO = new ProductDAO();
-                  int productID = productDAO.addProduct(product);
-                  System.out.println("Product ID: " + productID);
+    private List<@URL(message = "photos must be URLs") String> photo_urls;
 
-                  Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "created the product  sucessfully");
-                  JsonObject sizesObject = object.getAsJsonObject("sizes");
+    @Size(min = 3, max = 200, message = "description is not valid")
+    private String description;
 
-                  for (String size : sizesObject.keySet()) {
-                      Categories newCategory = new Categories();
-                      newCategory.setCreatedBy(adminId);
-                      newCategory.setProductId(productID);
-                      newCategory.setName(size);
-                      CategoryDAO categoryDAO = new CategoryDAO();
-                      int categoryID = categoryDAO.createCategory(newCategory);
-                      System.out.println("Category ID: " + categoryID);
+    @Valid
+    @NotEmpty(message = "categories should not be empty")
+    @NotNull(message = "categories should not be empty")
+    @Size(min = 1, message = "categories should not be empty")
+    private List<CategoryData> categories;
 
-                      JsonObject sizeObject = sizesObject.getAsJsonObject(size);
-                      JsonArray colorsArray = sizeObject.getAsJsonArray("colors");
+    @Valid
+    @NotNull(message = "tags cannot be emtpy")
+    @NotEmpty(message = "tags cannot be empty")
+    private List<Integer> tags;
 
-                      for (JsonElement color : colorsArray) {
-                          JsonObject colorObject = color.getAsJsonObject();
+    @Valid
+    @NotNull(message = "collections cannot be empty")
+    @NotEmpty(message = "collections cannot be empty")
+    private List<Integer> collections;
 
-                          String title = colorObject.get("title").getAsString();
-                          String hex = colorObject.get("hex").getAsString();
-                          int qty = colorObject.get("qty").getAsInt();
-                          BigDecimal price = colorObject.get("price").getAsBigDecimal();
+    public String getName() {
+      return name;
+    }
 
-                          Colors newColor = new Colors();
-                          newColor.setCreatedBy(adminId);
-                          newColor.setCategoryId(categoryID);
-                          newColor.setName(title);
-                          newColor.setHex(hex);
-                          newColor.setQuantity(qty);
-                          newColor.setPrice(price);
+    public List<String> getPhoto_urls() {
+      return photo_urls;
+    }
 
-                          ColorsDAO colorsDAO = new ColorsDAO();
-                          colorsDAO.create(newColor);
-                      }
+    public String getDescription() {
+      return description;
+    }
 
-                  }
-                  Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "created the category and color successfully");
+    public List<CategoryData> getCategories() {
+      return categories;
+    }
 
-           JsonArray tagsArray = object.getAsJsonArray("tags");
-           for (JsonElement tag : tagsArray) {
-               Tags newTag = new Tags();
-               newTag.setCreatedBy(adminId);
-               newTag.setName(tag.getAsString());
-               TagDAO tagDAO=new TagDAO();
-               tagDAO.create(newTag);
-           }
-           Lib.sendJSONResponse(response,HttpServletResponse.SC_OK,Status.OK,"created the tag successfully");
+    public Integer[] getTags() {
+      return tags.stream().toArray(Integer[]::new);
+    }
 
+    public Integer[] getCollections() {
+      return collections.stream().toArray(Integer[]::new);
+    }
+  }
 
+  private class CategoryData {
+    @NotNull(message = "category should not be empty")
+    @NotBlank(message = "category should not be empty")
+    @Size(min = 3, max = 50, message = "category is not valid")
+    private String name;
 
-              } catch (SQLException e) {
-                  System.out.println(e.getMessage());
-              } catch (Exception e) {
-                  e.printStackTrace();
-              }
-          }
+    @Valid
+    @NotNull(message = "colors should not be empty")
+    @NotEmpty(message = "colors should not be empty")
+    @Size(min = 1, message = "colors should not be empty")
+    private List<ColorData> colors;
+
+    public String getName() {
+      return name;
+    }
+
+    public List<ColorData> getColors() {
+      return colors;
+    }
+  }
+
+  private class ColorData {
+    @NotEmpty(message = "color name cannot be empty")
+    @NotNull(message = "color name cannot be empty")
+    @Size(min = 3, max = 10, message = "color name is not valid")
+    private String name;
+
+    @Min(value = 1, message = "price is not valid")
+    private BigDecimal price;
+
+    @Min(value = 1, message = "quantity is not valid")
+    private int qty;
+
+    @NotEmpty(message = "color code cannot be empty")
+    @NotNull(message = "color code cannot be empty")
+    private String hex;
+
+    public String getName() {
+      return name;
+    }
+
+    public BigDecimal getPrice() {
+      return price;
+    }
+
+    public int getQty() {
+      return qty;
+    }
+
+    public String getHex() {
+      return hex;
+    }
+  }
+
+  private static final Gson gson = new Gson();
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    try {
+      String adminId = "01HVY2DG7SN4FDJMS9GNE6E4JX";
+      JsonObject payload = Lib.getJSONPayloadFromRequest(request);
+      Data data;
+
+      try (ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
+        Validator validator = factory.getValidator();
+        data = gson.fromJson(payload, Data.class);
+
+        Set<ConstraintViolation<Data>> violations = validator.validate(data);
+        if (!violations.isEmpty()) {
+          Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST,
+              violations.iterator().next().getMessage());
+          return;
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST, "bad request");
+        return;
       }
+      ProductData productData = data.getProduct();
+
+      Product product = new Product();
+      product.setName(productData.getName());
+      product.setPhotoUrls(productData.getPhoto_urls().toArray(String[]::new));
+      product.setDescription(productData.getDescription());
+
+      List<Category> categories = new ArrayList<>();
+      for (CategoryData category : productData.getCategories()) {
+        Category c = new Category();
+        c.setName(category.getName());
+        c.setCreatedBy(adminId);
+
+        List<Color> colors = new ArrayList<>();
+        for (ColorData color : category.getColors()) {
+          Color cl = new Color();
+          cl.setName(color.getName());
+          cl.setPrice(color.getPrice());
+          cl.setQuantity(color.getQty());
+          cl.setHex(color.getHex());
+          cl.setCreatedBy(adminId);
+
+          colors.add(cl);
+        }
+
+        c.setColors(colors.stream().toArray(Color[]::new));
+        categories.add(c);
+      }
+      product.setCategories(categories.stream().toArray(Category[]::new));
+      product.setCreatedBy(adminId);
+
+      ProductDAO productDAO = new ProductDAO();
+      productDAO.create(product);
+
+      try {
+        TagDAO tagDAO = new TagDAO();
+        tagDAO.linkWithProduct(productData.getTags(), product.getId());
+
+        CollectionDAO collectionDAO = new CollectionDAO();
+        collectionDAO.linkWithProduct(productData.getCollections(), product.getId());
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+
+      Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "okay");
+      return;
+    } catch (Exception e) {
+      e.printStackTrace();
+      Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
+          "something went wrong");
+    }
+  }
+}

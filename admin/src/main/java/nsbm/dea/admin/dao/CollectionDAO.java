@@ -107,4 +107,30 @@ public class CollectionDAO {
       }
     }
   }
+
+  public void linkWithProduct(Integer[] collectionIds, int productId) throws SQLException {
+    if (collectionIds.length == 0) {
+      return;
+    }
+
+    String sql = "INSERT INTO dea.product_collections (product_id, collection_id) VALUES";
+    for (int index = 0; index < collectionIds.length; index++) {
+      sql = String.format("%s (?, ?)", sql);
+      if (index != collectionIds.length - 1) {
+        sql = String.format("%s,", sql);
+      }
+    }
+
+    try (Connection connection = DB.getConnection()) {
+      try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        int index = 1;
+        for (int collectionId : collectionIds) {
+          statement.setInt(index++, productId);
+          statement.setInt(index++, collectionId);
+        }
+
+        statement.executeUpdate();
+      }
+    }
+  }
 }

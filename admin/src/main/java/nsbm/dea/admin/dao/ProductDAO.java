@@ -1,94 +1,137 @@
 package nsbm.dea.admin.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import nsbm.dea.admin.connections.DB;
 import nsbm.dea.admin.model.Product;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
 public class ProductDAO {
+  private int LIMIT;
 
   public ProductDAO() {
-
   }
 
-  public List<Product> getAllProducts() throws SQLException {
+  public ProductDAO(int LIMIT) {
+    LIMIT = this.LIMIT;
+  }
+
+  private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
+    return new Product(
+        resultSet.getInt("id"),
+        resultSet.getString("created_by"),
+        resultSet.getString("slug"),
+        resultSet.getString("name"),
+        ((String[]) resultSet.getArray("photo_urls").getArray()),
+        resultSet.getString("description"),
+        resultSet.getTimestamp("created"),
+        resultSet.getTimestamp("modified"));
+  }
+
+  public List<Product> getAllProducts(int page) throws SQLException {
     List<Product> products = new ArrayList<Product>();
 
     try (Connection connection = DB.getConnection()) {
-      PreparedStatement statement = connection.prepareStatement("select * from dea.products");
-      ResultSet resultSet = statement.executeQuery();
-
-      while (resultSet.next()) {
-        Product product = new Product();
-        product.setId(resultSet.getInt("id"));
-        product.setName(resultSet.getString("name"));
-        product.setDescription(resultSet.getString("description"));
-        product.setSlug(resultSet.getString("slug"));
-        product.setCreatedBy(resultSet.getString("created_by"));
-        String photoUrl = resultSet.getString("photo_urls");
-        String[] photoUrls = photoUrl.split(",");
-        product.setPhotoUrls(photoUrls);
-        product.setCreated(Timestamp.from(resultSet.getTimestamp("created").toInstant()));
-        product.setModified(Timestamp.from(resultSet.getTimestamp("modified").toInstant()));
-
-        products.add(product);
+      try (PreparedStatement statement = connection
+          .prepareStatement("SELECT * FROM dea.products ORDER BY id OFFSET ? LIMIT ?")) {
+        statement.setInt(1, page * this.LIMIT);
+        statement.setInt(2, this.LIMIT);
+        try (ResultSet resultSet = statement.executeQuery()) {
+          while (resultSet.next()) {
+            products.add(this.getProductFromResultSet(resultSet));
+          }
+        }
       }
-
-    } catch (SQLException e) {
-      throw new SQLException(e.getMessage());
     }
     return products;
   }
 
+  public List<Product> getAllProducts() throws SQLException {
+    return this.getAllProducts(1);
+  }
 
-    public int addProduct(Product product) throws SQLException {
-        try (Connection connection = DB.getConnection()) {
-            String sql = "insert into dea.products(created_by, name, photo_urls, description) values(CAST(? as ulid),?,?,?) returning id;";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setObject(1, product.getCreatedBy());
-                statement.setString(2, product.getName());
-                statement.setArray(3, connection.createArrayOf("text", product.getPhotoUrls()));
-                statement.setString(4, product.getDescription());
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    if (resultSet.next()) {
-                        return resultSet.getInt("id");
-
-                    }
-                }
-                throw new SQLException("failed to create product");
-            }
-        }
-    }
-  public boolean updateProduct(Product product) throws SQLException {
+  public void create(Product product) throws SQLException {
     try (Connection connection = DB.getConnection()) {
-      String sql = "update dea.products set name=?,description=?,photo_urls=? where id=?";
-      PreparedStatement statement = connection.prepareStatement(sql);
+      String sql = "INSERT INTO dea.products(created_by, name, photo_urls, description) VALUES (CAST(? as ulid), ?, ?, ?) RETURNING id";
+      try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        statement.setObject(1, product.getCreatedBy());
+        statement.setString(2, product.getName());
+        statement.setArray(3, connection.createArrayOf("TEXT", product.getPhotoUrls()));
+        statement.setString(4, product.getDescription());
 
-      statement.setString(1, product.getName());
-      statement.setString(2, product.getDescription());
-      statement.setString(3, String.join(",", product.getPhotoUrls()));
+        try (ResultSet resultSet = statement.executeQuery()) {
+          if (!resultSet.next()) {
+            throw new SQLException("failed to create the product");
+          }
+          product.setId(resultSet.getInt("id"));
 
-      int updateResult = statement.executeUpdate();
-      return updateResult > 0;
-
-    } catch (SQLException e) {
-      throw new SQLException(e.getMessage());
-
+          CategoryDAO categoryDAO = new CategoryDAO();
+          categoryDAO.create(product.getCategories(), product.getId());
+        }
+      }
     }
   }
 
-  public boolean deleteProduct(Product product) throws SQLException {
-      try (Connection connection = DB.getConnection()) {
-          String sql = "delete from dea.products where id=?";
-          PreparedStatement statement = connection.prepareStatement(sql);
-          statement.setInt(1, product.getId());
-      } catch (SQLException e) {
-          throw new SQLException(e.getMessage());
+  public void update(Product product) throws SQLException {
+    try (Connection connection = DB.getConnection()) {
+      String sql = "UPDATE dea.products SET name = ?,description = ?,photo_urls = ? WHERE id = ?";
+      try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        statement.setString(1, product.getName());
+        statement.setString(2, product.getDescription());
+        statement.setString(3, String.join(",", product.getPhotoUrls()));
+        statement.executeUpdate();
       }
-      return true;
+    }
+  }
+
+  public void updateName(int id, String name) throws SQLException {
+    try (Connection connection = DB.getConnection()) {
+      String sql = "UPDATE dea.products SET name = ? WHERE id = ?";
+      try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        statement.setString(1, name);
+        statement.setInt(2, id);
+
+        statement.executeUpdate();
+      }
+    }
+  }
+
+  public void updateDescription(int id, String description) throws SQLException {
+    try (Connection connection = DB.getConnection()) {
+      String sql = "UPDATE dea.products SET description = ? WHERE id = ?";
+      try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        statement.setString(1, description);
+        statement.setInt(2, id);
+
+        statement.executeUpdate();
+      }
+    }
+  }
+
+  public void updatePhotoURLs(int id, String[] photoURLs) throws SQLException {
+    try (Connection connection = DB.getConnection()) {
+      String sql = "UPDATE dea.products SET description = ? WHERE id = ?";
+      try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        statement.setString(1, String.join(",", photoURLs));
+        statement.setInt(2, id);
+
+        statement.executeUpdate();
+      }
+    }
+  }
+
+  public void delete(int productId) throws SQLException {
+    try (Connection connection = DB.getConnection()) {
+      String sql = "DELETE FROM dea.products WHERE id = ?";
+      try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        statement.setInt(1, productId);
+
+        statement.executeUpdate();
+      }
+    }
   }
 }
