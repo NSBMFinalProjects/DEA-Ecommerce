@@ -90,11 +90,11 @@ public class Register extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     try {
       JsonObject payload = Lib.getJSONPayloadFromRequest(request);
+      RegisterData data = new RegisterData();
 
       try (ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
         Validator validator = factory.getValidator();
 
-        RegisterData data = new RegisterData();
         data.setEmail(payload.get("email").getAsString());
         data.setUsername(payload.get("username").getAsString());
         data.setName(payload.get("name").getAsString());
@@ -107,32 +107,37 @@ public class Register extends HttpServlet {
           return;
         }
 
-        UserDAO userDAO = new UserDAO();
-        if (!userDAO.isUsernameAvailable(data.getUsername())) {
-          Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.USERNAME_ALREADY_USED,
-              "username already used");
-          return;
-        }
-
-        if (!userDAO.isEmailAvailable(data.getEmail())) {
-          Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.EMAIL_ALREADY_USED,
-              "email already used");
-          return;
-        }
-
-        User user = new User();
-        user.setEmail(data.getEmail());
-        user.setUsername(data.getUsername());
-        user.setName(data.getName());
-        user.setPassword(data.getPassword());
-
-        userDAO.create(user);
-
-        Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "created the account sucessfully");
+      } catch (Exception e) {
+        e.printStackTrace();
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST, "bad request");
         return;
       }
+
+      UserDAO userDAO = new UserDAO();
+      if (!userDAO.isUsernameAvailable(data.getUsername())) {
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.USERNAME_ALREADY_USED,
+            "username already used");
+        return;
+      }
+
+      if (!userDAO.isEmailAvailable(data.getEmail())) {
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.EMAIL_ALREADY_USED,
+            "email already used");
+        return;
+      }
+
+      User user = new User();
+      user.setEmail(data.getEmail());
+      user.setUsername(data.getUsername());
+      user.setName(data.getName());
+      user.setPassword(data.getPassword());
+
+      userDAO.create(user);
+
+      Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "created the account sucessfully");
+      return;
     } catch (Exception e) {
-      System.err.println(e.getStackTrace());
+      e.printStackTrace();
       Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
           "something went wrong");
       return;
