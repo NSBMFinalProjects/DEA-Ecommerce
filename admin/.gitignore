@@ -5,6 +5,8 @@ build/
 !**/src/test/**/build/
 
 ### IntelliJ IDEA ###
+
+.idea
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
@@ -43,3 +45,5 @@ bin/
 
 # Tmp file
 ./admin/src/main/java/nsbm/dea/admin/config/Env.java
+/.idea/
+/.idea/

@@ -1,112 +1,133 @@
 package nsbm.dea.admin.model;
 
-import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 public class Product {
-    private int id;
-    private String slug;
-    private String name;
-    private BigDecimal price;
-    private int categoryId;
-    private int subcategoryId;
-    private String size;
-    private String description;
-    private int quantity;
-    private int adminId;
+  private int id;
+  private String createdBy;
+  private String slug;
+  private String name;
+  private String[] photoUrls;
+  private String description;
+  private Timestamp created;
+  private Timestamp modified;
+  private Category[] categories;
 
-    public Product() {
+  public Product() {
+  }
 
-    }
+  public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description) {
+    this.createdBy = createdBy;
+    this.slug = slug;
+    this.name = name;
+    this.photoUrls = photoUrls;
+    this.description = description;
+  }
 
-    public Product(String slug, String name, BigDecimal price, int categoryId, int subcategoryId, String size, String description, int quantity, int adminId) {
-        this.slug = slug;
-        this.name = name;
-        this.price = price;
-        this.categoryId = categoryId;
-        this.subcategoryId = subcategoryId;
-        this.size = size;
-        this.description = description;
-        this.quantity = quantity;
-        this.adminId = adminId;
-    }
+  public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
+      Category[] categories) {
+    this.createdBy = createdBy;
+    this.slug = slug;
+    this.name = name;
+    this.photoUrls = photoUrls;
+    this.description = description;
+    this.categories = categories;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
+      Timestamp created,
+      Timestamp modified) {
+    this.createdBy = createdBy;
+    this.slug = slug;
+    this.name = name;
+    this.photoUrls = photoUrls;
+    this.description = description;
+    this.created = created;
+    this.modified = modified;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
+      Timestamp created,
+      Timestamp modified, Category[] categories) {
+    this.createdBy = createdBy;
+    this.slug = slug;
+    this.name = name;
+    this.photoUrls = photoUrls;
+    this.description = description;
+    this.created = created;
+    this.modified = modified;
+    this.categories = categories;
+  }
 
-    public String getSlug() {
-        return slug;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getCreatedBy() {
+    return createdBy;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setCreatedBy(String createdBy) {
+    this.createdBy = createdBy;
+  }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+  public String getSlug() {
+    return slug;
+  }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+  public void setSlug(String slug) {
+    this.slug = slug;
+  }
 
-    public int getCategoryId() {
-        return categoryId;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public int getSubcategoryId() {
-        return subcategoryId;
-    }
+  public String[] getPhotoUrls() {
+    return photoUrls;
+  }
 
-    public void setSubcategoryId(int subcategoryId) {
-        this.subcategoryId = subcategoryId;
-    }
+  public void setPhotoUrls(String[] photoUrls) {
+    this.photoUrls = photoUrls;
+  }
 
-    public String getSize() {
-        return size;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setSize(String size) {
-        this.size = size;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public Timestamp getCreated() {
+    return created;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public int getQuantity() {
-        return quantity;
-    }
+  public void setCreated(Timestamp created) {
+    this.created = created;
+  }
 
-    public void setQuantity(int quantity){
-        this.quantity=quantity;
-    }
+  public Timestamp getModified() {
+    return modified;
+  }
 
-    public int getAdminId() {
-        return adminId;
-    }
+  public void setModified(Timestamp modified) {
+    this.modified = modified;
+  }
 
-    public void setAdminId(int adminId) {
-        this.adminId = adminId;
-    }
+  public Category[] getCategories() {
+    return categories;
+  }
 
+  public void setCategories(Category[] categories) {
+    this.categories = categories;
+  }
 }

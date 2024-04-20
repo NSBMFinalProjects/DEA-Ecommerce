@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2f508f2-310d-4631-a072-38d952bb216b" name="Changes" comment="Added the env example file">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54/storage_v2/_src_/database/verceldb.hSjLiA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54/storage_v2/_src_/database/verceldb.hSjLiA/schema/public.abK9xQ.meta" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nsbm/dea/admin/config/Env.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nsbm/dea/admin/config/Env.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nsbm/dea/admin/connections/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nsbm/dea/admin/connections/DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nsbm/dea/admin/middleware/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nsbm/dea/admin/middleware/Auth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nsbm/dea/admin/servlets/auth/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nsbm/dea/admin/servlets/auth/Login.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +34,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
+<<<<<<< Updated upstream
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "KDDilshan"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:NSBMFinalProjects/DEA-Ecommerce.git",
+    "accountId": "a448d2b0-6489-40e5-97b4-c045bfe91c1e"
+  }
+}]]></component>
+=======
+>>>>>>> Stashed changes
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="KubernetesSettings">
     <option name="contextName" value="orbstack" />
   </component>
@@ -63,7 +78,11 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Tomcat Server.Tomcat 10.1.20-admin.executor": "Run",
     "Tomcat Server.Tomcat 10.1.20.executor": "Run",
-    "git-widget-placeholder": "main",
+<<<<<<< Updated upstream
+    "git-widget-placeholder": "product",
+=======
+    "git-widget-placeholder": "db",
+>>>>>>> Stashed changes
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -198,6 +217,7 @@
       <workItem from="1712725473827" duration="4173000" />
       <workItem from="1712947386541" duration="3023000" />
       <workItem from="1712950897874" duration="4097000" />
+      <workItem from="1713247029839" duration="477000" />
     </task>
     <task id="LOCAL-00001" summary="Added the env example file">
       <option name="closed" value="true" />
@@ -224,25 +244,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added the env example file" />
     <option name="LAST_COMMIT_MESSAGE" value="Added the env example file" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/nsbm/dea/admin/servlets/auth/Login.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/nsbm/dea/admin/servlets/auth/Login.java</url>
-          <line>40</line>
-          <properties class="nsbm.dea.admin.servlets.auth.Login.LoginData" method="setEmail">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
