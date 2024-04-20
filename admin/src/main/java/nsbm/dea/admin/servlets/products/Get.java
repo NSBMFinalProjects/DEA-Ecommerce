@@ -2,6 +2,7 @@ package nsbm.dea.admin.servlets.products;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.module.ModuleDescriptor.Exports;
 import java.util.Optional;
 
 import com.google.gson.Gson;
@@ -40,8 +41,17 @@ public class Get extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     try {
+      int id;
+      try {
+        id = Integer.parseInt(request.getParameter("id"));
+      } catch (Exception e) {
+        e.printStackTrace();
+        this.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST, null);
+        return;
+      }
+
       ProductDAO productDAO = new ProductDAO();
-      Optional<Product> productOptional = productDAO.getProductById(26);
+      Optional<Product> productOptional = productDAO.getProductById(id);
       if (productOptional.isEmpty()) {
         this.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST, null);
         return;
