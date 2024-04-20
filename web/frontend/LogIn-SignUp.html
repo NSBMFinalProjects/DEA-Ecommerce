@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Sign-In-Up-Page</title>
 
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
 
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
+        font-family: "Poppins", sans-serif !important;
+      }
+      a {
+        text-decoration: none !important;
       }
       body {
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
       }
-      .container {
-        justify-content: center;
-        align-items: center;
+      li {
+        list-style: none !important;
+      }
+      .containerLogin {
         position: relative;
-        margin: 100px auto;
-        background: #fff;
+        margin: auto;
+        background: #ffffff;
         border-radius: 3px;
-        width: 900px;
-        max-width: 70%;
-        min-width: 70%;
-        min-height: 700px;
+        width: 80% !important;
+        height: 90% !important;
         overflow: hidden;
-        box-shadow: 10px 10px rgba(104, 100, 100, 0.479);
-      
+        box-shadow: 10px 10px 0px #c2c2c2;
       }
-      
+
       .animateWidth {
         -webkit-animation: animateWidth 0.8s linear forwards;
         animation: animateWidth 0.8s linear forwards;
@@ -41,153 +49,147 @@
       @-webkit-keyframes animateWidth {
         0% {
           width: 35%;
-       }
+        }
         20% {
           width: 50%;
-       }
+        }
         100% {
           width: 35%;
-       }
+        }
       }
       @keyframes animateWidth {
         0% {
           width: 35%;
-       }
+        }
         20% {
           width: 50%;
-       }
+        }
         100% {
           width: 35%;
-       }
+        }
       }
       /* <!-- Login Form Start --> */
       .form__container {
         position: absolute;
         z-index: -1;
-        
-        justify-content: center;
+        display: flex;
         align-items: center;
-      
-        width: 60%;
+
+        width: 65%;
         height: 100%;
         padding: 25px;
-      
-        background: #fff;
+
+        background-color: #243c55;
         transition: all 0.6s ease-in;
       }
-      
-      
-      .container .go-register{
+
+      .container .go-register {
         text-align: center;
       }
       .left-column {
         text-align: center;
         padding: 20px;
-        color: #243C55;
+        color: #243c55;
       }
-      
+
       .left-column h1 {
-        margin-top: 20%;
-        color: #243C55;
-        font-size: 2rem;
-        font-weight: 700;
-        padding-bottom: 0px;
+        color: #ffffff;
+        font-size: 50px;
+        font-weight: bolder;
       }
-      
+
       .left-column p {
         margin-top: 20px;
+        color: #ffffff;
+        letter-spacing: 1px;
+        font-size: 14px;
       }
-      
+
       .form__container-login input[type="text"],
       .form__container-login input[type="password"] {
-        width: 50%;
+        width: 70%;
         padding: 15px;
-        margin: 20px 50px 20px 50px;
+        margin-top: 20px;
         border: none;
-        border-bottom: 2px solid #243C55; 
-          background-color: #f0f0f0;
-      
-      
-      
-      
+        height: 100%;
+        border-bottom: 2px solid #e7e7e7;
+        background-color: #ffffff;
       }
-      
-      
-      
-      .login-btn{
-      
-         /* Center the button horizontally */
-          margin-top: 20px;
-         width: 50%;
-         height: 40px;
-         font-size: 16px;
-         font-weight: bold;
-         border: none;
-         cursor: pointer;
-         background-color: #243C55;
-         color: white;
-         box-shadow: 8px 8px rgba(104, 100, 100, 0.479);
-      
+
+      .login-btn {
+        /* Center the button horizontally */
+        margin-top: 20px;
+        width: 50%;
+        height: 40px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        background-color: #ffffff;
+        color: #243c55;
+        box-shadow: 8px 8px 0px #c2c2c2;
+        transition: 0.4s ease-in-out;
       }
-      .left-column a{
+      .login-btn:hover {
+        box-shadow: 3px 3px 0px #c2c2c2;
+        transform: scale(0.98);
+      }
+      .left-column a {
         cursor: pointer;
       }
-      
-      
-      
+
       .form__container.form__container-register {
-      padding: 0;
-      
+        padding: 0;
       }
-      .right-column{
-        padding: 50px 0px 20px 20px;
+      .right-column {
+        background-color: #ffffff;
+        align-items: center;
       }
-      
+
       .right-column h2 {
         text-align: center;
-        color: #243C55;
+        color: #243c55;
         font-size: 2.5em;
-        font-weight: bold; /* Use 'bold' instead of 'bolder' */
-        margin: 0; /* Remove default margin */
+        font-weight: bolder;
+        margin: 0;
       }
-      
+
       .right-column p {
         text-align: center;
-        color: #243C55;
+        color: #243c55;
         justify-content: center;
         align-items: center;
         margin-top: 5px; /* Adjust margin */
       }
-      
-      .form-group{
+
+      .form-group {
         padding: 20px;
       }
-      
+
       .form-group input {
-        width: calc(50% - 5px); /* Set input width */
+        width: calc(50% - 5px);
         margin: 10px 0; /* Adjust margin */
-        padding: 10px; /* Adjust padding */
         font-size: 16px;
-       background-color: #243C55;
-       color: #fff;
+        height: 45px;
+        padding-left: 10px;
+        background-color: #243c55;
+        color: #ffffff;
         border: none;
-        box-sizing: border-box; /* Ensure padding is included in width */
+        box-sizing: border-box;
       }
-      
-      
+
       .upload {
         margin-bottom: 20px; /* Add margin bottom */
       }
-      .chekckbox{
+      .chekckbox {
         margin-left: 30px;
       }
       #checkbox {
         transform: scale(1.5); /* Adjust the scale factor as needed */
         margin-right: 10px;
-        
       }
       #checkbox:checked + .checkbox-custom::before {
-        background-color: #243C55;
+        background-color: #243c55;
       }
       .Register-button {
         /* Center the button horizontally */
@@ -199,34 +201,36 @@
         font-weight: bold;
         border: none;
         cursor: pointer;
-        background-color: #243C55;
+        background-color: #243c55;
         color: white;
         box-shadow: 8px 8px rgba(104, 100, 100, 0.479);
+        transition: 0.4s ease-in-out;
       }
-      
-      
-      #go-register{
-      
-         /* Center the button horizontally */
-         margin: 50px 30%;
-         /* Set button width */
-         width: 50%;
-         height: 40px;
-         font-size: 16px;
-         font-weight: bold;
-         border: none;
-         cursor: pointer;
-         background-color: #ffffff;
-         color:#243C55;
-         box-shadow: 8px 8px rgba(199, 198, 198, 0.479);
-      
+      .Register-button:hover{
+        transform: scale(0.98);
+        box-shadow: 3px 3px rgba(104, 100, 100, 0.479);
       }
-      
-      
-      
-      
-      
-      
+
+      #go-register {
+        /* Center the button horizontally */
+        margin: 50px 30%;
+        /* Set button width */
+        width: 50%;
+        height: 40px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        background-color: #203c55;
+        color: #fff;
+        box-shadow: 8px 8px 0px #b5b5b5;
+        transition: 0.4s ease-in-out;
+      }
+      #go-register:hover {
+        box-shadow: 3px 3px 0px #b5b5b5;
+        transform: scale(0.98);
+      }
+
       .go-login .form__container-login {
         left: 35%;
         opacity: 0;
@@ -240,6 +244,7 @@
         left: 35%;
         opacity: 1;
         z-index: 0;
+        background-color: #ffffff;
       }
       .go-register .form__container-register {
         left: 0;
@@ -265,31 +270,26 @@
         margin-bottom: 0;
       }
       .form__field::-webkit-input-placeholder {
-      
         text-transform: capitalize;
       }
       .form__field::-moz-placeholder {
-      
         text-transform: capitalize;
       }
       .form__field:-ms-input-placeholder {
-      
         text-transform: capitalize;
       }
       .form__field:-moz-placeholder {
-      
         text-transform: capitalize;
       }
-      .form__field:focus, .form__field:active {
+      .form__field:focus,
+      .form__field:active {
         outline: 0;
       }
       .form__text {
         margin-bottom: 15px;
         font-size: 14px;
       }
-      
-      
-      
+
       .list {
         padding-left: 0;
       }
@@ -315,10 +315,9 @@
         justify-content: center;
         height: 100%;
       }
-      
-      
+
       /* <!-- Overlay container Start--> */
-      
+
       .overlay-container {
         position: absolute;
         right: 0;
@@ -328,62 +327,63 @@
         height: 100%;
         width: 35%;
         text-align: center;
-        background-color: #243C55;
+        background-color: #ffffff;
         transition: all 0.8s cubic-bezier(0.67, 0.67, 0.34, 0.95);
       }
       .go-login .overlay-container {
         right: 65%;
+        background-color: #203c55;
       }
       .go-register .overlay-container {
         right: 0;
       }
-      
-      
-      
-      
-      
-      
-      
+
       .overlay {
         padding: 25px;
-        color: #fff;
+        color: #243c55;
         position: absolute;
         width: 100%;
       }
       .overlay__heading {
-        font-size: 32px;
+        color: #203c55;
+        font-size: 50px;
+        font-weight: bolder;
         margin-bottom: 15px;
       }
       .overlay__desc {
-        max-width: 230px;
-        width: 230px;
+        width: 100%;
         margin: auto;
-        margin-bottom: 15px;
+        margin-bottom: 4px;
+        text-align: center;
       }
       .overlay--left {
         opacity: 0;
         z-index: 99;
       }
-      #go-login{
-      
-         /* Center the button horizontally */
-         margin: 50px 0%;
-         /* Set button width */
-         width: 50%;
-         height: 40px;
-         font-size: 16px;
-         font-weight: bold;
-         border: none;
-         cursor: pointer;
-         background-color: #ffffff;
-         color:#243C55;
-         box-shadow: 8px 8px rgba(104, 100, 100, 0.479);
-      
+      #go-login {
+        /* Center the button horizontally */
+        margin: 50px 0%;
+        /* Set button width */
+        width: 50%;
+        height: 40px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        background-color: #ffffff;
+        color: #243c55;
+        box-shadow: 8px 8px 0px #b5b5b5;
+        transition: 0.4s ease-in-out;
       }
-      
+      #go-login:hover {
+        box-shadow: 3px 3px 0px #b5b5b5;
+        transform: scale(0.98);
+      }
+
       .go-login .overlay--left {
         z-index: 99;
         opacity: 1;
+        padding: 50px;
       }
       .go-register .overlay--left {
         opacity: 0;
@@ -401,140 +401,434 @@
         z-index: 99;
         opacity: 1;
       }
-      
-      
-      
-      
+      .regInput::placeholder {
+        color: rgba(255, 255, 255, 0.615) !important;
+      }
     </style>
+  </head>
 
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid" style="width: 100% !important">
+        <a class="navbar-brand" href="#"
+          ><img src="assets/headerLogo.svg" alt=""
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse"
+          id="navbarSupportedContent"
+          style="width: 100px !important"
+        >
+          <ul class="navbar-nav mb-2 mb-lg-0" style="margin-left: auto">
+            <li class="nav-item px-3 m-auto">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item px-3 m-auto">
+              <a class="nav-link" href="#">Collection</a>
+            </li>
+            <li class="nav-item px-3 m-auto">
+              <a class="nav-link" href="#">Shop</a>
+            </li>
+            <li class="nav-item px-3 m-auto">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
 
-</head>
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><img src="assets/searchIcon.svg" alt=""
+              /></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><img src="assets/profileIcon.svg" alt=""
+              /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-<body>
-
-
-
-<!-- Main Interface -->
-<!-- 
-Login Account + Register Account -->
-  <div class="container go-register">
-
-
-    <!-- Login Form Start -->
-    <div class="form__container form__container-login">
-
-      <form action="" class="form">
-          <div class="left-column">
+    <div
+      style="
+        background-color: #e7e7e7;
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        align-items: center;
+      "
+    >
+      <div class="containerLogin go-register">
+        <!-- Login Form Start -->
+        <div class="form__container form__container-login">
+          <form action="" class="form">
+            <div class="left-column">
               <h1>Login your Account</h1>
-              <p>Welcome back<br>Glad to see you again!</p>
-              <input type="text" id="username" placeholder="Enter your Email or User name"> <br>
-              <input type="password" id="pwd" placeholder="Enter your password"><br>
-              <button class="login-btn" id="loginRegisterBtn" type="submit">Login</button><br>
-              <a><p>Forgot Password ?</p></a>
-          </div>
-      </form>
-  </div>
-  
-    <!-- Login Form End -->
+              <p style="margin-top: 15px">Welcome back</p>
+              <p style="margin-top: 1px">Glad to see you again!</p>
+              <div style="margin-top: 50px; margin-bottom: 60px">
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="Enter your Email"
+                  required
+                />
+                <br />
+                <input
+                  type="password"
+                  id="pwd"
+                  name="password"
+                  placeholder="Enter your password"
+                  required
+                /><br />
+              </div>
 
-
-
-    <!-- Register Form Start -->
-    
-    <div class="form__container form__container-register">
-
-      <form action="" class="form">
-        <div class="right-column">
-          <h2>Create Your Account</h2>
-          <p><span class="subhed">Set up your details</span></p>
-          <div class="form-group">
-            <input type="text" id="fname" name="fname" required placeholder="Enter your first name">
-            <input type="text" id="lname" name="lname" required placeholder="Enter your last name">
-            <br>
-            <input type="email" id="email" name="email" required placeholder="Enter your email">
-            <input type="text" id="number" name="number" required placeholder="Enter your Contact Number">
-            <input type="text" id="addres" name="addres" required placeholder="Enter your Address">
-            <br>
-            <div class="upload">
-              <label for="fileInput">Upload your profile picture:</label>
-              <input type="file" id="fileInput" class="custom-file-upload" onchange="handleFileUpload()">
+              <button class="login-btn" id="loginRegisterBtn" type="submit">
+                Login</button
+              ><br />
+              <a href="#"><p style="font-size: 14px">Forgot Password ?</p></a>
             </div>
-            <input type="password" id="pwd" name="pwd" required placeholder="Password">
-            <input type="password" id="confirmPwd" name="confirmPwd" required placeholder="Confirm password">
+          </form>
+        </div>
+
+        <!-- Login Form End -->
+
+        <!-- Register Form Start -->
+
+        <div class="form__container form__container-register">
+          <form action="" class="form">
+            <div class="right-column">
+              <h2 style="margin-top: 50px; margin-bottom: -5px">
+                Create Your Account
+              </h2>
+              <p style="margin-bottom: -10px">
+                <span class="subhed">Set up your details</span>
+              </p>
+              <div class="form-group">
+                <input
+                  class="regInput"
+                  type="text"
+                  id="fname"
+                  name="fname"
+                  required
+                  placeholder="Enter your first name"
+                />
+                <input
+                class="regInput"
+                  type="text"
+                  id="lname"
+                  name="lname"
+                  required
+                  placeholder="Enter your last name"
+                  style="margin-left: 5px;"
+                />
+                <br />
+                <input
+                class="regInput"
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="Enter your email"
+                />
+                <input
+                class="regInput"
+                  type="text"
+                  id="number"
+                  name="number"
+                  required
+                  placeholder="Enter your Contact Number"
+                  style="margin-left: 5px;"
+                />
+                <input
+                class="regInput"
+                  style="width: 100%"
+                  type="text"
+                  id="addres"
+                  name="addres"
+                  required
+                  placeholder="Enter your Address"
+                />
+                <br />
+                <div class="upload" style="height: fit-content !important; margin-bottom: -2px;">
+                  <div
+                    class="input-group"
+                    style="padding: 0 !important; align-items: center"
+                  >
+                    <input
+                      style="border-radius: 0px !important"
+                      type="file"
+                      class="form-control hidden"
+                      id="inputGroupFile01"
+                    />
+                  </div>
+                </div>
+                <input
+                class="regInput"
+                  type="password"
+                  id="pwd"
+                  name="pwd"
+                  required
+                  placeholder="Password"
+                />
+                <input
+                class="regInput"
+                  type="password"
+                  id="confirmPwd"
+                  name="confirmPwd"
+                  required
+                  placeholder="Confirm password"
+                  style="margin-left: 5px;"
+                />
+              </div>
+              <div class="chekckbox" style="margin-bottom: -30px;">
+                <input type="checkbox" id="checkbox" required />
+                <label class="checkbox-text"
+                  >Accept our terms and conditions</label
+                >
+                <br />
+              </div>
+
+              <button class="Register-button" type="submit">Register</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Register Form End -->
+
+        <!-- Overlay container Start-->
+        <div class="overlay-container">
+          <!-- Right Overlay Start -->
+          <div class="overlay overlay--right">
+            <h3 class="overlay__heading">New Here ?</h3>
+            <p class="overlay__desc">Sign up and discover a great</p>
+            <p class="overlay__desc">amount of new fashion!</p>
+            <button type="button" id="go-register" class="btn--main-outline">
+              Sign Up
+            </button>
           </div>
-          <div class="chekckbox">
-            <input type="checkbox" id="checkbox" required>
-            <label class="checkbox-text">Accept our terms and conditions</label>
-            <br>
+          <!-- Right Overlay End -->
+
+          <!-- Left Overlay Start -->
+          <div class="overlay overlay--left">
+            <h3 class="overlay__heading" style="color: #ffffff">Welcome</h3>
+            <h3
+              class="overlay__heading"
+              style="color: #ffffff; margin-top: -32px"
+            >
+              Back!
+            </h3>
+            <p class="overlay__desc" style="color: #ffffff">
+              To keep connected with us please with your personal info
+            </p>
+            <button type="button" id="go-login" class="btn--main-outline">
+              Login
+            </button>
           </div>
-         
-          <button class="Register-button" type="submit">Register</button>
+          <!-- Left Overlay End -->
         </div>
-      </form>
-    </div>
-  
-    <!-- Register Form End -->
 
-
-
-    <!-- Overlay container Start-->
-    <div class="overlay-container">
-
-        <!-- Right Overlay Start -->
-        <div class="overlay overlay--right">
-            <h3 class="overlay__heading">New Here</h3>
-            <p class="overlay__desc">Sign up and discover a great<br>
-              amount of new fashion!s</p>
-            <button type="button" id="go-register" class="btn btn--main-outline">Sign Up</button>
-        </div>
-<!-- Right Overlay End -->
-
-
-
-        <!-- Left Overlay Start -->
-        <div class="overlay overlay--left">
-            <h3 class="overlay__heading">Welcome Back!</h3>
-            <p class="overlay__desc">To keep connected with us please with your personal info
-
-</p>
-            <button type="button" id="go-login" class="btn btn--main-outline">Login</button>
-        </div>
-        <!-- Left Overlay End -->
+        <!-- Overlay Container End -->
+      </div>
     </div>
 
-
-
-    <!-- Overlay Container End -->
-</div>
     <script>
       (function (document) {
+        const $goLogin = document.querySelector("#go-login"),
+          $goRegister = document.querySelector("#go-register"),
+          $container = document.querySelector(".containerLogin"),
+          $overlayContainer = document.querySelector(".overlay-container");
 
-        const $goLogin = document.querySelector('#go-login'),
-            $goRegister = document.querySelector('#go-register'),
-            $container = document.querySelector('.container'),
-            $overlayContainer = document.querySelector('.overlay-container');
-      
         _toggleForm = () => {
-            if ($container.classList.contains('go-register')) {
-                $container.classList.remove('go-register')
-                $container.classList.add('go-login')
-                $overlayContainer.classList.add('animateWidth')
-                $overlayContainer.addEventListener('webkitTransitionEnd', () => $overlayContainer.classList.remove('animateWidth'))
-            } else {
-                $container.classList.remove('go-login')
-                $container.classList.add('go-register')
-                $overlayContainer.classList.add('animateWidth')
-                $overlayContainer.addEventListener('webkitTransitionEnd', () => $overlayContainer.classList.remove('animateWidth'))
-            }
-        }
-      
-      
-        $goLogin.addEventListener('click', _toggleForm);
-        $goRegister.addEventListener('click', _toggleForm);
-      })(document);
-      
-      
-  </script>
-</body>
+          if ($container.classList.contains("go-register")) {
+            $container.classList.remove("go-register");
+            $container.classList.add("go-login");
+            $overlayContainer.classList.add("animateWidth");
+            $overlayContainer.addEventListener("webkitTransitionEnd", () =>
+              $overlayContainer.classList.remove("animateWidth")
+            );
+          } else {
+            $container.classList.remove("go-login");
+            $container.classList.add("go-register");
+            $overlayContainer.classList.add("animateWidth");
+            $overlayContainer.addEventListener("webkitTransitionEnd", () =>
+              $overlayContainer.classList.remove("animateWidth")
+            );
+          }
+        };
 
+        $goLogin.addEventListener("click", _toggleForm);
+        $goRegister.addEventListener("click", _toggleForm);
+      })(document);
+    </script>
+
+    <div class="container" style="max-width: 100% !important; padding: 0">
+      <footer
+        class="text-white text-center text-lg-start"
+        style="background-color: #fbfbfb; margin: 0 !important"
+      >
+        <div class="container p-4">
+          <div class="row mt-4">
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+              <img src="assets/foooterIcon.svg" alt="" role="button" />
+
+              <p class="mt-3 p-2 pe-none" style="color: #203c55 !important">
+                29 Visaka Road,<br />
+                Duplication Rd, 00400,<br />
+                Sri Lanka.
+              </p>
+
+              <div class="mt-4">
+                <img
+                  src="assets/Footer social icons/LinkedIn.svg"
+                  alt=""
+                  role="button"
+                />
+                <img
+                  src="assets/Footer social icons/TwitterX.svg"
+                  alt=""
+                  role="button"
+                />
+                <img
+                  src="assets/Footer social icons/Instagram.svg"
+                  alt=""
+                  role="button"
+                />
+                <img
+                  src="assets/Footer social icons/Facebook.svg"
+                  alt=""
+                  role="button"
+                />
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0"></div>
+            <div
+              class="col-lg-5 col-md-6 mb-4 mb-md-0 d-flex"
+              style="justify-content: space-evenly !important"
+            >
+              <div>
+                <h5
+                  class="text-uppercase pb-1 px-4 pe-none"
+                  style="
+                    color: #203c55 !important;
+                    padding-left: 30px !important;
+                  "
+                >
+                  Help
+                </h5>
+                <ul>
+                  <li
+                    style="
+                      color: #203c55 !important;
+                      padding-left: -10px !important;
+                      margin-bottom: 8px !important;
+                    "
+                    role="button"
+                  >
+                    FAQ
+                  </li>
+                  <li
+                    style="
+                      color: #203c55 !important;
+                      margin-bottom: 8px !important;
+                    "
+                    role="button"
+                  >
+                    Return Policy
+                  </li>
+                  <li style="color: #203c55 !important" role="button">
+                    Accessibility
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h5
+                  class="text-uppercase pb-1 px-4 pe-none"
+                  style="
+                    color: #203c55 !important;
+                    padding-left: 30px !important;
+                  "
+                >
+                  Account
+                </h5>
+                <ul>
+                  <li
+                    style="
+                      color: #203c55 !important;
+                      padding-left: -10px !important;
+                      margin-bottom: 8px !important;
+                    "
+                    role="button"
+                  >
+                    Membership
+                  </li>
+                  <li style="color: #203c55 !important" role="button">
+                    Profile
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h5
+                  class="text-uppercase pb-1 px-4 pe-none"
+                  style="
+                    color: #203c55 !important;
+                    padding-left: 30px !important;
+                  "
+                >
+                  Contact Us
+                </h5>
+                <ul>
+                  <li
+                    style="
+                      color: #203c55 !important;
+                      padding-left: -10px !important;
+                      margin-bottom: 8px !important;
+                    "
+                    role="button"
+                  >
+                    Location
+                  </li>
+                  <li
+                    style="
+                      color: #203c55 !important;
+                      margin-bottom: 8px !important;
+                    "
+                    role="button"
+                  >
+                    Email
+                  </li>
+                  <li style="color: #203c55 !important" role="button">
+                    Telephone
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center p-3 pe-none" style="background-color: #203c55">
+          © 2024 BLOOM CLTHING, All Rights Reserved
+        </div>
+      </footer>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
