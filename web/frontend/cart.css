@@ -1,0 +1,102 @@
+body{
+    margin: 0;
+    padding:0;
+    background-color:#E7E7E7 ;
+    color: #ffffff;
+}
+
+form{
+    margin: 0;
+    padding:0;
+    background-color:#243C55 ;
+    color: #ffffff;
+    width: 80%;
+    height: 600px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    box-shadow:8px 8px white ;
+    
+}
+
+
+.table-1{
+width:100%;
+border-spacing:0px;
+border-collapse: collopse;
+
+}
+
+.table-1 th,.table-1 td{
+border-left: none;
+border-right: none;
+border-bottom: 1px solid #ddd;
+}
+
+.table-1 th{
+border-top: 3px solid #ddd;
+text-align:left;
+
+}
+
+.table-1 tr{
+height:80px;
+border:none;
+}
+
+.table-1 img{
+width:50px;
+height:auto;
+}
+
+button[disabled1]{
+color:#FF6767;
+}
+
+.table-2{
+    width:100%;
+    border-spacing:0px;
+    border-collapse: collopse;
+    }
+
+.table-2 td,.table-2 th{
+    border-left: none;
+    border-right: none;
+    border:none;   
+    }
+
+.table-2 tr:last-child td{
+    border-bottom: 3px solid #ddd;
+    
+}
+
+button[disabled2]{
+    color:#243C55;
+}
+
+.rectangle {
+    width: 800px;
+    height: 60px;
+    background-color:#E7E7E7;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+    align-self:center;
+   margin:auto;
+}
+
+.submit-button {
+    background-color:#203C55;
+    color:#ffffff;
+    border: none;
+    width: 300px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    font-size: 17px;  
+    cursor: pointer;
+   margin:auto;
+}

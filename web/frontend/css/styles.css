@@ -1,0 +1,64 @@
+.top-section {
+  background-color: #e7e7e7;
+  height: 100vh;
+  background-image: url('../images/1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+.top-section h1 {
+  font-size: 5rem;
+  margin-bottom: 0;
+}
+.top-section p {
+  font-size: 2rem;
+  margin-top: 0;
+}
+.box-section {
+  justify-content: center;
+  padding: 50px 0;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #e7e7e7;
+}
+.box-section .box {
+  background-color: #243c55;
+  color: white;
+  padding: 30px;
+  flex: 1 0 300px;
+  margin: 10px;
+  text-align: left;
+  max-width: 1200px;
+  display: flex;
+  height: 175px;
+}
+.box-section .map {
+  flex: 1 0 1200px;
+  margin: 10px;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  padding: 30px;
+  margin-top: -220px;
+  background-color: #e7e7e7;
+  box-shadow: 8px 8px 0px #243c55;
+}
+.icon {
+  width: 50px;
+  height: 50px;
+}
+
+.box-section .box button {
+  width: 60%;
+  border-radius: 0;
+  box-shadow: 5px 5px 0px rgba(255, 255, 255, 0.5);
+}
