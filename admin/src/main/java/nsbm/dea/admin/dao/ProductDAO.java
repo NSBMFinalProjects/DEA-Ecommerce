@@ -24,10 +24,11 @@ public class ProductDAO {
   private static final Gson gson = new Gson();
 
   public ProductDAO() {
+    this.LIMIT = 2;
   }
 
   public ProductDAO(int LIMIT) {
-    LIMIT = this.LIMIT;
+    this.LIMIT = LIMIT;
   }
 
   private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
@@ -143,14 +144,15 @@ public class ProductDAO {
 
   public List<Product> getAllProducts(int page) throws SQLException {
     List<Product> products = new ArrayList<Product>();
-
     try (Connection connection = DB.getConnection()) {
       try (PreparedStatement statement = connection
           .prepareStatement("SELECT * FROM dea.products ORDER BY id OFFSET ? LIMIT ?")) {
-        statement.setInt(1, page * this.LIMIT);
+        statement.setInt(1, (page - 1) * this.LIMIT);
         statement.setInt(2, this.LIMIT);
+        System.out.println("In stateemnt");
         try (ResultSet resultSet = statement.executeQuery()) {
           while (resultSet.next()) {
+            System.out.println("the id is : " + resultSet.getInt("id"));
             products.add(this.getProductFromResultSet(resultSet));
           }
         }

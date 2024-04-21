@@ -17,6 +17,7 @@ public class Product {
   }
 
   public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description) {
+    this.id = id;
     this.createdBy = createdBy;
     this.slug = slug;
     this.name = name;
@@ -26,6 +27,7 @@ public class Product {
 
   public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
       Category[] categories) {
+    this.id = id;
     this.createdBy = createdBy;
     this.slug = slug;
     this.name = name;
@@ -37,6 +39,7 @@ public class Product {
   public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
       Timestamp created,
       Timestamp modified) {
+    this.id = id;
     this.createdBy = createdBy;
     this.slug = slug;
     this.name = name;
@@ -49,6 +52,7 @@ public class Product {
   public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
       Timestamp created,
       Timestamp modified, Category[] categories) {
+    this.id = id;
     this.createdBy = createdBy;
     this.slug = slug;
     this.name = name;
