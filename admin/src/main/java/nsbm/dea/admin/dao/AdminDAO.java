@@ -102,7 +102,7 @@ public class AdminDAO {
 
     try (Connection connection = DB.getConnection()) {
       try (PreparedStatement statement = connection.prepareStatement(query)) {
-        statement.setInt(1, page * this.LIMIT);
+        statement.setInt(1, (page - 1) * this.LIMIT);
         statement.setInt(2, this.LIMIT);
 
         try (ResultSet resultSet = statement.executeQuery()) {
