@@ -32,6 +32,7 @@ import nsbm.dea.admin.dao.ProductDAO;
 import nsbm.dea.admin.dao.TagDAO;
 import nsbm.dea.admin.enums.Status;
 import nsbm.dea.admin.lib.Lib;
+import nsbm.dea.admin.model.Admin;
 import nsbm.dea.admin.model.Category;
 import nsbm.dea.admin.model.Color;
 import nsbm.dea.admin.model.Product;
@@ -52,6 +53,9 @@ public class Create extends HttpServlet {
     @NotNull(message = "product name should not be emtpy")
     @Size(min = 3, max = 100, message = "product is not valid")
     private String name;
+
+    @Min(value = 1, message = "price is not valid")
+    private BigDecimal price;
 
     private List<@URL(message = "photos must be URLs") String> photo_urls;
 
@@ -76,6 +80,10 @@ public class Create extends HttpServlet {
 
     public String getName() {
       return name;
+    }
+
+    public BigDecimal getPrice() {
+      return price;
     }
 
     public List<String> getPhoto_urls() {
@@ -126,9 +134,6 @@ public class Create extends HttpServlet {
     @Size(min = 3, max = 10, message = "color name is not valid")
     private String name;
 
-    @Min(value = 1, message = "price is not valid")
-    private BigDecimal price;
-
     @Min(value = 1, message = "quantity is not valid")
     private int qty;
 
@@ -138,10 +143,6 @@ public class Create extends HttpServlet {
 
     public String getName() {
       return name;
-    }
-
-    public BigDecimal getPrice() {
-      return price;
     }
 
     public int getQty() {
@@ -158,7 +159,7 @@ public class Create extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     try {
-      String adminId = "01HW22G201ZST1WPFHWMT5R0Y3";
+      Admin admin = ((Admin) request.getSession().getServletContext().getAttribute("admin"));
       JsonObject payload = Lib.getJSONPayloadFromRequest(request);
       Data data;
 
@@ -181,6 +182,7 @@ public class Create extends HttpServlet {
 
       Product product = new Product();
       product.setName(productData.getName());
+      product.setPrice(productData.getPrice());
       product.setPhotoUrls(productData.getPhoto_urls().toArray(String[]::new));
       product.setDescription(productData.getDescription());
 
@@ -188,16 +190,15 @@ public class Create extends HttpServlet {
       for (CategoryData category : productData.getCategories()) {
         Category c = new Category();
         c.setName(category.getName());
-        c.setCreatedBy(adminId);
+        c.setCreatedBy(admin.getId());
 
         List<Color> colors = new ArrayList<>();
         for (ColorData color : category.getColors()) {
           Color cl = new Color();
           cl.setName(color.getName());
-          cl.setPrice(color.getPrice());
           cl.setQuantity(color.getQty());
           cl.setHex(color.getHex());
-          cl.setCreatedBy(adminId);
+          cl.setCreatedBy(admin.getId());
 
           colors.add(cl);
         }
@@ -206,7 +207,7 @@ public class Create extends HttpServlet {
         categories.add(c);
       }
       product.setCategories(categories.stream().toArray(Category[]::new));
-      product.setCreatedBy(adminId);
+      product.setCreatedBy(admin.getId());
 
       ProductDAO productDAO = new ProductDAO();
       productDAO.create(product);

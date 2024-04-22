@@ -13,9 +13,9 @@ public class ColorDAO {
   }
 
   public void create(Color[] colors) throws SQLException {
-    String sql = "INSERT INTO dea.colors(category_id, created_by, name, hex, qty, price) VALUES";
+    String sql = "INSERT INTO dea.colors(category_id, created_by, name, hex, qty) VALUES";
     for (int index = 0; index < colors.length; index++) {
-      sql = String.format("%s (?, CAST(? as ulid), ?, ?, ?, ?)", sql);
+      sql = String.format("%s (?, CAST(? as ulid), ?, ?, ?)", sql);
       if (index != colors.length - 1) {
         sql = String.format("%s,", sql);
       }
@@ -30,7 +30,6 @@ public class ColorDAO {
           statement.setString(index++, color.getName());
           statement.setString(index++, color.getHex());
           statement.setInt(index++, color.getQuantity());
-          statement.setBigDecimal(index++, color.getPrice());
         }
 
         statement.executeUpdate();
@@ -39,9 +38,9 @@ public class ColorDAO {
   }
 
   public void create(Color[] colors, int categoryId) throws SQLException {
-    String sql = "INSERT INTO dea.colors(category_id, created_by, name, hex, qty, price) VALUES";
+    String sql = "INSERT INTO dea.colors(category_id, created_by, name, hex, qty) VALUES";
     for (int index = 0; index < colors.length; index++) {
-      sql = String.format("%s (?, CAST(? as ulid), ?, ?, ?, ?)", sql);
+      sql = String.format("%s (?, CAST(? as ulid), ?, ?, ?)", sql);
       if (index != colors.length - 1) {
         sql = String.format("%s,", sql);
       }
@@ -56,7 +55,6 @@ public class ColorDAO {
           statement.setString(index++, color.getName());
           statement.setString(index++, color.getHex());
           statement.setInt(index++, color.getQuantity());
-          statement.setBigDecimal(index++, color.getPrice());
         }
 
         statement.executeUpdate();

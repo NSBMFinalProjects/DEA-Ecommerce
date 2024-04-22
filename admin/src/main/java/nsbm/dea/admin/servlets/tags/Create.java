@@ -20,6 +20,7 @@ import jakarta.validation.constraints.Size;
 import nsbm.dea.admin.dao.TagDAO;
 import nsbm.dea.admin.enums.Status;
 import nsbm.dea.admin.lib.Lib;
+import nsbm.dea.admin.model.Admin;
 import nsbm.dea.admin.model.Tag;
 
 @WebServlet(name = "create_tag", value = "/tags/create")
@@ -42,7 +43,7 @@ public class Create extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     try {
-      String adminId = "01HW22G201ZST1WPFHWMT5R0Y3";
+      Admin admin = ((Admin) request.getSession().getServletContext().getAttribute("admin"));
       JsonObject payload = Lib.getJSONPayloadFromRequest(request);
 
       TagData data = new TagData();
@@ -66,7 +67,7 @@ public class Create extends HttpServlet {
 
       Tag tag = new Tag();
       tag.setName(data.getName());
-      tag.setCreatedBy(adminId);
+      tag.setCreatedBy(admin.getId());
 
       TagDAO tagDAO = new TagDAO();
       tagDAO.create(tag);

@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc987163-e155-4c53-8b90-3c59af938b37" name="Changes" comment="added the filter product by gender" />
+    <list default="true" id="cc987163-e155-4c53-8b90-3c59af938b37" name="Changes" comment="added the filter product by gender">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/profilePlaceholder.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/connections/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/connections/DB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/dao/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/dao/CategoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/dao/ColorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/dao/ColorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/middleware/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/middleware/Auth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/model/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/model/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/auth/Refresh.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/auth/Refresh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/collections/Create.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/collections/Create.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/products/Create.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/products/Create.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/tags/Create.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/tags/Create.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/LogIn-SignUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/LogIn-SignUp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/signInUp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/signInUp.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/userProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/userProfile.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,7 +94,7 @@
     "Tomcat Server.Tomcat 10.1.20-web.executor": "Run",
     "Tomcat Server.Tomcat 10.1.20.executor": "Run",
     "Tomcat Server.product.jsp.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Merging main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/HP/Desktop/DEA/DEA-Ecommerce/sql/schema.sql",
     "node.js.detected.package.eslint": "true",
@@ -235,7 +252,7 @@
       <updated>1712724933923</updated>
       <workItem from="1712724935063" duration="514000" />
       <workItem from="1713681898717" duration="31895000" />
-      <workItem from="1713771569117" duration="26654000" />
+      <workItem from="1713771569117" duration="26968000" />
     </task>
     <task id="LOCAL-00001" summary="added the filter product by gender">
       <option name="closed" value="true" />

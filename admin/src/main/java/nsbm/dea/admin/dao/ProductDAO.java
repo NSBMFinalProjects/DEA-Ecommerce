@@ -1,5 +1,6 @@
 package nsbm.dea.admin.dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,6 +38,7 @@ public class ProductDAO {
         resultSet.getString("created_by"),
         resultSet.getString("slug"),
         resultSet.getString("name"),
+        new BigDecimal(resultSet.getString("price")),
         ((String[]) resultSet.getArray("photo_urls").getArray()),
         resultSet.getString("description"),
         resultSet.getTimestamp("created"),
@@ -51,6 +53,8 @@ public class ProductDAO {
         			products.id,
         			'name',
         			products.name,
+              'price',
+              products.price,
         			'description',
         			products.description,
         			'slug',
@@ -68,7 +72,7 @@ public class ProductDAO {
         				SELECT
         					jsonb_agg(jsonb_build_object ('id', categories.id, 'name', categories.name, 'slug', categories.slug, 'created_by', categories.created_by, 'created', categories.created, 'modified', categories.modified, 'colors', (
         								SELECT
-        									jsonb_agg(jsonb_build_object ('id', colors.id, 'name', colors.name, 'slug', colors.slug, 'hex', colors.hex, 'qty', colors.qty, 'price', colors.price, 'created_by', colors.created_by, 'created', colors.created, 'modified', colors.modified))
+        									jsonb_agg(jsonb_build_object ('id', colors.id, 'name', colors.name, 'slug', colors.slug, 'hex', colors.hex, 'qty', colors.qty, created_by', colors.created_by, 'created', colors.created, 'modified', colors.modified))
         									FROM dea.colors colors
         								WHERE
         									colors.category_id = categories.id)))
@@ -114,7 +118,6 @@ public class ProductDAO {
         color.setSlug(colorJson.get("slug").getAsString());
         color.setHex(colorJson.get("hex").getAsString());
         color.setQuantity(colorJson.get("qty").getAsInt());
-        color.setPrice(colorJson.get("price").getAsBigDecimal());
         color.setCreatedBy(colorJson.get("created_by").getAsString());
 
         colors.add(color);
@@ -135,6 +138,7 @@ public class ProductDAO {
         productJson.get("created_by").getAsString(),
         productJson.get("slug").getAsString(),
         productJson.get("name").getAsString(),
+        productJson.get("price").getAsBigDecimal(),
         gson.fromJson(productJson.get("photo_urls"), String[].class),
         productJson.get("description").getAsString(),
         categories.stream().toArray(Category[]::new));
@@ -149,10 +153,8 @@ public class ProductDAO {
           .prepareStatement("SELECT * FROM dea.products ORDER BY id OFFSET ? LIMIT ?")) {
         statement.setInt(1, (page - 1) * this.LIMIT);
         statement.setInt(2, this.LIMIT);
-        System.out.println("In stateemnt");
         try (ResultSet resultSet = statement.executeQuery()) {
           while (resultSet.next()) {
-            System.out.println("the id is : " + resultSet.getInt("id"));
             products.add(this.getProductFromResultSet(resultSet));
           }
         }
@@ -167,12 +169,13 @@ public class ProductDAO {
 
   public void create(Product product) throws SQLException {
     try (Connection connection = DB.getConnection()) {
-      String sql = "INSERT INTO dea.products(created_by, name, photo_urls, description) VALUES (CAST(? as ulid), ?, ?, ?) RETURNING id";
+      String sql = "INSERT INTO dea.products(created_by, name, photo_urls, description, price) VALUES (CAST(? as ulid), ?, ?, ?, ?) RETURNING id";
       try (PreparedStatement statement = connection.prepareStatement(sql)) {
         statement.setObject(1, product.getCreatedBy());
         statement.setString(2, product.getName());
         statement.setArray(3, connection.createArrayOf("TEXT", product.getPhotoUrls()));
         statement.setString(4, product.getDescription());
+        statement.setBigDecimal(5, product.getPrice());
 
         try (ResultSet resultSet = statement.executeQuery()) {
           if (!resultSet.next()) {
@@ -189,11 +192,12 @@ public class ProductDAO {
 
   public void update(Product product) throws SQLException {
     try (Connection connection = DB.getConnection()) {
-      String sql = "UPDATE dea.products SET name = ?,description = ?,photo_urls = ? WHERE id = ?";
+      String sql = "UPDATE dea.products SET name = ?, description = ?, photo_urls = ?, price = ? WHERE id = ?";
       try (PreparedStatement statement = connection.prepareStatement(sql)) {
         statement.setString(1, product.getName());
         statement.setString(2, product.getDescription());
         statement.setString(3, String.join(",", product.getPhotoUrls()));
+        statement.setBigDecimal(4, product.getPrice());
         statement.executeUpdate();
       }
     }
@@ -216,6 +220,18 @@ public class ProductDAO {
       String sql = "UPDATE dea.products SET description = ? WHERE id = ?";
       try (PreparedStatement statement = connection.prepareStatement(sql)) {
         statement.setString(1, description);
+        statement.setInt(2, id);
+
+        statement.executeUpdate();
+      }
+    }
+  }
+
+  public void updatePrice(int id, BigDecimal price) throws SQLException {
+    try (Connection connection = DB.getConnection()) {
+      String sql = "UPDATE dea.products SET price = ? WHERE id = ?";
+      try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        statement.setBigDecimal(1, price);
         statement.setInt(2, id);
 
         statement.executeUpdate();

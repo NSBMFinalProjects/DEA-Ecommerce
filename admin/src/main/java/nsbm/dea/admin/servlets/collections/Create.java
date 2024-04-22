@@ -26,6 +26,7 @@ import jakarta.validation.constraints.Size;
 import nsbm.dea.admin.dao.CollectionDAO;
 import nsbm.dea.admin.enums.Status;
 import nsbm.dea.admin.lib.Lib;
+import nsbm.dea.admin.model.Admin;
 import nsbm.dea.admin.model.Collection;
 
 @WebServlet(name = "create_collection", value = "/collections/create")
@@ -74,7 +75,7 @@ public class Create extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     try {
-      String adminId = "01HW22G201ZST1WPFHWMT5R0Y3";
+      Admin admin = ((Admin) request.getSession().getServletContext().getAttribute("admin"));
 
       JsonObject payload = Lib.getJSONPayloadFromRequest(request);
 
@@ -111,7 +112,7 @@ public class Create extends HttpServlet {
       collection.setName(data.getName());
       collection.setDescription(data.getDescription());
       collection.setPhotoUrls(data.getPhotoURLs().toArray(new String[0]));
-      collection.setCreatedBy(adminId);
+      collection.setCreatedBy(admin.getId());
 
       CollectionDAO collectionDAO = new CollectionDAO();
       collectionDAO.create(collection);

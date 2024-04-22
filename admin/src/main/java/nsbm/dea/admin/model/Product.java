@@ -1,5 +1,6 @@
 package nsbm.dea.admin.model;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class Product {
@@ -7,6 +8,7 @@ public class Product {
   private String createdBy;
   private String slug;
   private String name;
+  private BigDecimal price;
   private String[] photoUrls;
   private String description;
   private Timestamp created;
@@ -17,46 +19,54 @@ public class Product {
   public Product() {
   }
 
-  public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description) {
+  public Product(int id, String createdBy, String slug, String name, BigDecimal price, String[] photoUrls,
+      String description) {
     this.id = id;
     this.createdBy = createdBy;
     this.slug = slug;
     this.name = name;
+    this.price = price;
     this.photoUrls = photoUrls;
     this.description = description;
   }
 
-  public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
+  public Product(int id, String createdBy, String slug, String name, BigDecimal price, String[] photoUrls,
+      String description,
       Category[] categories) {
     this.id = id;
     this.createdBy = createdBy;
     this.slug = slug;
     this.name = name;
+    this.price = price;
     this.photoUrls = photoUrls;
     this.description = description;
     this.categories = categories;
   }
 
-  public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
+  public Product(int id, String createdBy, String slug, String name, BigDecimal price, String[] photoUrls,
+      String description,
       Timestamp created,
       Timestamp modified) {
     this.id = id;
     this.createdBy = createdBy;
     this.slug = slug;
     this.name = name;
+    this.price = price;
     this.photoUrls = photoUrls;
     this.description = description;
     this.created = created;
     this.modified = modified;
   }
 
-  public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
+  public Product(int id, String createdBy, String slug, String name, BigDecimal price, String[] photoUrls,
+      String description,
       Timestamp created,
       Timestamp modified, Category[] categories) {
     this.id = id;
     this.createdBy = createdBy;
     this.slug = slug;
     this.name = name;
+    this.price = price;
     this.photoUrls = photoUrls;
     this.description = description;
     this.created = created;
@@ -94,6 +104,14 @@ public class Product {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public BigDecimal getPrice() {
+    return price;
+  }
+
+  public void setPrice(BigDecimal price) {
+    this.price = price;
   }
 
   public String[] getPhotoUrls() {
