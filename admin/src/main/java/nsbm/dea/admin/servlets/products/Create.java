@@ -32,6 +32,7 @@ import nsbm.dea.admin.dao.ProductDAO;
 import nsbm.dea.admin.dao.TagDAO;
 import nsbm.dea.admin.enums.Status;
 import nsbm.dea.admin.lib.Lib;
+import nsbm.dea.admin.model.Admin;
 import nsbm.dea.admin.model.Category;
 import nsbm.dea.admin.model.Color;
 import nsbm.dea.admin.model.Product;
@@ -158,7 +159,7 @@ public class Create extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     try {
-      String adminId = "01HVY2DG7SN4FDJMS9GNE6E4JX";
+      Admin admin = ((Admin) request.getSession().getServletContext().getAttribute("admin"));
       JsonObject payload = Lib.getJSONPayloadFromRequest(request);
       Data data;
 
@@ -188,7 +189,7 @@ public class Create extends HttpServlet {
       for (CategoryData category : productData.getCategories()) {
         Category c = new Category();
         c.setName(category.getName());
-        c.setCreatedBy(adminId);
+        c.setCreatedBy(admin.getId());
 
         List<Color> colors = new ArrayList<>();
         for (ColorData color : category.getColors()) {
@@ -197,7 +198,7 @@ public class Create extends HttpServlet {
           cl.setPrice(color.getPrice());
           cl.setQuantity(color.getQty());
           cl.setHex(color.getHex());
-          cl.setCreatedBy(adminId);
+          cl.setCreatedBy(admin.getId());
 
           colors.add(cl);
         }
@@ -206,7 +207,7 @@ public class Create extends HttpServlet {
         categories.add(c);
       }
       product.setCategories(categories.stream().toArray(Category[]::new));
-      product.setCreatedBy(adminId);
+      product.setCreatedBy(admin.getId());
 
       ProductDAO productDAO = new ProductDAO();
       productDAO.create(product);
