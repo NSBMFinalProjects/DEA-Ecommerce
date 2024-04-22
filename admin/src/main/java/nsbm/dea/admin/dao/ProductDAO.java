@@ -128,7 +128,7 @@ public class ProductDAO {
           categoryJson.get("created_by").getAsString(),
           categoryJson.get("slug").getAsString(),
           categoryJson.get("name").getAsString(),
-          colors.stream().toArray(Color[]::new));
+          colors.toArray(Color[]::new));
 
       categories.add(category);
     }
@@ -141,7 +141,7 @@ public class ProductDAO {
         productJson.get("price").getAsBigDecimal(),
         gson.fromJson(productJson.get("photo_urls"), String[].class),
         productJson.get("description").getAsString(),
-        categories.stream().toArray(Category[]::new));
+        categories.toArray(Category[]::new));
 
     return Optional.of(product);
   }
