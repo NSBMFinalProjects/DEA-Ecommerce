@@ -72,7 +72,7 @@ public class ProductDAO {
         				SELECT
         					jsonb_agg(jsonb_build_object ('id', categories.id, 'name', categories.name, 'slug', categories.slug, 'created_by', categories.created_by, 'created', categories.created, 'modified', categories.modified, 'colors', (
         								SELECT
-        									jsonb_agg(jsonb_build_object ('id', colors.id, 'name', colors.name, 'slug', colors.slug, 'hex', colors.hex, 'qty', colors.qty, created_by', colors.created_by, 'created', colors.created, 'modified', colors.modified))
+        									jsonb_agg(jsonb_build_object ('id', colors.id, 'name', colors.name, 'slug', colors.slug, 'hex', colors.hex, 'qty', colors.qty, 'created_by', colors.created_by, 'created', colors.created, 'modified', colors.modified))
         									FROM dea.colors colors
         								WHERE
         									colors.category_id = categories.id)))
