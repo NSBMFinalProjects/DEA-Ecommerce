@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc987163-e155-4c53-8b90-3c59af938b37" name="Changes" comment="added the filter product by gender">
-      <change beforePath="$PROJECT_DIR$/../admin/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/.idea/dataSources/649d47e3-47d9-49f8-8c73-6cb912fdfa54.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/model/Collection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/model/Collection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/collections/Create.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/collections/Create.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/products/Create.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/products/Create.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/tags/Create.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/tags/Create.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/src/main/resources/.env.example" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="cc987163-e155-4c53-8b90-3c59af938b37" name="Changes" comment="added the filter product by gender" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -247,7 +235,7 @@
       <updated>1712724933923</updated>
       <workItem from="1712724935063" duration="514000" />
       <workItem from="1713681898717" duration="31895000" />
-      <workItem from="1713771569117" duration="26304000" />
+      <workItem from="1713771569117" duration="26654000" />
     </task>
     <task id="LOCAL-00001" summary="added the filter product by gender">
       <option name="closed" value="true" />
