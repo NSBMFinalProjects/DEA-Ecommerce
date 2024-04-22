@@ -15,7 +15,6 @@ public class CategoryDAO {
 
   public void create(Category[] categories) throws SQLException {
     String sql = "INSERT INTO dea.categories(created_by, product_id, name) VALUES (CAST(? as ulid), ?, ?) RETURNING id";
-    System.out.println(categories.length);
     try (Connection connection = DB.getConnection()) {
       for (Category category : categories) {
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -37,7 +36,6 @@ public class CategoryDAO {
 
   public void create(Category[] categories, int productId) throws SQLException {
     String sql = "INSERT INTO dea.categories(created_by, product_id, name) VALUES (CAST(? as ulid), ?, ?) RETURNING id";
-    System.out.println(categories.length);
     try (Connection connection = DB.getConnection()) {
       for (Category category : categories) {
         try (PreparedStatement statement = connection.prepareStatement(sql)) {

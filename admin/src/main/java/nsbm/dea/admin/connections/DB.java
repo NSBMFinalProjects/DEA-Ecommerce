@@ -24,7 +24,7 @@ public class DB {
       try {
         connection.close();
       } catch (SQLException e) {
-        System.out.println(e.getMessage());
+        e.printStackTrace();
       }
     }
   }

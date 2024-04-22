@@ -54,6 +54,9 @@ public class Create extends HttpServlet {
     @Size(min = 3, max = 100, message = "product is not valid")
     private String name;
 
+    @Min(value = 1, message = "price is not valid")
+    private BigDecimal price;
+
     private List<@URL(message = "photos must be URLs") String> photo_urls;
 
     @Size(min = 3, max = 200, message = "description is not valid")
@@ -77,6 +80,10 @@ public class Create extends HttpServlet {
 
     public String getName() {
       return name;
+    }
+
+    public BigDecimal getPrice() {
+      return price;
     }
 
     public List<String> getPhoto_urls() {
@@ -127,9 +134,6 @@ public class Create extends HttpServlet {
     @Size(min = 3, max = 10, message = "color name is not valid")
     private String name;
 
-    @Min(value = 1, message = "price is not valid")
-    private BigDecimal price;
-
     @Min(value = 1, message = "quantity is not valid")
     private int qty;
 
@@ -139,10 +143,6 @@ public class Create extends HttpServlet {
 
     public String getName() {
       return name;
-    }
-
-    public BigDecimal getPrice() {
-      return price;
     }
 
     public int getQty() {
@@ -182,6 +182,7 @@ public class Create extends HttpServlet {
 
       Product product = new Product();
       product.setName(productData.getName());
+      product.setPrice(productData.getPrice());
       product.setPhotoUrls(productData.getPhoto_urls().toArray(String[]::new));
       product.setDescription(productData.getDescription());
 
@@ -195,7 +196,6 @@ public class Create extends HttpServlet {
         for (ColorData color : category.getColors()) {
           Color cl = new Color();
           cl.setName(color.getName());
-          cl.setPrice(color.getPrice());
           cl.setQuantity(color.getQty());
           cl.setHex(color.getHex());
           cl.setCreatedBy(admin.getId());
