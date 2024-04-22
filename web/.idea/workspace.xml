@@ -4,32 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc987163-e155-4c53-8b90-3c59af938b37" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../admin/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/HelloServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/src/main/resources/META-INF/beans.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/src/main/resources/META-INF/persistence.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../admin/src/main/webapp/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nsbm/dea/web/HelloServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nsbm/dea/web/HelloServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+    <list default="true" id="cc987163-e155-4c53-8b90-3c59af938b37" name="Changes" comment="added the filter product by gender">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/profilePlaceholder.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/connections/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/connections/DB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/dao/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/dao/CategoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/dao/ColorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/dao/ColorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/middleware/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/middleware/Auth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/model/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/model/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/auth/Refresh.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/auth/Refresh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/collections/Create.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/collections/Create.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/products/Create.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/products/Create.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/tags/Create.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/tags/Create.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/LogIn-SignUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/LogIn-SignUp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/signInUp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/signInUp.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/userProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/userProfile.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,17 +32,32 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Jsp File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "contexts": [
-    {
-      "name": "orbstack"
-    }
-  ],
-  "isMigrated": true
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;KDDilshan&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/NSBMFinalProjects/DEA-Ecommerce.git&quot;,
+    &quot;accountId&quot;: &quot;a448d2b0-6489-40e5-97b4-c045bfe91c1e&quot;
+  }
+}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="KubernetesSettings">
     <option name="contextName" value="orbstack" />
   </component>
@@ -62,10 +68,13 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2etXdFm2RPVGKFvOZOUuXoPBnju" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -73,27 +82,58 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build web.executor": "Run",
+    "JavaScript Debug.LogIn-SignUp.html.executor": "Run",
+    "JavaScript Debug.cart.html.executor": "Run",
+    "JavaScript Debug.checkout.html.executor": "Run",
+    "JavaScript Debug.search.jsp.executor": "Run",
+    "JavaScript Debug.shopWoman.html.executor": "Run",
+    "JavaScript Debug.userProfile.jsp.executor": "Run",
+    "JavaScript Debug.userprofile.html.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Tomcat Server.Tomcat 10.1.20-web.executor": "Run",
     "Tomcat Server.Tomcat 10.1.20.executor": "Run",
-    "git-widget-placeholder": "main",
+    "Tomcat Server.product.jsp.executor": "Run",
+    "git-widget-placeholder": "Merging main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/HP/Desktop/DEA/DEA-Ecommerce/sql/schema.sql",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "advanced.settings",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "java.sql.Driver",
+      "postgresql"
+    ]
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="Tomcat 10.1.20" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.20" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.20-web">
+    <configuration name="LogIn-SignUp.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/web/web/frontend/LogIn-SignUp.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="search.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/web/search.jsp">
+      <method v="2" />
+    </configuration>
+    <configuration name="shopWoman.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/web/web/frontend/shopWoman.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="userProfile.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/web/userProfile.jsp">
+      <method v="2" />
+    </configuration>
+    <configuration name="userprofile.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/web/web/frontend/userprofile.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="Tomcat 10.1.20-web" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.20-web" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="Gradle : nsbm.dea : web-1.0-SNAPSHOT.war (exploded)">
+        <artifact name="Gradle : nsbm.dea : web.war (exploded)">
           <settings>
-            <option name="CONTEXT_PATH" value="/Gradle___nsbm_dea___web_1_0_SNAPSHOT_war__exploded_" />
+            <option name="CONTEXT_PATH" value="/web" />
           </settings>
         </artifact>
       </deployment>
@@ -172,9 +212,35 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="Gradle : nsbm.dea : web-1.0-SNAPSHOT.war (exploded)" />
+          <artifact name="Gradle : nsbm.dea : web.war (exploded)" />
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.LogIn-SignUp.html" />
+      <item itemvalue="JavaScript Debug.search.jsp" />
+      <item itemvalue="JavaScript Debug.shopWoman.html" />
+      <item itemvalue="JavaScript Debug.userProfile.jsp" />
+      <item itemvalue="JavaScript Debug.userprofile.html" />
+      <item itemvalue="Tomcat Server.Tomcat 10.1.20-web" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.userProfile.jsp" />
+        <item itemvalue="JavaScript Debug.userprofile.html" />
+        <item itemvalue="JavaScript Debug.LogIn-SignUp.html" />
+        <item itemvalue="JavaScript Debug.shopWoman.html" />
+        <item itemvalue="JavaScript Debug.search.jsp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -185,10 +251,30 @@
       <option name="presentableId" value="Default" />
       <updated>1712724933923</updated>
       <workItem from="1712724935063" duration="514000" />
+      <workItem from="1713681898717" duration="31895000" />
+      <workItem from="1713771569117" duration="26968000" />
     </task>
+    <task id="LOCAL-00001" summary="added the filter product by gender">
+      <option name="closed" value="true" />
+      <created>1713796482766</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713796482766</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed the pagination issue in the admin component" />
+    <MESSAGE value="added the filter product by gender" />
+    <option name="LAST_COMMIT_MESSAGE" value="added the filter product by gender" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
