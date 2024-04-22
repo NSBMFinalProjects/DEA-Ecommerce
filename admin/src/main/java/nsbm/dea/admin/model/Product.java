@@ -12,6 +12,7 @@ public class Product {
   private Timestamp created;
   private Timestamp modified;
   private Category[] categories;
+  private Collection[] collections;
 
   public Product() {
   }
@@ -133,5 +134,13 @@ public class Product {
 
   public void setCategories(Category[] categories) {
     this.categories = categories;
+  }
+
+  public Collection[] getCollections() {
+    return collections;
+  }
+
+  public void setCollections(Collection[] collections) {
+    this.collections = collections;
   }
 }

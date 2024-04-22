@@ -11,6 +11,7 @@ public class Collection {
   private Timestamp created;
   private Timestamp modified;
   private String[] photoUrls;
+  private Product[] products;
 
   public Collection() {
   }
@@ -97,6 +98,14 @@ public class Collection {
 
   public void setPhotoUrls(String[] photoUrls) {
     this.photoUrls = photoUrls;
+  }
+
+  public Product[] getProducts() {
+    return products;
+  }
+
+  public void setProducts(Product[] products) {
+    this.products = products;
   }
 
 }
