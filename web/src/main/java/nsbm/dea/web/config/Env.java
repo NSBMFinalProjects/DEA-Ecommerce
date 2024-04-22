@@ -14,7 +14,7 @@ public class Env {
   }
 
   public static String getDBPassword() {
-    return dotenv.get("DB_PASSWWORD");
+    return dotenv.get("DB_PASSWORD");
   }
 
   public static String getRefreshTokenSecret() {
