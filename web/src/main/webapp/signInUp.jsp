@@ -633,7 +633,7 @@
         const data = Object.fromEntries(formData);
 
         //console.log(data);
-        fetch('https://reqres.in/api/users', {
+        fetch('http://localhost:8081/admin/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -646,14 +646,21 @@
 
     const formEl2 = document.querySelector(".formRegister");
 
+
     formEl2.addEventListener('submit', event => {
         event.preventDefault();
 
         const formData = new FormData(formEl2);
-        const data = Object.fromEntries(formData);
+        // const data = Object.fromEntries(formData);
+        const data=JSON.stringify({
+            "name":`${formData.get("fname")} ${formData.get("lname")}`,
+            "email":`${formData.get("email")}`,
+            "username":`${formData.get("fname")}`,
+            "password":`${formData.get("pwd")}`
+        })
 
-        //console.log(data);
-        fetch('https://reqres.in/api/users', {
+        console.log(data);
+        fetch('http://localhost:8080/web/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
