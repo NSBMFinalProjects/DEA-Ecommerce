@@ -37,53 +37,14 @@
 <section style="background-color: #e7e7e7">
     <div style="width: 100%; display: flex">
         <div class="sidebar">
-            <p style="font-size: 30px;">Men's Wear</p>
-            <p>Availability:</p>
-            <form>
-                <div>
-                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off" />
-                    <label class="btn btn-outline-secondary btn-check-label" for="btn-check-outlined">In stock</label>
-                </div>
-                <div>
-                    <input type="checkbox" class="btn-check" id="btn-check-outOfStock" autocomplete="off" />
-                    <label class="btn btn-outline-secondary btn-check-label" for="btn-check-outOfStock">Out of stock</label>
-                </div>
-
-            </form>
-            <p>Price:</p>
-                <form>
-                    <div>
-                        <input type="checkbox" class="btn-check" id="btn-check-low-price-outlined" autocomplete="off" />
-                        <label class="btn btn-outline-secondary btn-check-label" for="btn-check-low-price-outlined">Low Price</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="btn-check" id="btn-check-medium-price-outlined" autocomplete="off" />
-                        <label class="btn btn-outline-secondary btn-check-label" for="btn-check-medium-price-outlined">Medium Price</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="btn-check" id="btn-check-high-price-outlined" autocomplete="off" />
-                        <label class="btn btn-outline-secondary btn-check-label" for="btn-check-high-price-outlined">High Price</label>
-                    </div>
-                </form>
-                <p>Size:</p>
-                <form>
-                    <div>
-                        <input type="checkbox" class="btn-check" id="btn-check-small-outlined" autocomplete="off" />
-                        <label class="btn btn-outline-secondary btn-check-label" for="btn-check-small-outlined">Small</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="btn-check" id="btn-check-medium-outlined" autocomplete="off" />
-                        <label class="btn btn-outline-secondary btn-check-label" for="btn-check-medium-outlined">Medium</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" class="btn-check" id="btn-check-large-outlined" autocomplete="off" />
-                        <label class="btn btn-outline-secondary btn-check-label" for="btn-check-large-outlined">Large</label>
-                    </div>
-                </form>
-
+            <p style="font-size: 30px;">Mens Wear</p>
+            <p>Search:</p>
+            <form id="searchForm" action="search.jsp" method="get">
+                <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Search products...">
+                <button type="submit" class="btn btn-primary">Search</button>
             </form>
         </div>
-        <div style="background-color: #e7e7e7; width: 80%; height: 90vh; padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-between;">
+        <div id="productContainer" style="background-color: #e7e7e7; width: 80%; height: 90vh; padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-between;">
             <%
                 ProductDAO productDao = new ProductDAO();
                 List<Product> maleProducts = productDao.getProductsByCollectionName("men");
@@ -99,12 +60,43 @@
             </div>
             <% } %>
         </div>
-
     </div>
 </section>
 
 <%@include file="footer.html"%>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function searchProducts() {
+        var searchTerm = $('#searchTerm').val();
+        $.ajax({
+            url: "http://localhost:8080/web/search.jsp",
+            type: 'GET',
+            data: {searchTerm: searchTerm},
+            success: function (response) {
+                var products = response;
+                var productContainer = $('#productContainer');
+                productContainer.empty();
+                products.forEach(function (product) {
+                    var productCard = $('<div class="productCard" style="flex: 1 0 calc(33.33% - 20px); margin-bottom: 20px;"></div>');
+                    productCard.append('<div class="productInfo"><img src="' + product.photoUrls[0] + '" alt="" style="width: 100%; height: auto;" /></div>');
+                    productCard.append('<p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;">' + product.name + '</p>');
+                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: 10px;">' + product.description + '</p>');
+                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">' + product.createdBy + '</p>');
+                    productContainer.append(productCard);
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("AJAX request failed:", textStatus, errorThrown);
+            }
+        });
+    }
+    $('#searchForm').on('submit', function (e) {
+        e.preventDefault();
+        searchProducts();
+    });
+</script>
+
 </body>
 </html>
