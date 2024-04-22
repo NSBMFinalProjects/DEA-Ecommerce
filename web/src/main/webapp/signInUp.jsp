@@ -422,7 +422,7 @@
     <div class="containerLogin go-register">
         <!-- Login Form Start -->
         <div class="form__container form__container-login">
-            <form action="" class="form">
+            <form class="form formLogin">
                 <div class="left-column">
                     <h1>Login your Account</h1>
                     <p style="margin-top: 15px">Welcome back</p>
@@ -458,7 +458,7 @@
         <!-- Register Form Start -->
 
         <div class="form__container form__container-register">
-            <form action="" class="form">
+            <form class="form formRegister">
                 <div class="right-column">
                     <h2 style="margin-top: 50px; margin-bottom: -5px">
                         Create Your Account
@@ -522,6 +522,7 @@
                                         type="file"
                                         class="form-control hidden"
                                         id="inputGroupFile01"
+                                        name="profilePicture"
                                 />
                             </div>
                         </div>
@@ -544,7 +545,7 @@
                         />
                     </div>
                     <div class="chekckbox" style="margin-bottom: -30px;">
-                        <input type="checkbox" id="checkbox" required />
+                        <input type="checkbox" name="termsAndConditions" id="checkbox" required />
                         <label class="checkbox-text"
                         >Accept our terms and conditions</label
                         >
@@ -622,6 +623,48 @@
         $goLogin.addEventListener("click", _toggleForm);
         $goRegister.addEventListener("click", _toggleForm);
     })(document);
+
+    const formEl = document.querySelector(".formLogin");
+
+    formEl.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const formData = new FormData(formEl);
+        const data = Object.fromEntries(formData);
+
+        //console.log(data);
+        fetch('https://reqres.in/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err));
+    });
+
+    const formEl2 = document.querySelector(".formRegister");
+
+    formEl2.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const formData = new FormData(formEl2);
+        const data = Object.fromEntries(formData);
+
+        //console.log(data);
+        fetch('https://reqres.in/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err));
+    });
+
+
 </script>
 
 <%@include file="footer.html"%>
