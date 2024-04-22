@@ -30,7 +30,7 @@ DECLARE
   name VARCHAR;
 BEGIN
   IF NEW.name IS NULL THEN
-    RAISE EXCEPTION 'name cannot be null';
+    RETURN NULL;
   END IF;
   name := NEW.name;
 
@@ -151,7 +151,7 @@ DROP TRIGGER IF EXISTS update_tags_modtime on dea.tags;
 CREATE TRIGGER update_tags_modtime BEFORE UPDATE ON dea.tags FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
 
 DROP TRIGGER IF EXISTS generate_tag_slug on dea.tags;
-CREATE TRIGGER generate_tag_slug BEFORE INSERT ON dea.tags FOR EACH ROW EXECUTE PROCEDURE generate_slug();
+CREATE TRIGGER generate_tag_slug BEFORE INSERT OR UPDATE ON dea.tags FOR EACH ROW EXECUTE PROCEDURE generate_slug();
 
 CREATE TABLE IF NOT EXISTS dea.products (
   id SERIAL,
@@ -159,6 +159,7 @@ CREATE TABLE IF NOT EXISTS dea.products (
   slug VARCHAR(100) NOT NULL UNIQUE,
   name VARCHAR(255) NOT NULL,
   photo_urls TEXT[3] NOT NULL,
+  price DECIMAL NOT NULL,
   description TEXT,
   created TIMESTAMP DEFAULT now(),
   modified TIMESTAMP DEFAULT now(),
@@ -250,7 +251,6 @@ CREATE TABLE IF NOT EXISTS dea.colors (
   name VARCHAR(100) NOT null,
   hex VARCHAR(100) NOT NULL,
   qty INT NOT NULL,
-  price DECIMAL NOT NULL,
   created TIMESTAMP DEFAULT now(),
   modified TIMESTAMP DEFAULT now(),
 
