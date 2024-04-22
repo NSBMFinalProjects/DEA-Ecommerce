@@ -99,7 +99,7 @@ public class Create extends HttpServlet {
     }
 
     public Integer[] getTags() {
-      return tags.stream().toArray(Integer[]::new);
+      return tags.toArray(Integer[]::new);
     }
 
     public Integer[] getCollections() {
