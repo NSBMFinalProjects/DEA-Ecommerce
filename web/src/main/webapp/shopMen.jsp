@@ -56,7 +56,7 @@
                 </div>
                 <p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;"><%= product.getName() %></p>
                 <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: 10px;"><%=product.getDescription()%></p>
-                <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;"><%=product.getCreatedBy()%></p>
+                <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;"><%=product.getPrice()%></p>
             </div>
             <% } %>
         </div>
@@ -83,7 +83,7 @@
                     productCard.append('<div class="productInfo"><img src="' + product.photoUrls[0] + '" alt="" style="width: 100%; height: auto;" /></div>');
                     productCard.append('<p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;">' + product.name + '</p>');
                     productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: 10px;">' + product.description + '</p>');
-                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">' + product.createdBy + '</p>');
+                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">' + product.price + '</p>');
                     productContainer.append(productCard);
                 });
             },

@@ -1,5 +1,6 @@
 package nsbm.dea.web.models;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class Product {
@@ -11,6 +12,7 @@ public class Product {
     private String description;
     private Timestamp created;
     private Timestamp modified;
+    private BigDecimal price;
     private Category[] categories;
     private Collection[] collections;
 
@@ -49,7 +51,7 @@ public class Product {
 
     public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
                    Timestamp created,
-                   Timestamp modified, Category[] categories) {
+                   Timestamp modified, Category[] categories,BigDecimal price) {
         this.createdBy = createdBy;
         this.slug = slug;
         this.name = name;
@@ -58,6 +60,7 @@ public class Product {
         this.created = created;
         this.modified = modified;
         this.categories = categories;
+        this.price = price;
     }
 
 
@@ -140,5 +143,14 @@ public class Product {
     public void setCollections(Collection[] collections) {
         this.collections = collections;
     }
+
+    public  BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
 
 }
