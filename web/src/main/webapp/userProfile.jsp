@@ -36,7 +36,7 @@
             <div style="display: flex; width: 100%">
                 <div style="width: 25%; padding: 20px">
                     <div style="width: 100%; height: 250px; background-color: #ffffff; box-shadow: 10px 10px 0px #c3c3c3; overflow: hidden; justify-content: center; display: flex;">
-                        <img src="assets/profilePlaceholder.jpg" style="width: auto" alt="">
+                        <img src="<%= user.getPhotoURL() %>" style="width: auto" alt="User's Photo">
                     </div>
                 </div>
                 <div style="width: 75%; padding: 20px 40px">
@@ -45,6 +45,14 @@
                     <div style="display: flex; justify-content: space-between; margin-top: 40px;">
                         <p style="font-size: 18px; color: #ffffff; font-weight: 600">Username</p>
                         <p style="font-size: 18px; color: #ffffff; font-weight: 600"><%= user.getName()%></p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                        <p style="font-size: 18px; color: #ffffff; font-weight: 600">Email</p>
+                        <p style="font-size: 18px; color: #ffffff; font-weight: 600"><%= user.getEmail()%></p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                        <p style="font-size: 18px; color: #ffffff; font-weight: 600">Name</p>
+                        <p style="font-size: 18px; color: #ffffff; font-weight: 600"><%= user.getUsername()%></p>
                     </div>
                 </div>
             </div>
