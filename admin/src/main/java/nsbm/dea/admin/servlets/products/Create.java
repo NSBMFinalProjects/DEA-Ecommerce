@@ -103,7 +103,7 @@ public class Create extends HttpServlet {
     }
 
     public Integer[] getCollections() {
-      return collections.stream().toArray(Integer[]::new);
+      return collections.toArray(Integer[]::new);
     }
   }
 
@@ -203,10 +203,10 @@ public class Create extends HttpServlet {
           colors.add(cl);
         }
 
-        c.setColors(colors.stream().toArray(Color[]::new));
+        c.setColors(colors.toArray(Color[]::new));
         categories.add(c);
       }
-      product.setCategories(categories.stream().toArray(Category[]::new));
+      product.setCategories(categories.toArray(Category[]::new));
       product.setCreatedBy(admin.getId());
 
       ProductDAO productDAO = new ProductDAO();

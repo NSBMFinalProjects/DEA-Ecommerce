@@ -135,7 +135,7 @@ public class AccessToken {
     cookie.setDomain(Env.getDomain());
     cookie.setPath("/");
     cookie.setSecure(Env.getEnv() == "PROD" ? false : true);
-    cookie.setHttpOnly(true);
+    cookie.setHttpOnly(false);
 
     response.addCookie(cookie);
   }

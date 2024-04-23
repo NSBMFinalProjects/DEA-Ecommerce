@@ -111,7 +111,7 @@ public class Create extends HttpServlet {
       Collection collection = new Collection();
       collection.setName(data.getName());
       collection.setDescription(data.getDescription());
-      collection.setPhotoUrls(data.getPhotoURLs().toArray(new String[0]));
+      collection.setPhotoUrls(data.getPhotoURLs().toArray(String[]::new));
       collection.setCreatedBy(admin.getId());
 
       CollectionDAO collectionDAO = new CollectionDAO();
