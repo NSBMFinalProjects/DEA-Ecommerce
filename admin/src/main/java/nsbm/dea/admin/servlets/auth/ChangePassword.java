@@ -1,6 +1,7 @@
 package nsbm.dea.admin.servlets.auth;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -23,6 +24,7 @@ import jakarta.validation.constraints.Size;
 import nsbm.dea.admin.dao.AdminDAO;
 import nsbm.dea.admin.enums.Status;
 import nsbm.dea.admin.lib.Lib;
+import nsbm.dea.admin.lib.DB;
 import nsbm.dea.admin.model.Admin;
 
 public class ChangePassword extends HttpServlet {
@@ -112,6 +114,16 @@ public class ChangePassword extends HttpServlet {
 
       Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "password changed sucsessfully");
       return;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      if (DB.isUnauthorized(e)) {
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_UNAUTHORIZED, Status.UNAUTHORIZED,
+            "you are unauthorized to perform this operation");
+        return;
+      }
+
+      Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
+          "something went wrong");
     } catch (Exception e) {
       e.printStackTrace();
       Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,

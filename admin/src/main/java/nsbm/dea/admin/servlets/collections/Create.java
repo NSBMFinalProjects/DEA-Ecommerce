@@ -1,6 +1,7 @@
 package nsbm.dea.admin.servlets.collections;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +27,7 @@ import jakarta.validation.constraints.Size;
 import nsbm.dea.admin.dao.CollectionDAO;
 import nsbm.dea.admin.enums.Status;
 import nsbm.dea.admin.lib.Lib;
+import nsbm.dea.admin.lib.DB;
 import nsbm.dea.admin.model.Admin;
 import nsbm.dea.admin.model.Collection;
 
@@ -119,6 +121,21 @@ public class Create extends HttpServlet {
 
       Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "created the collection");
       return;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      if (DB.isBadRequest(e)) {
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST,
+            "a collection with this name already exsists");
+        return;
+      }
+      if (DB.isUnauthorized(e)) {
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_UNAUTHORIZED, Status.UNAUTHORIZED,
+            "you are unauthorized to perform this operation");
+        return;
+      }
+
+      Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
+          "something went wrong");
     } catch (Exception e) {
       e.printStackTrace();
       Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
