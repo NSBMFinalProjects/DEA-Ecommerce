@@ -208,7 +208,7 @@ public class Create extends HttpServlet {
         categories.add(c);
       }
       product.setCategories(categories.toArray(Category[]::new));
-      product.setCreatedBy("01HW4MYAR5D9BQMVHPQRYXNPKD");
+      product.setCreatedBy(admin.getId());
 
       ProductDAO productDAO = new ProductDAO();
       productDAO.create(product);
@@ -226,6 +226,7 @@ public class Create extends HttpServlet {
       Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "okay");
       return;
     } catch (SQLException e) {
+      e.printStackTrace();
       if (DB.isBadRequest(e)) {
         Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST,
             "product with this name already exsists");
