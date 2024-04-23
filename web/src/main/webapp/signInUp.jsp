@@ -430,7 +430,7 @@
                     <div style="margin-top: 50px; margin-bottom: 60px">
                         <input
                                 type="text"
-                                name="username"
+                                name="email"
                                 id="username"
                                 placeholder="Enter your Email"
                                 required
@@ -471,7 +471,7 @@
                                 class="regInput"
                                 type="text"
                                 id="fname"
-                                name="fname"
+                                name="username"
                                 required
                                 placeholder="Enter your first name"
                         />
@@ -479,7 +479,7 @@
                                 class="regInput"
                                 type="text"
                                 id="lname"
-                                name="lname"
+                                name="name"
                                 required
                                 placeholder="Enter your last name"
                                 style="margin-left: 5px;"
@@ -530,7 +530,7 @@
                                 class="regInput"
                                 type="password"
                                 id="pwd"
-                                name="pwd"
+                                name="password"
                                 required
                                 placeholder="Password"
                         />
@@ -596,13 +596,14 @@
 </div>
 
 <script>
-    (function (document) {
-        const $goLogin = document.querySelector("#go-login"),
-            $goRegister = document.querySelector("#go-register"),
-            $container = document.querySelector(".containerLogin"),
-            $overlayContainer = document.querySelector(".overlay-container");
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to toggle between login and register forms
+        const _toggleForm = () => {
+            const $goLogin = document.querySelector("#go-login");
+            const $goRegister = document.querySelector("#go-register");
+            const $container = document.querySelector(".containerLogin");
+            const $overlayContainer = document.querySelector(".overlay-container");
 
-        _toggleForm = () => {
             if ($container.classList.contains("go-register")) {
                 $container.classList.remove("go-register");
                 $container.classList.add("go-login");
@@ -620,56 +621,52 @@
             }
         };
 
+        // Event listeners for login and register buttons
+        const $goLogin = document.querySelector("#go-login");
+        const $goRegister = document.querySelector("#go-register");
         $goLogin.addEventListener("click", _toggleForm);
         $goRegister.addEventListener("click", _toggleForm);
-    })(document);
 
-    const formEl = document.querySelector(".formLogin");
+        // Event listener for form submission
+        const formEl = document.querySelector(".formLogin");
+        formEl.addEventListener('submit', event => {
+            event.preventDefault();
 
-    formEl.addEventListener('submit', event => {
-        event.preventDefault();
+            const formData = new FormData(formEl);
+            const data = Object.fromEntries(formData);
 
-        const formData = new FormData(formEl);
-        const data = Object.fromEntries(formData);
+            fetch('http://localhost:8080/web/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(res => res.json())
+                .then(data => console.log(data))
+                .catch(err => console.log(err));
+        });
 
-        //console.log(data);
-        fetch('http://localhost:8081/admin/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(err));
+        // Event listener for register form submission
+        const formEl2 = document.querySelector(".formRegister");
+        formEl2.addEventListener('submit', event => {
+            event.preventDefault();
+
+            const formData=new FormData(formEl2)
+            const jsonobject=Object.fromEntries(formData);
+            console.log(jsonobject)
+            fetch('http://localhost:8080/web/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonobject)
+            }).then(res => res.json())
+                .then(data => console.log(data))
+                .catch(err => console.log(err));
+        });
+
     });
 
-    const formEl2 = document.querySelector(".formRegister");
-
-
-    formEl2.addEventListener('submit', event => {
-        event.preventDefault();
-
-        const formData = new FormData(formEl2);
-        // const data = Object.fromEntries(formData);
-        const data=JSON.stringify({
-            "name":`${formData.get("fname")} ${formData.get("lname")}`,
-            "email":`${formData.get("email")}`,
-            "username":`${formData.get("fname")}`,
-            "password":`${formData.get("pwd")}`
-        })
-
-        console.log(data);
-        fetch('http://localhost:8080/web/auth/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(err));
-    });
 
 
 </script>

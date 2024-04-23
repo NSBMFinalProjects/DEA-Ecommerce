@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cc987163-e155-4c53-8b90-3c59af938b37" name="Changes" comment="added the filter product by gender">
-      <change beforePath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/products/Create.java" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/java/nsbm/dea/admin/servlets/products/Create.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nsbm/dea/web/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nsbm/dea/web/models/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/shopMen.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/shopMen.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/signInUp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/signInUp.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,39 +65,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build web.executor": "Run",
-    "JavaScript Debug.LogIn-SignUp.html.executor": "Run",
-    "JavaScript Debug.cart.html.executor": "Run",
-    "JavaScript Debug.checkout.html.executor": "Run",
-    "JavaScript Debug.search.jsp.executor": "Run",
-    "JavaScript Debug.shopWoman.html.executor": "Run",
-    "JavaScript Debug.userProfile.jsp.executor": "Run",
-    "JavaScript Debug.userprofile.html.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Tomcat Server.Tomcat 10.1.20-web.executor": "Run",
-    "Tomcat Server.Tomcat 10.1.20.executor": "Run",
-    "Tomcat Server.product.jsp.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/HP/Desktop/DEA/DEA-Ecommerce/sql/schema.sql",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "advanced.settings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build web.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.LogIn-SignUp.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.cart.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.checkout.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.search.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.shopWoman.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.userProfile.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.userprofile.html.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.20-web.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.20.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.product.jsp.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/DEA/DEA-Ecommerce/sql/schema.sql&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "java.sql.Driver",
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;java.sql.Driver&quot;,
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.20-web">
     <configuration name="LogIn-SignUp.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/web/web/frontend/LogIn-SignUp.html" useBuiltInWebServerPort="true">
       <method v="2" />
@@ -241,7 +238,8 @@
       <updated>1712724933923</updated>
       <workItem from="1712724935063" duration="514000" />
       <workItem from="1713681898717" duration="31895000" />
-      <workItem from="1713771569117" duration="35030000" />
+      <workItem from="1713771569117" duration="35441000" />
+      <workItem from="1713848088188" duration="8633000" />
     </task>
     <task id="LOCAL-00001" summary="added the filter product by gender">
       <option name="closed" value="true" />
