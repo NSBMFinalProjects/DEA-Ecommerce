@@ -36,6 +36,7 @@ import nsbm.dea.admin.model.Admin;
 import nsbm.dea.admin.model.Category;
 import nsbm.dea.admin.model.Color;
 import nsbm.dea.admin.model.Product;
+import nsbm.dea.admin.lib.DB;
 
 @WebServlet(name = "create_product", value = "/products/create")
 public class Create extends HttpServlet {
@@ -207,7 +208,7 @@ public class Create extends HttpServlet {
         categories.add(c);
       }
       product.setCategories(categories.toArray(Category[]::new));
-      product.setCreatedBy(admin.getId());
+      product.setCreatedBy("01HW4MYAR5D9BQMVHPQRYXNPKD");
 
       ProductDAO productDAO = new ProductDAO();
       productDAO.create(product);
@@ -224,6 +225,20 @@ public class Create extends HttpServlet {
 
       Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "okay");
       return;
+    } catch (SQLException e) {
+      if (DB.isBadRequest(e)) {
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST,
+            "product with this name already exsists");
+        return;
+      }
+      if (DB.isUnauthorized(e)) {
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_UNAUTHORIZED, Status.UNAUTHORIZED,
+            "you are unauthorized to perform this operation");
+        return;
+      }
+
+      Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
+          "something went wrong");
     } catch (Exception e) {
       e.printStackTrace();
       Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,

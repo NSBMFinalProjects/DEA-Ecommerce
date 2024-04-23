@@ -1,6 +1,7 @@
 package nsbm.dea.admin.servlets.tags;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Set;
 
 import com.google.gson.JsonObject;
@@ -20,6 +21,7 @@ import jakarta.validation.constraints.Size;
 import nsbm.dea.admin.dao.TagDAO;
 import nsbm.dea.admin.enums.Status;
 import nsbm.dea.admin.lib.Lib;
+import nsbm.dea.admin.lib.DB;
 import nsbm.dea.admin.model.Admin;
 import nsbm.dea.admin.model.Tag;
 
@@ -74,6 +76,20 @@ public class Create extends HttpServlet {
 
       Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "tag created");
       return;
+    } catch (SQLException e) {
+      if (DB.isBadRequest(e)) {
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST,
+            "a tag with this name already exsists");
+        return;
+      }
+      if (DB.isUnauthorized(e)) {
+        Lib.sendJSONResponse(response, HttpServletResponse.SC_UNAUTHORIZED, Status.UNAUTHORIZED,
+            "you are unauthorized to perform this operation");
+        return;
+      }
+
+      Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
+          "something went wrong");
     } catch (Exception e) {
       e.printStackTrace();
       Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
