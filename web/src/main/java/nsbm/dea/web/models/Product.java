@@ -51,7 +51,7 @@ public class Product {
 
     public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
                    Timestamp created,
-                   Timestamp modified, Category[] categories,BigDecimal price) {
+                   Timestamp modified,BigDecimal price) {
         this.createdBy = createdBy;
         this.slug = slug;
         this.name = name;
@@ -59,9 +59,10 @@ public class Product {
         this.description = description;
         this.created = created;
         this.modified = modified;
-        this.categories = categories;
         this.price = price;
     }
+
+
 
 
     public int getId() {

@@ -37,32 +37,17 @@
 <section style="background-color: #e7e7e7">
     <div style="width: 100%; display: flex">
         <div class="sidebar">
-            <p style="font-size: 30px;">Womens Wear</p>
+            <p style="font-size: 30px;">Women Wear</p>
             <p>Search:</p>
             <form id="searchForm" action="search.jsp" method="get">
                 <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Search products...">
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
-            <p>Size:</p>
-            <form id="sizeFilterForm">
-                <div>
-                    <input type="checkbox" class="btn-check" id="btn-check-small-outlined" name="size" value="Small" autocomplete="off" onclick="filterProducts()" />
-                    <label class="btn btn-outline-secondary btn-check-label" for="btn-check-small-outlined">Small</label>
-                </div>
-                <div>
-                    <input type="checkbox" class="btn-check" id="btn-check-medium-outlined" name="size" value="Medium" autocomplete="off" onclick="filterProducts()" />
-                    <label class="btn btn-outline-secondary btn-check-label" for="btn-check-medium-outlined">Medium</label>
-                </div>
-                <div>
-                    <input type="checkbox" class="btn-check" id="btn-check-large-outlined" name="size" value="Large" autocomplete="off" onclick="filterProducts()" />
-                    <label class="btn btn-outline-secondary btn-check-label" for="btn-check-large-outlined">Large</label>
-                </div>
-            </form>
         </div>
         <div id="productContainer" style="background-color: #e7e7e7; width: 80%; height: 90vh; padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-between;">
             <%
                 ProductDAO productDao = new ProductDAO();
-                List<Product> maleProducts = productDao.getProductsByCollectionName("women");
+                List<Product> maleProducts = productDao.getProductsByCollection("women");
                 for (Product product : maleProducts) {
             %>
             <div class="productCard" style="flex: 1 0 calc(33.33% - 20px); margin-bottom: 20px;">
@@ -70,8 +55,7 @@
                     <img src="<%= product.getPhotoUrls()[0] %>" alt="" style="width: 100%; height: auto;" />
                 </div>
                 <p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;"><%= product.getName() %></p>
-                <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: 10px;"><%=product.getDescription()%></p>
-                <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;"><%=product.getCreatedBy()%></p>
+                <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs: <%=product.getPrice()%></p>
             </div>
             <% } %>
         </div>
@@ -97,8 +81,7 @@
                     var productCard = $('<div class="productCard" style="flex: 1 0 calc(33.33% - 20px); margin-bottom: 20px;"></div>');
                     productCard.append('<div class="productInfo"><img src="' + product.photoUrls[0] + '" alt="" style="width: 100%; height: auto;" /></div>');
                     productCard.append('<p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;">' + product.name + '</p>');
-                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: 10px;">' + product.description + '</p>');
-                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">' + product.createdBy + '</p>');
+                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs ' + product.price + '</p>');
                     productContainer.append(productCard);
                 });
             },

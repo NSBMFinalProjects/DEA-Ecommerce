@@ -41,7 +41,8 @@ public class ProductDAO {
         ((String[]) resultSet.getArray("photo_urls").getArray()),
         resultSet.getString("description"),
         resultSet.getTimestamp("created"),
-        resultSet.getTimestamp("modified"));
+        resultSet.getTimestamp("modified"),
+            resultSet.getBigDecimal("price"));
   }
 
   public Optional<Product> getProductById(int id) throws SQLException {

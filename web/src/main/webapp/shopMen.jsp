@@ -47,7 +47,7 @@
         <div id="productContainer" style="background-color: #e7e7e7; width: 80%; height: 90vh; padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-between;">
             <%
                 ProductDAO productDao = new ProductDAO();
-                List<Product> maleProducts = productDao.getProductsByCollectionName("men");
+                List<Product> maleProducts = productDao.getProductsByCollection("men");
                 for (Product product : maleProducts) {
             %>
             <div class="productCard" style="flex: 1 0 calc(33.33% - 20px); margin-bottom: 20px;">
@@ -55,8 +55,7 @@
                     <img src="<%= product.getPhotoUrls()[0] %>" alt="" style="width: 100%; height: auto;" />
                 </div>
                 <p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;"><%= product.getName() %></p>
-                <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: 10px;"><%=product.getDescription()%></p>
-                <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;"><%=product.getPrice()%></p>
+                <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs: <%=product.getPrice()%></p>
             </div>
             <% } %>
         </div>
@@ -82,8 +81,7 @@
                     var productCard = $('<div class="productCard" style="flex: 1 0 calc(33.33% - 20px); margin-bottom: 20px;"></div>');
                     productCard.append('<div class="productInfo"><img src="' + product.photoUrls[0] + '" alt="" style="width: 100%; height: auto;" /></div>');
                     productCard.append('<p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;">' + product.name + '</p>');
-                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: 10px;">' + product.description + '</p>');
-                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">' + product.price + '</p>');
+                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs ' + product.price + '</p>');
                     productContainer.append(productCard);
                 });
             },
