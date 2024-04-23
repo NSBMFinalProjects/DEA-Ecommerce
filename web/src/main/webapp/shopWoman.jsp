@@ -20,6 +20,7 @@
         @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
         * { font-family: "Poppins", sans-serif !important; }
+        a{text-decoration: none}
         li { list-style: none !important; }
         .productCard:hover { box-shadow: 3px 3px 0px #ffffff !important; transform: scale(0.99) !important; }
         .btn-check-label { font-size: 14px; }
@@ -44,21 +45,27 @@
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
         </div>
-        <div id="productContainer" style="background-color: #e7e7e7; width: 80%; height: 90vh; padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-            <%
-                ProductDAO productDao = new ProductDAO();
-                List<Product> maleProducts = productDao.getProductsByCollection("women");
-                for (Product product : maleProducts) {
-            %>
-            <div class="productCard" style="flex: 1 0 calc(33.33% - 20px); margin-bottom: 20px;">
-                <div class="productInfo">
-                    <img src="<%= product.getPhotoUrls()[0] %>" alt="" style="width: 100%; height: auto;" />
-                </div>
-                <p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;"><%= product.getName() %></p>
-                <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs: <%=product.getPrice()%></p>
+
+            <div id="productContainer" style="background-color: #e7e7e7; width: 80%; height: fit-content; padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-between;">
+                <%
+                    ProductDAO productDao = new ProductDAO();
+                    List<Product> maleProducts = productDao.getProductsByCollection("women");
+                    for (Product product : maleProducts) {
+                %>
+                <a href="productDetails.jsp">
+                    <div class="productCard" style="flex: 1 0 calc(33.33% - 20px); margin-bottom: 20px;">
+                        <div class="productInfo">
+                            <img src="<%= product.getPhotoUrls()[0] %>" alt="" style="width: 100%; height: auto;" />
+                        </div>
+                        <p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;"><%= product.getName() %></p>
+                        <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs: <%=product.getPrice()%></p>
+                    </div>
+                </a>
+
+                <% } %>
             </div>
-            <% } %>
-        </div>
+
+
     </div>
 </section>
 
@@ -70,7 +77,7 @@
     function searchProducts() {
         var searchTerm = $('#searchTerm').val();
         $.ajax({
-            url: "http://localhost:8080/web/search.jsp",
+            url: "http://localhost:8081/web/search.jsp",
             type: 'GET',
             data: {searchTerm: searchTerm},
             success: function (response) {
