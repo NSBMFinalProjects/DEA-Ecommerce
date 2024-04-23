@@ -122,6 +122,7 @@ public class Create extends HttpServlet {
       Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "created the collection");
       return;
     } catch (SQLException e) {
+      e.printStackTrace();
       if (DB.isBadRequest(e)) {
         Lib.sendJSONResponse(response, HttpServletResponse.SC_BAD_REQUEST, Status.BAD_REQUEST,
             "a collection with this name already exsists");

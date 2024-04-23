@@ -115,6 +115,7 @@ public class ChangePassword extends HttpServlet {
       Lib.sendJSONResponse(response, HttpServletResponse.SC_OK, Status.OK, "password changed sucsessfully");
       return;
     } catch (SQLException e) {
+      e.printStackTrace();
       if (DB.isUnauthorized(e)) {
         Lib.sendJSONResponse(response, HttpServletResponse.SC_UNAUTHORIZED, Status.UNAUTHORIZED,
             "you are unauthorized to perform this operation");
