@@ -58,7 +58,7 @@
                             <img src="<%= product.getPhotoUrls()[0] %>" alt="" style="width: 100%; height: auto;" />
                         </div>
                         <p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;"><%= product.getName() %></p>
-                        <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs: <%=product.getPrice()%></p>
+                        <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs: <%= product.getPrice()%></p>
                     </div>
                 </a>
 
@@ -77,7 +77,7 @@
     function searchProducts() {
         var searchTerm = $('#searchTerm').val();
         $.ajax({
-            url: "http://localhost:8081/web/search.jsp",
+            url: "http://localhost:8080/web/search.jsp",
             type: 'GET',
             data: {searchTerm: searchTerm},
             success: function (response) {
@@ -88,7 +88,7 @@
                     var productCard = $('<div class="productCard" style="flex: 1 0 calc(33.33% - 20px); margin-bottom: 20px;"></div>');
                     productCard.append('<div class="productInfo"><img src="' + product.photoUrls[0] + '" alt="" style="width: 100%; height: auto;" /></div>');
                     productCard.append('<p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;">' + product.name + '</p>');
-                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs ' + product.price + '</p>');
+                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs ' + product.id + '</p>');
                     productContainer.append(productCard);
                 });
             },
