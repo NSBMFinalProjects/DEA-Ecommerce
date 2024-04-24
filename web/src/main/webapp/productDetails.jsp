@@ -124,6 +124,13 @@
   </head>
   <body>
     <%@include file="header.html"%>
+    <%
+      ProductDAO productDAO = new ProductDAO();
+      int id = Integer.parseInt(request.getParameter("id"));
+      Optional<Product> productDetails = productDAO.getProductById(id);
+      if (productDetails.isPresent()) {
+        Product product = productDetails.get();
+    %>
 
     <section
       style="
@@ -233,7 +240,7 @@
                 >
                   <input
                     type="text"
-                    value="Dress name"
+                    value="<%=product.getName()%>"
                     name="dress-name"
                     style="
                       color: #203c55;
@@ -252,16 +259,16 @@
                     margin: auto;
                   "
                 >
-                  <input
-                    type="text"
-                    name="dress-price"
-                    value="LKR 2500.00"
-                    style="
-                      color: #203c55;
-                      font-size: 20px;
-                      width: 80%;
-                      border: none;
-                    "
+                    <input
+                      type="text"
+                      name="dress-price"
+                      value="Rs: <%=product.getPrice()%>/-"
+                      style="
+                        color: #203c55;
+                        font-size: 20px;
+                        width: 80%;
+                        border: none;
+                      "
                   />
                 </p>
                 <div
@@ -300,7 +307,7 @@
                     Code :
                   </p>
                   <p style="color: #203c55; font-size: 16px; margin-left: 20px">
-                    ABC12345
+                    <%=product.getCreatedBy()%>
                   </p>
                 </div>
                 <div style="width: 80%; margin: auto">
@@ -544,26 +551,57 @@
         </div>
       </div>
       <script>
-        const formEl = document.querySelector(".addToCartForm");
-        formEl.addEventListener("submit", (event) => {
-          event.preventDefault();
+        document.addEventListener('DOMContentLoaded', function() {
+          const formEl = document.querySelector(".addToCartForm");
+          formEl.addEventListener("submit", function(event) {
+            event.preventDefault();
 
-          const formData = new FormData(formEl);
-          const data = Object.fromEntries(formData);
+            // Parse the URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            // Get the product ID from the URL parameters
+            const productId = urlParams.get('id');
 
-          fetch("http://localhost:8080/web/auth/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          })
-            .then((res) => res.json())
-            .then((data) => console.log(data))
-            .catch((err) => console.log(err));
+            const productName = document.querySelector('input[name="dress-name"]').value;
+            const productPrice = document.querySelector('input[name="dress-price"]').value;
+            const quantity = document.querySelector('.num').innerText;
+
+            // Create the product object
+            const product = {
+              id: productId, // Assign the product ID
+              name: productName,
+              price: productPrice,
+              quantity: quantity
+            };
+
+            // Retrieve the existing products from local storage
+            let products = localStorage.getItem('products');
+            // If there are no products in local storage, initialize an empty array
+            if (!products) {
+              products = [];
+            } else {
+              // If there are products, parse the JSON string back into an array
+              products = JSON.parse(products);
+            }
+
+            // Append the new product to the array
+            products.push(product);
+
+            // Stringify the updated array and store it back in local storage
+            localStorage.setItem('products', JSON.stringify(products));
+
+            alert('Product added to cart!');
+          });
         });
       </script>
+
+
+
     </section>
+    <%
+      } else {
+        // Handle the case where the product is not found
+      }
+    %>
 
     <%@include file="footer.html"%>
     <script
