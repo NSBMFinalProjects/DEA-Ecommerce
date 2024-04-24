@@ -1,3 +1,12 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="nsbm.dea.web.dao.ProductDAO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="nsbm.dea.web.models.Product" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.Optional" %>
+<%@ page import="nsbm.dea.web.models.Category" %>
+<%@ page import="nsbm.dea.web.models.Color" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -215,6 +224,13 @@
           </button>
         </div>
       </div>
+      <%
+        ProductDAO productDAO=new ProductDAO();
+        int id= Integer.parseInt(request.getParameter("id"));
+        Optional<Product> productDetails=productDAO.getProductById(id);
+        if(productDetails.isPresent()) {
+          Product product=productDetails.get();
+      %>
       <div class="column">
         <div style="margin-top: 15px">
           <p
@@ -226,7 +242,7 @@
                   margin: auto;
                 "
           >
-            Dress name
+            <%=product.getName()%>
           </p>
           <p
                   style="
@@ -236,7 +252,7 @@
                   margin: auto;
                 "
           >
-            LKR 2500.00
+           <%=product.getPrice()%>
           </p>
           <div
                   style="
@@ -274,7 +290,7 @@
               Code :
             </p>
             <p style="color: #203c55; font-size: 16px; margin-left: 20px">
-              ABC12345
+              <%=product.getCreatedBy()%>
             </p>
           </div>
           <div style="width: 80%; margin: auto">
