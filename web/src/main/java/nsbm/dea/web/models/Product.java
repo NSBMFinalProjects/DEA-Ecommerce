@@ -27,14 +27,16 @@ public class Product {
         this.description = description;
     }
 
-    public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,
+    public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,BigDecimal price,
                    Category[] categories) {
         this.createdBy = createdBy;
         this.slug = slug;
         this.name = name;
         this.photoUrls = photoUrls;
         this.description = description;
+        this.price = price;
         this.categories = categories;
+
     }
 
     public Product(int id, String createdBy, String slug, String name, String[] photoUrls, String description,

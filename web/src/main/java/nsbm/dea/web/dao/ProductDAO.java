@@ -65,12 +65,14 @@ public class ProductDAO {
         			products.created,
         			'modified',
         			products.modified,
+			        'price',
+                    products.price,
         			'categories',
         			(
         				SELECT
         					jsonb_agg(jsonb_build_object ('id', categories.id, 'name', categories.name, 'slug', categories.slug, 'created_by', categories.created_by, 'created', categories.created, 'modified', categories.modified, 'colors', (
         								SELECT
-        									jsonb_agg(jsonb_build_object ('id', colors.id, 'name', colors.name, 'slug', colors.slug, 'hex', colors.hex, 'qty', colors.qty, 'price', colors.price, 'created_by', colors.created_by, 'created', colors.created, 'modified', colors.modified))
+        									jsonb_agg(jsonb_build_object ('id', colors.id, 'name', colors.name, 'slug', colors.slug, 'hex', colors.hex, 'qty', colors.qty,  'created_by', colors.created_by, 'created', colors.created, 'modified', colors.modified))
         									FROM dea.colors colors
         								WHERE
         									colors.category_id = categories.id)))
@@ -115,7 +117,6 @@ public class ProductDAO {
         color.setSlug(colorJson.get("slug").getAsString());
         color.setHex(colorJson.get("hex").getAsString());
         color.setQuantity(colorJson.get("qty").getAsInt());
-        color.setPrice(colorJson.get("price").getAsBigDecimal());
         color.setCreatedBy(colorJson.get("created_by").getAsString());
 
         colors.add(color);
@@ -138,6 +139,7 @@ public class ProductDAO {
         productJson.get("name").getAsString(),
         gson.fromJson(productJson.get("photo_urls"), String[].class),
         productJson.get("description").getAsString(),
+        productJson.get("price").getAsBigDecimal(),
         categories.stream().toArray(Category[]::new));
 
     return Optional.of(product);
