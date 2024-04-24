@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="cc987163-e155-4c53-8b90-3c59af938b37" name="Changes" comment="added the filter product by gender">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nsbm/dea/web/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nsbm/dea/web/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/productDetails.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/productDetails.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/shopMen.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/shopMen.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/shopWoman.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/shopWoman.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +73,7 @@
     &quot;JavaScript Debug.LogIn-SignUp.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.cart.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.checkout.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.productDetails.jsp.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.search.jsp.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.shopWoman.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.userProfile.jsp.executor&quot;: &quot;Run&quot;,
@@ -105,7 +108,7 @@
     <configuration name="cart.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/web/web/frontend/cart.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="shopWoman.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/web/web/frontend/shopWoman.html" useBuiltInWebServerPort="true">
+    <configuration name="productDetails.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/web/productDetails.jsp">
       <method v="2" />
     </configuration>
     <configuration name="userProfile.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/web/userProfile.jsp">
@@ -203,20 +206,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JavaScript Debug.productDetails.jsp" />
       <item itemvalue="JavaScript Debug.cart.html" />
       <item itemvalue="JavaScript Debug.LogIn-SignUp.html" />
-      <item itemvalue="JavaScript Debug.shopWoman.html" />
       <item itemvalue="JavaScript Debug.userProfile.jsp" />
       <item itemvalue="JavaScript Debug.userprofile.html" />
       <item itemvalue="Tomcat Server.Tomcat 10.1.20-web" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.productDetails.jsp" />
         <item itemvalue="JavaScript Debug.cart.html" />
         <item itemvalue="JavaScript Debug.userProfile.jsp" />
         <item itemvalue="JavaScript Debug.userprofile.html" />
         <item itemvalue="JavaScript Debug.LogIn-SignUp.html" />
-        <item itemvalue="JavaScript Debug.shopWoman.html" />
       </list>
     </recent_temporary>
   </component>
@@ -240,7 +243,8 @@
       <workItem from="1713681898717" duration="31895000" />
       <workItem from="1713771569117" duration="35441000" />
       <workItem from="1713848088188" duration="18631000" />
-      <workItem from="1713927007744" duration="6510000" />
+      <workItem from="1713927007744" duration="12244000" />
+      <workItem from="1713976007289" duration="4831000" />
     </task>
     <task id="LOCAL-00001" summary="added the filter product by gender">
       <option name="closed" value="true" />
