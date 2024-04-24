@@ -52,7 +52,7 @@
                     List<Product> maleProducts = productDao.getProductsByCollection("women");
                     for (Product product : maleProducts) {
                 %>
-                <a href="productDetails.jsp">
+                <a href="productDetails.jsp?id=<%= product.getId() %>">
                     <div class="productCard" style="flex: 1 0 calc(33.33% - 20px); margin-bottom: 20px;">
                         <div class="productInfo">
                             <img src="<%= product.getPhotoUrls()[0] %>" alt="" style="width: 100%; height: auto;" />
