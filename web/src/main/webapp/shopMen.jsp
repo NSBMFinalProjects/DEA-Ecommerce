@@ -55,7 +55,7 @@
                     <img src="<%= product.getPhotoUrls()[2] %>" alt="" style="width: 100%; height: auto;" />
                 </div>
                 <p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;"><%= product.getName() %></p>
-                <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs: <%=product.getId()%></p>
+                <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs: <%=product.getPrice()%></p>
             </div>
             <% } %>
         </div>
@@ -81,7 +81,7 @@
                     var productCard = $('<div class="productCard" style="flex: 1 0 calc(33.33% - 20px); margin-bottom: 20px;"></div>');
                     productCard.append('<div class="productInfo"><img src="' + product.photoUrls[0] + '" alt="" style="width: 100%; height: auto;" /></div>');
                     productCard.append('<p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;">' + product.name + '</p>');
-                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs ' + product.id + '</p>');
+                    productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs ' + product.price + '</p>');
                     productContainer.append(productCard);
                 });
             },
