@@ -47,13 +47,14 @@
 <%--        </div>--%>
 
             <div style="background-color: #d9d9d9; box-shadow: 10px 10px 0px #ffffff; width: 80%; margin: auto; margin-bottom: 15px; padding: 20px 40px 20px 40px;">
+                <div style="background-color: #203c55; width: 100%; margin-bottom:10px; height: fit-content; display: flex; align-items: center; padding: 5px 0px 5px 0px;"><p style="font-size: 24px; margin: auto; width: 100%; height: 100%; text-align: center; font-weight: bold; color: #ffffff;">SHOP WOMEN</p></div>
                 <form id="searchForm" action="search.jsp" method="get" style="display: flex">
                     <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Search products..." style="margin-right: 20px; border-radius: 0px;">
                     <button type="submit" class="btn btn-primary" style="background-color: #203c55 !important; border-radius: 0px !important; border: none !important;">Search</button>
                 </form>
             </div>
 
-            <div id="productContainer" style="background-color: #e7e7e7; width: 80%; margin: auto; height: fit-content; padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-between;">
+            <div id="productContainer" style="background-color: #e7e7e7; width: 80%; margin: auto; height: fit-content; padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-around;">
                 <%
                     ProductDAO productDao = new ProductDAO();
                     List<Product> maleProducts = productDao.getProductsByCollection("women");

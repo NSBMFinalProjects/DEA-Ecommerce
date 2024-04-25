@@ -242,6 +242,7 @@
                     type="text"
                     value="<%=product.getName()%>"
                     name="dress-name"
+                    disabled
                     style="
                       color: #203c55;
                       font-size: 26px;
@@ -592,6 +593,7 @@
             alert('Product added to cart!');
           });
         });
+
       </script>
 
 
