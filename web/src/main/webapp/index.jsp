@@ -241,7 +241,7 @@
                 padding-right: 5%;
               "
                     >
-                        <a href="shopMen.jsp">
+                        <a href="shopMen">
                             <div
                                     class="buttonCommon"
                                     style="

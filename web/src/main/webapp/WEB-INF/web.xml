@@ -3,5 +3,59 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
+    <display-name>web</display-name>
+    <servlet>
+        <servlet-name>shopMen</servlet-name>
+        <jsp-file>/shopMen.jsp</jsp-file>
+    </servlet>
+        <servlet-mapping>
+            <servlet-name>shopMen</servlet-name>
+            <url-pattern>/shopMen</url-pattern>
+        </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>shopWomen</servlet-name>
+        <jsp-file>/shopWomen.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>shopWomen</servlet-name>
+        <url-pattern>/shopWomen</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>userProfile</servlet-name>
+        <jsp-file>/userProfile.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userProfile</servlet-name>
+        <url-pattern>/userProfile</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>signInUp</servlet-name>
+        <jsp-file>/signInUp.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>signInUp</servlet-name>
+        <url-pattern>/signInUp</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>productDetails</servlet-name>
+        <jsp-file>/productDetails.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>productDetails</servlet-name>
+        <url-pattern>/productDetails</url-pattern>
+    </servlet-mapping>
 
 </web-app>
