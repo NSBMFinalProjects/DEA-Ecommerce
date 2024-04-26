@@ -2,44 +2,174 @@
 <html>
 <head>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/styles.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+        * {
+        font-family: "Poppins", sans-serif !important;
+        }
+        li {
+        list-style: none !important;
+        }
+                .top-section {
+        background-color: #e7e7e7;
+        height: 80vh;
+        background-image: url('assets/contactus.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        }
+        .top-section h1 {
+        font-size: 5rem;
+        margin-bottom: 0;
+        }
+        .top-section p {
+        font-size: 2rem;
+        margin-top: 0;
+        }
+        .box-section {
+        justify-content: center;
+        padding: 50px 0;
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #e7e7e7;
+        }
+        .box-section .box {
+        background-color: #243c55;
+        color: white;
+        padding: 30px;
+        flex: 1 0 300px;
+        margin: 10px;
+        text-align: left;
+        max-width: 1200px;
+        display: flex;
+        height: 175px;
+        }
+        .box-section .map {
+        flex: 1 0 1200px;
+        margin: 10px;
+        }
+        a {
+        color: inherit;
+        text-decoration: none;
+        }
+
+        .containerBase {
+            width: 80%;
+        padding: 30px;
+        margin-top: -220px;
+        background-color: #e7e7e7;
+        box-shadow: 8px 8px 0px #203c55;
+        }
+        .icon {
+        width: 50px;
+        height: 50px;
+        }
+
+        .box-section .box button {
+        width: 60%;
+        border-radius: 0;
+        box-shadow: 5px 5px 0px rgba(255, 255, 255, 0.5);
+        }
+
+    </style>
 </head>
 <body>
+
+    <section class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid" style="width: 100% !important">
+            <a class="navbar-brand" href="#"
+              ><img src="assets/headerLogo.svg" alt=""
+            /></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse"
+              id="navbarSupportedContent"
+              style="width: 100px !important"
+            >
+              <ul class="navbar-nav mb-2 mb-lg-0" style="margin-left: auto">
+                <li class="nav-item px-3 m-auto">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item px-3 m-auto">
+                  <a class="nav-link" href="#">Collection</a>
+                </li>
+                <li class="nav-item px-3 m-auto">
+                  <a class="nav-link" href="#">Shop</a>
+                </li>
+                <li class="nav-item px-3 m-auto">
+                  <a class="nav-link" href="#">Contact</a>
+                </li>
+  
+                <li class="nav-item">
+                  <a class="nav-link" href="#"
+                    ><img src="assets/searchIcon.svg" alt=""
+                  /></a>
+                </li>
+  
+                <li class="nav-item">
+                  <a class="nav-link" href="#"
+                    ><img src="assets/profileIcon.svg" alt=""
+                  /></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </section>
+
 	<section class="top-section">
 	</section>
     
         <section class="box-section">
-            <div class="container">
+            <div class="containerBase">
             <div class="row col-sm-12">
                 <div class="col-sm-5">
-                <div class="box row">
-                    <div class="col-sm-2">
-                        <img src="./images/Phone.png" alt="Contact Icon" class="icon">
+                    <div class="box row">
+                        <div class="col-sm-2">
+                            <img src="./images/Phone.png" alt="Contact Icon" class="icon">
+                        </div>
+                        <div class="col-sm-10">
+                            <h3>Contact Us</h3>
+                            <p>+94 123456789</p>
+                            <a href="#">See all numbers and locations</a>
+                        </div>
                     </div>
-                    <div class="col-sm-10">
-                        <h3>Contact Us</h3>
-                        <p>+94 123456789</p>
-                        <a href="#">See all numbers and locations</a>
+                    <div class="box row">
+                        <div class="col-sm-2">
+                            <img src="./images/Chat.png" alt="Chat Icon" class="icon">
+                        </div>
+                        <div class="col-sm-10">
+                            <h3>Chat with us</h3></br>
+                            <button class="btn btn-light">Chat</button>
+                        </div>
                     </div>
-                </div>
-                <div class="box row">
-                    <div class="col-sm-2">
-                        <img src="./images/Chat.png" alt="Chat Icon" class="icon">
+                    <div class="box row">
+                        <div class="col-sm-2">
+                            <img src="./images/Location.png" alt="Location Icon" class="icon">
+                        </div>
+                        <div class="col-sm-10">
+                            <h3>Meet Us</h3>
+                            <p>29 Visaka Road</br>Dublication Rd, 00400</br>Sri Lanaka</p>  
+                        </div>
                     </div>
-                    <div class="col-sm-10">
-                        <h3>Chat with us</h3></br>
-                        <button class="btn btn-light">Chat</button>
-                    </div>
-                </div>
-                <div class="box row">
-                    <div class="col-sm-2">
-                        <img src="./images/Location.png" alt="Location Icon" class="icon">
-                    </div>
-                    <div class="col-sm-10">
-                        <h3>Meet Us</h3>
-                        <p>29 Visaka Road</br>Dublication Rd, 00400</br>Sri Lanaka</p>  
-                    </div>
-                </div>
+                    
             </div>
             <div class="col-sm-7">
                 <div class="map">
@@ -50,6 +180,165 @@
             </div>
         </div>
         </section>
+
+        <section class="footer">
+            <div class="container" style="max-width: 100% !important; padding: 0">
+              <footer
+                class="text-white text-center text-lg-start"
+                style="background-color: #fbfbfb; margin: 0 !important"
+              >
+                <div class="container p-4">
+                  <div class="row mt-4">
+                    <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                      <img src="assets/foooterIcon.svg" alt="" role="button" />
+      
+                      <p class="mt-3 p-2 pe-none" style="color: #203c55 !important">
+                        29 Visaka Road,<br />
+                        Duplication Rd, 00400,<br />
+                        Sri Lanka.
+                      </p>
+      
+                      <div class="mt-4">
+                        <img
+                          src="assets/Footer social icons/LinkedIn.svg"
+                          alt=""
+                          role="button"
+                        />
+                        <img
+                          src="assets/Footer social icons/TwitterX.svg"
+                          alt=""
+                          role="button"
+                        />
+                        <img
+                          src="assets/Footer social icons/Instagram.svg"
+                          alt=""
+                          role="button"
+                        />
+                        <img
+                          src="assets/Footer social icons/Facebook.svg"
+                          alt=""
+                          role="button"
+                        />
+                      </div>
+                    </div>
+      
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0"></div>
+                    <div
+                      class="col-lg-5 col-md-6 mb-4 mb-md-0 d-flex"
+                      style="justify-content: space-evenly !important"
+                    >
+                      <div>
+                        <h5
+                          class="text-uppercase pb-1 px-4 pe-none"
+                          style="
+                            color: #203c55 !important;
+                            padding-left: 30px !important;
+                          "
+                        >
+                          Help
+                        </h5>
+                        <ul>
+                          <li
+                            style="
+                              color: #203c55 !important;
+                              padding-left: -10px !important;
+                              margin-bottom: 8px !important;
+                            "
+                            role="button"
+                          >
+                            FAQ
+                          </li>
+                          <li
+                            style="
+                              color: #203c55 !important;
+                              margin-bottom: 8px !important;
+                            "
+                            role="button"
+                          >
+                            Return Policy
+                          </li>
+                          <li style="color: #203c55 !important" role="button">
+                            Accessibility
+                          </li>
+                        </ul>
+                      </div>
+      
+                      <div>
+                        <h5
+                          class="text-uppercase pb-1 px-4 pe-none"
+                          style="
+                            color: #203c55 !important;
+                            padding-left: 30px !important;
+                          "
+                        >
+                          Account
+                        </h5>
+                        <ul>
+                          <li
+                            style="
+                              color: #203c55 !important;
+                              padding-left: -10px !important;
+                              margin-bottom: 8px !important;
+                            "
+                            role="button"
+                          >
+                            Membership
+                          </li>
+                          <li style="color: #203c55 !important" role="button">
+                            Profile
+                          </li>
+                        </ul>
+                      </div>
+      
+                      <div>
+                        <h5
+                          class="text-uppercase pb-1 px-4 pe-none"
+                          style="
+                            color: #203c55 !important;
+                            padding-left: 30px !important;
+                          "
+                        >
+                          Contact Us
+                        </h5>
+                        <ul>
+                          <li
+                            style="
+                              color: #203c55 !important;
+                              padding-left: -10px !important;
+                              margin-bottom: 8px !important;
+                            "
+                            role="button"
+                          >
+                            Location
+                          </li>
+                          <li
+                            style="
+                              color: #203c55 !important;
+                              margin-bottom: 8px !important;
+                            "
+                            role="button"
+                          >
+                            Email
+                          </li>
+                          <li style="color: #203c55 !important" role="button">
+                            Telephone
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+                <div
+                  class="text-center p-3 pe-none"
+                  style="background-color: #203c55"
+                >
+                  © 2024 BLOOM CLTHING, All Rights Reserved
+                </div>
+              </footer>
+            </div>
+          </section>
     
 	
 </body>
+</html>
