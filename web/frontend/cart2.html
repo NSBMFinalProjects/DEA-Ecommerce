@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      * {
+        font-family: "Poppins", sans-serif !important;
+      }
+      li {
+        list-style: none !important;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+      }
+
+      th,
+      td {
+        text-align: center;
+        padding: 8px;
+        color: #ffffff;
+        font-size: 16px;
+      }
+      .clearButton:hover {
+        box-shadow: 2px 2px 0px #ffffff !important;
+        transform: scale(0.99);
+      }
+      .checkoutButton:hover {
+        box-shadow: 4px 4px 0px #ffffff !important;
+        transform: scale(0.99);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="header1">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="width: 100% !important">
+          <a class="navbar-brand" href="#"
+            ><img src="assets/headerLogo.svg" alt=""
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse"
+            id="navbarSupportedContent"
+            style="width: 100px !important"
+          >
+            <ul class="navbar-nav mb-2 mb-lg-0" style="margin-left: auto">
+              <li class="nav-item px-3 m-auto">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item px-3 m-auto">
+                <a class="nav-link" href="#">Collection</a>
+              </li>
+              <li class="nav-item px-3 m-auto">
+                <a class="nav-link" href="#">Shop</a>
+              </li>
+              <li class="nav-item px-3 m-auto">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                  ><img src="assets/searchIcon.svg" alt=""
+                /></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                  ><img src="assets/profileIcon.svg" alt=""
+                /></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <section
+      style="width: 100%; background-color: #e7e7e7; padding: 60px 0px 60px 0px"
+    >
+      <div
+        style="
+          width: 80%;
+          background-color: #203c55;
+          box-shadow: 10px 10px 0px #ffffff;
+          margin: auto;
+          padding: 40px 40px 40px 60px;
+        "
+      >
+        <p
+          style="
+            color: #ffffff;
+            font-size: 40px;
+            width: 100%;
+            text-align: left;
+            font-weight: 600;
+          "
+        >
+          Shopping Cart
+        </p>
+        <p
+          style="
+            color: #ffffff;
+            font-size: 20px;
+            width: 100%;
+            text-align: left;
+            font-weight: normal;
+            letter-spacing: 6px;
+            margin-top: -15px;
+          "
+        >
+          Checkout your cart
+        </p>
+        <div style="width: 100%; height: 3px; background-color: #ffffff"></div>
+        <div style="overflow-x: auto; margin-top: 25px">
+          <table>
+            <tr>
+              <th>Product</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Size</th>
+              <th>Ordered Date</th>
+              <th>Action</th>
+            </tr>
+            <tr>
+              <td style="width: 120px !important">
+                <img
+                  src="assets/Products/Men/m1/mp11.jpg"
+                  style="width: 120px"
+                  alt=""
+                />
+              </td>
+              <td>T-shirt 123</td>
+              <td style="width: 120px !important">5</td>
+              <td style="width: 120px !important">Small</td>
+              <td style="width: 200px !important">2024/08/26</td>
+              <td style="width: 50px !important">
+                <center>
+                  <a href="#"><img src="assets/delete.svg" alt="" /></a>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div
+          style="
+            width: 100%;
+            height: 3px;
+            background-color: #ffffff;
+            margin-top: 40px;
+          "
+        ></div>
+        <div
+          style="
+            width: 100%;
+            display: flex;
+            justify-content: end;
+            padding-right: 5px;
+          "
+        >
+          <div
+            class="clearButton"
+            style="
+              padding: 5px 20px 5px 20px;
+              background-color: #e7e7e7;
+              margin-top: 10px;
+              box-shadow: 5px 5px 0px #ffffff;
+              transition: 0.4s ease-in-out;
+            "
+          >
+            <p
+              class="pe-none"
+              style="
+                color: #203c55;
+                font-size: 20px;
+                margin: auto;
+                font-weight: 600;
+              "
+            >
+              Clear cart
+            </p>
+          </div>
+        </div>
+        <p style="font-size: 35px; color: #ffffff; font-weight: 600">Note :</p>
+        <p
+          style="
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 500;
+            margin-top: -10px;
+          "
+        >
+          Payment method : Cash on Delivery ( COD )
+        </p>
+        <p
+          style="
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 500;
+            margin-top: -16px;
+          "
+        >
+          Order will delivered within 3 to 4 business days across island wide.
+        </p>
+        <div
+          style="
+            width: 100%;
+            height: 3px;
+            background-color: #ffffff;
+            margin-top: 40px;
+          "
+        ></div>
+        <div
+          style="
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+          "
+        >
+        
+          <div
+            class="checkoutButton"
+            style="
+              padding: 5px 20px 5px 20px;
+              width: 60%;
+              background-color: #e7e7e7;
+              margin-top: 10px;
+              box-shadow: 8px 8px 0px #ffffff;
+              transition: 0.4s ease-in-out;
+            "
+            onclick="redirectToProductDetails()"
+          >
+            <p
+              class="pe-none"
+              style="
+                color: #203c55;
+                font-size: 20px;
+                margin: auto;
+                text-align: center;
+                font-weight: 600;
+              "
+            >
+              Proceed to checkout
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        function redirectToProductDetails() {
+            window.location.href = 'productDetails.jsp';
+        }
+    </script>
+    </section>
+
+    <section class="footer1">
+      <div class="container" style="max-width: 100% !important; padding: 0">
+        <footer
+          class="text-white text-center text-lg-start"
+          style="background-color: #fbfbfb; margin: 0 !important"
+        >
+          <div class="container p-4">
+            <div class="row mt-4">
+              <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                <img src="assets/foooterIcon.svg" alt="" role="button" />
+
+                <p class="mt-3 p-2 pe-none" style="color: #203c55 !important">
+                  29 Visaka Road,<br />
+                  Duplication Rd, 00400,<br />
+                  Sri Lanka.
+                </p>
+
+                <div class="mt-4">
+                  <img
+                    src="assets/Footer social icons/LinkedIn.svg"
+                    alt=""
+                    role="button"
+                  />
+                  <img
+                    src="assets/Footer social icons/TwitterX.svg"
+                    alt=""
+                    role="button"
+                  />
+                  <img
+                    src="assets/Footer social icons/Instagram.svg"
+                    alt=""
+                    role="button"
+                  />
+                  <img
+                    src="assets/Footer social icons/Facebook.svg"
+                    alt=""
+                    role="button"
+                  />
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0"></div>
+              <div
+                class="col-lg-5 col-md-6 mb-4 mb-md-0 d-flex"
+                style="justify-content: space-evenly !important"
+              >
+                <div>
+                  <h5
+                    class="text-uppercase pb-1 px-4 pe-none"
+                    style="
+                      color: #203c55 !important;
+                      padding-left: 30px !important;
+                    "
+                  >
+                    Help
+                  </h5>
+                  <ul>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        padding-left: -10px !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      FAQ
+                    </li>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      Return Policy
+                    </li>
+                    <li style="color: #203c55 !important" role="button">
+                      Accessibility
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h5
+                    class="text-uppercase pb-1 px-4 pe-none"
+                    style="
+                      color: #203c55 !important;
+                      padding-left: 30px !important;
+                    "
+                  >
+                    Account
+                  </h5>
+                  <ul>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        padding-left: -10px !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      Membership
+                    </li>
+                    <li style="color: #203c55 !important" role="button">
+                      Profile
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h5
+                    class="text-uppercase pb-1 px-4 pe-none"
+                    style="
+                      color: #203c55 !important;
+                      padding-left: 30px !important;
+                    "
+                  >
+                    Contact Us
+                  </h5>
+                  <ul>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        padding-left: -10px !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      Location
+                    </li>
+                    <li
+                      style="
+                        color: #203c55 !important;
+                        margin-bottom: 8px !important;
+                      "
+                      role="button"
+                    >
+                      Email
+                    </li>
+                    <li style="color: #203c55 !important" role="button">
+                      Telephone
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="text-center p-3 pe-none"
+            style="background-color: #203c55"
+          >
+            © 2024 BLOOM CLTHING, All Rights Reserved
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -18,6 +18,12 @@
         th, td { text-align: left; padding: 8px; color: #ffffff; }
     </style>
     <title>Title</title>
+    <style>
+        .logoutBtn:hover{
+            box-shadow: 5px 5px 0px #c3c3c3 !important;
+            transform: scale(0.98);
+        }
+    </style>
 </head>
 <body>
 <%@include file="header.html"%>
@@ -32,11 +38,14 @@
 
 <section>
     <div style="width: 100%; background-color: #c7c7c7c7; display: flex; padding: 50px 0;">
-        <div style="width: 80%; padding: 40px; background-color: #203c55; margin: auto; box-shadow: 10px 10px 0px #ffffff;">
+        <div style="width: 80%; padding: 40px; background-color: #203c55; margin: auto;">
             <div style="display: flex; width: 100%">
                 <div style="width: 25%; padding: 20px">
                     <div style="width: 100%; height: 250px; background-color: #ffffff; box-shadow: 10px 10px 0px #c3c3c3; overflow: hidden; justify-content: center; display: flex;">
                         <img src="<%= user.getPhotoURL() %>" style="width: auto" alt="User's Photo">
+                    </div>
+                    <div class="logoutBtn" style="width: 100%; background-color: #ffffff; box-shadow: 10px 10px 0px #c3c3c3; overflow: hidden; margin-top: 20px; padding: 5px 0px 5px 0px; transition: 0.4s ease-in-out; display: flex;">
+                        <p style="font-size: 24px; width: 100%; font-weight: bold; text-align: center; margin: auto;">LOG OUT</p>
                     </div>
                 </div>
                 <div style="width: 75%; padding: 20px 40px">
@@ -46,13 +55,21 @@
                         <p style="font-size: 18px; color: #ffffff; font-weight: 600">Username</p>
                         <p style="font-size: 18px; color: #ffffff; font-weight: 600"><%= user.getName()%></p>
                     </div>
-                    <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                    <div style="display: flex; justify-content: space-between;">
                         <p style="font-size: 18px; color: #ffffff; font-weight: 600">Email</p>
                         <p style="font-size: 18px; color: #ffffff; font-weight: 600"><%= user.getEmail()%></p>
                     </div>
-                    <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                    <div style="display: flex; justify-content: space-between;">
                         <p style="font-size: 18px; color: #ffffff; font-weight: 600">Name</p>
                         <p style="font-size: 18px; color: #ffffff; font-weight: 600"><%= user.getUsername()%></p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <p style="font-size: 18px; color: #ffffff; font-weight: 600">Contact Number</p>
+                        <p style="font-size: 18px; color: #ffffff; font-weight: 600">0775159896</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <p style="font-size: 18px; color: #ffffff; font-weight: 600">Shippign address</p>
+                        <p style="font-size: 18px; color: #ffffff; font-weight: 600">No:57, Colombo Rd, Kandy.</p>
                     </div>
                 </div>
             </div>
