@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Cart</title>
+</head>
+<body>
+    <h1>Product Cart</h1>
+    <div id="cart-items"></div>
+    <button id="clear-cart">Clear Cart</button>
+    <button id="proceed-checkout">Proceed to Checkout</button>
+
+    <script>
+        function displayCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = ''; 
+
+            if (localStorage.length === 0) {
+                cartItemsContainer.textContent = 'Your cart is empty.';
+                document.getElementById('clear-cart').style.display = 'none';
+                document.getElementById('proceed-checkout').style.display = 'none';
+                return;
+            } else {
+                document.getElementById('clear-cart').style.display = 'block';
+                document.getElementById('proceed-checkout').style.display = 'block';
+            }
+
+            const table = document.createElement('table');
+            table.border = '1';
+            table.style.width = '100%';
+
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            ['Name', 'Quantity', 'Price', 'Actions'].forEach(headerText => {
+                const th = document.createElement('th');
+                th.textContent = headerText;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            const tbody = document.createElement('tbody');
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const item = JSON.parse(localStorage.getItem(key));
+                const row = document.createElement('tr');
+
+                const nameCell = document.createElement('td');
+                nameCell.textContent = item.name;
+                row.appendChild(nameCell);
+
+                const quantityCell = document.createElement('td');
+                quantityCell.textContent = item.quantity;
+                row.appendChild(quantityCell);
+
+                const priceCell = document.createElement('td');
+                priceCell.textContent = $${item.price * item.quantity};
+                row.appendChild(priceCell);
+
+                const actionsCell = document.createElement('td');
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = function() {
+                    localStorage.removeItem(key);
+                    displayCartItems(); 
+                };
+                actionsCell.appendChild(removeButton);
+                row.appendChild(actionsCell);
+
+                tbody.appendChild(row);
+            }
+            table.appendChild(tbody);
+
+            cartItemsContainer.appendChild(table);
+        }
+
+        function clearCart() {
+            localStorage.clear(); 
+            displayCartItems(); 
+        }
+
+        function proceedToCheckout() {
+            const cartItems = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const item = JSON.parse(localStorage.getItem(key));
+                cartItems.push(item);
+            }
+            console.log(cartItems)
+            const url = 'https://example.com/checkout'; 
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(cartItems),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Checkout successful!'); // Display success message
+            })
+            .catch((error) => {
+                alert('Checkout failed: ' + error.message); // Display error message
+            });
+        }
+
+        document.getElementById('clear-cart').addEventListener('click', clearCart);
+        document.getElementById('proceed-checkout').addEventListener('click', proceedToCheckout);
+
+        displayCartItems();
+    </script>
+</body>
+</html>
