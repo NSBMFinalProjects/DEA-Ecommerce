@@ -56,4 +56,28 @@ public class CategoryDAO {
             }
         }
     }
+
+    public int getCategoryId(int productId, String categoryName) throws SQLException {
+        String sql = "SELECT c.id FROM dea.categories c " +
+                "JOIN dea.products p ON c.product_id = p.id " +
+                "WHERE p.id = ? AND c.name = ?";
+        int categoryId = -1;
+        try (Connection connection = DB.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, productId);
+                statement.setString(2, categoryName);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        categoryId = resultSet.getInt("id");
+                    } else {
+                        throw new SQLException("Category not found for product ID " + productId + " and category name " + categoryName);
+                    }
+                }
+            }
+        }
+        return categoryId;
+    }
+
+
+
 }

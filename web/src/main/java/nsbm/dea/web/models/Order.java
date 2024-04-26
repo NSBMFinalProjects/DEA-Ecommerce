@@ -21,6 +21,10 @@ public class Order {
         this.total = total;
     }
 
+    public Order() {
+
+    }
+
     // Getters and setters
     public int getId() {
         return id;
