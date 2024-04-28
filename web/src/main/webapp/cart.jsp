@@ -47,165 +47,169 @@
     >
         <div
                 style="
-              width: 80%;
-              background-color: #203c55;
-              box-shadow: 10px 10px 0px #ffffff;
-              margin: auto;
-              padding: 40px 40px 60px 40px;
-            "
+          width: 80%;
+          background-color: #203c55;
+          box-shadow: 10px 10px 0px #ffffff;
+          margin: auto;
+          padding: 40px 40px 40px 60px;
+        "
         >
             <p
                     style="
-                color: #ffffff;
-                font-size: 40px;
-                width: 100%;
-                text-align: left;
-                font-weight: 600;
-              "
+            color: #ffffff;
+            font-size: 40px;
+            width: 100%;
+            text-align: left;
+            font-weight: 600;
+          "
             >
                 Shopping Cart
             </p>
             <p
                     style="
-                color: #ffffff;
-                font-size: 20px;
-                width: 100%;
-                text-align: left;
-                font-weight: normal;
-                letter-spacing: 6px;
-                margin-top: -15px;
-              "
+            color: #ffffff;
+            font-size: 20px;
+            width: 100%;
+            text-align: left;
+            font-weight: normal;
+            letter-spacing: 6px;
+            margin-top: -15px;
+          "
             >
                 Checkout your cart
             </p>
             <div style="width: 100%; height: 3px; background-color: #ffffff"></div>
-            <div style="overflow-x: auto; margin-top: 25px">
-                <table>
+            <div class="cart" style="overflow-x: auto; margin-top: 25px">
+                <table id="cart-table">
+                    <thead>
                     <tr>
-                        <th>Product</th>
+                        <th style="width: 20px !important">Id</th>
                         <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Size</th>
-                        <th>Ordered Date</th>
-                        <th>Action</th>
+                        <th style="width: 120px !important">Quantity</th>
+                        <th style="width: 120px !important">Size</th>
+                        <th style="width: 200px !important">Price</th>
+                        <th style="width: 200px !important">Ordered Date</th>
+                        <th style="width: 50px !important">Action</th>
                     </tr>
-                    <tr>
-                        <td style="width: 120px !important">
-                            <img
-                                    src="assets/Products/Men/m1/mp11.jpg"
-                                    style="width: 120px"
-                                    alt=""
-                            />
-                        </td>
-                        <td>T-shirt 123</td>
-                        <td style="width: 120px !important">5</td>
-                        <td style="width: 120px !important">Small</td>
-                        <td style="width: 200px !important">2024/08/26</td>
-                        <td style="width: 50px !important">
-                            <center>
-                                <a href="#"><img src="assets/delete.svg" alt="" /></a>
-                            </center>
-                        </td>
-                    </tr>
+                    </thead>
+                    <tbody id="cart-container"></tbody>
                 </table>
             </div>
             <div
                     style="
-                width: 100%;
-                height: 3px;
-                background-color: #ffffff;
-                margin-top: 40px;
-              "
+            width: 100%;
+            height: 3px;
+            background-color: #ffffff;
+            margin-top: 40px;
+          "
             ></div>
             <div
                     style="
-                width: 100%;
-                display: flex;
-                justify-content: end;
-                padding-right: 5px;
-              "
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+          "
+            >
+                <p style="color: #ffffff; font-size: 20px; font-weight: 600">
+                    Total price
+                </p>
+                <p
+                        id="totalPrice"
+                        style="color: #ffffff; font-size: 20px; font-weight: 600"
+                ></p>
+            </div>
+            <div style="width: 100%; height: 3px; background-color: #ffffff"></div>
+            <div
+                    style="
+            width: 100%;
+            display: flex;
+            justify-content: end;
+            padding-right: 5px;
+          "
             >
                 <div
+                        id="clear-cart"
                         class="clearButton"
                         style="
-                  padding: 5px 20px 5px 20px;
-                  background-color: #e7e7e7;
-                  margin-top: 10px;
-                  box-shadow: 5px 5px 0px #ffffff;
-                  transition: 0.4s ease-in-out;
-                "
+              padding: 5px 20px 5px 20px;
+              background-color: #e7e7e7;
+              margin-top: 10px;
+              box-shadow: 5px 5px 0px #ffffff;
+              transition: 0.4s ease-in-out;
+            "
                 >
                     <p
                             class="pe-none"
                             style="
-                    color: #203c55;
-                    font-size: 20px;
-                    margin: auto;
-                    font-weight: 600;
-                  "
+                color: #203c55;
+                font-size: 20px;
+                margin: auto;
+                font-weight: 600;
+              "
                     >
                         Clear cart
                     </p>
                 </div>
             </div>
+
             <p style="font-size: 35px; color: #ffffff; font-weight: 600">Note :</p>
             <p
                     style="
-                font-size: 16px;
-                color: #ffffff;
-                font-weight: 500;
-                margin-top: -10px;
-              "
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 500;
+            margin-top: -10px;
+          "
             >
                 Payment method : Cash on Delivery ( COD )
             </p>
             <p
                     style="
-                font-size: 16px;
-                color: #ffffff;
-                font-weight: 500;
-                margin-top: -16px;
-              "
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 500;
+            margin-top: -16px;
+          "
             >
                 Order will delivered within 3 to 4 business days across island wide.
             </p>
             <div
                     style="
-                width: 100%;
-                height: 3px;
-                background-color: #ffffff;
-                margin-top: 40px;
-              "
+            width: 100%;
+            height: 3px;
+            background-color: #ffffff;
+            margin-top: 40px;
+          "
             ></div>
             <div
                     style="
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                margin-top: 40px;
-              "
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+          "
             >
                 <div
+                        id="proceed-to-checkout"
                         class="checkoutButton"
                         style="
-                  padding: 5px 20px 5px 20px;
-                  width: 60%;
-                  background-color: #e7e7e7;
-                  margin-top: 10px;
-                  box-shadow: 8px 8px 0px #ffffff;
-                  transition: 0.4s ease-in-out;
-                "
-                        onclick="redirectToProductDetails()"
+              padding: 5px 20px 5px 20px;
+              width: 60%;
+              background-color: #e7e7e7;
+              margin-top: 10px;
+              box-shadow: 8px 8px 0px #ffffff;
+              transition: 0.4s ease-in-out;
+            "
                 >
                     <p
                             class="pe-none"
                             style="
-                    color: #203c55;
-                    font-size: 20px;
-                    margin: auto;
-                    text-align: center;
-                    font-weight: 600;
-                  "
+                color: #203c55;
+                font-size: 20px;
+                margin: auto;
+                text-align: center;
+                font-weight: 600;
+              "
                     >
                         Proceed to checkout
                     </p>
@@ -215,11 +219,123 @@
 
         <script>
             function redirectToProductDetails() {
-                window.location.href = 'checkout.jsp';
+                window.location.href = "productDetails.jsp";
             }
+
+            function addToCart(product) {
+                let cart = JSON.parse(localStorage.getItem("cart")) || {
+                    subTotal: 0,
+                    totalQuty: 0,
+                    cart: [],
+                };
+                let existingProductIndex = cart.cart.findIndex(
+                    (item) =>
+                        item.id === product.id &&
+                        item.categoy.id === product.categoy.id &&
+                        item.color.id === product.color.id
+                );
+                if (existingProductIndex >= 0) {
+                    cart.cart[existingProductIndex].quantity += product.quantity;
+                    cart.cart[existingProductIndex].subTotal =
+                        cart.cart[existingProductIndex].price *
+                        cart.cart[existingProductIndex].quantity;
+                } else {
+                    product.subTotal = product.price * product.quantity;
+                    cart.cart.push(product);
+                    cart.totalQuty += 1;
+                }
+                cart.subTotal = cart.cart.reduce(
+                    (total, item) => total + item.subTotal,
+                    0
+                );
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartDisplay(cart);
+            }
+            function updateCartDisplay(cart) {
+                const cartContainer = document.getElementById("cart-container");
+                cartContainer.innerHTML = "";
+                let totalPrice = 0;
+
+                if (cart.cart.length > 0) {
+                    cart.cart.forEach((item) => {
+                        totalPrice += item.price * item.quantity;
+
+                        let row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>1</td>
+                            <td>${item.title}</td>
+                            <td>${item.quantity}</td>
+                            <td>${item.categoy.title}</td>
+                            <td>$${item.price}</td>
+                            <td>2024/04/01</td>
+                            <td>
+                              <center>
+                                  <div onclick="removeFromCart(${item.id})"><img src="assets/delete.svg" alt="" /></div>
+                              </center>
+                            </td>`;
+                        cartContainer.appendChild(row);
+                    });
+                    document.getElementById(
+                        "totalPrice"
+                    ).textContent = `Total: $${totalPrice.toFixed(2)}`;
+                } else {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `<td colspan="7">Your cart is empty.</td>`;
+                    cartContainer.appendChild(row);
+                }
+
+                document.getElementById(
+                    "totalPrice"
+                ).textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+            }
+            function removeFromCart(productId) {
+                let cart = JSON.parse(localStorage.getItem("cart")) || { cart: [] };
+                cart.cart = cart.cart.filter((item) => item.id !== productId);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartDisplay(JSON.parse(localStorage.getItem("cart")));
+            }
+
+            function clearCart() {
+                localStorage.removeItem("cart");
+                updateCartDisplay({ subTotal: 0, totalQuty: 0, cart: [] });
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                fetch("product.json")
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error("Failed to fetch cart data");
+                        }
+                        return response.json();
+                    })
+                    .then((product) => {
+                        addToCart(product);
+                        updateCartDisplay(JSON.parse(localStorage.getItem("cart")));
+                    })
+                    .catch((error) => {
+                        console.error("Error loading cart:", error);
+                        alert("Failed to load cart data");
+                    });
+            });
+
+            document
+                .getElementById("clear-cart")
+                .addEventListener("click", clearCart);
+
+            document
+                .getElementById("proceed-to-checkout")
+                .addEventListener("click", function () {
+                    const cart = JSON.parse(localStorage.getItem("cart")) || {
+                        cart: [],
+                    };
+                    const cartItems = cart.cart
+                        .map((item) => `item=${encodeURIComponent(JSON.stringify(item))}`)
+                        .join("&");
+
+                    window.location.href = `checkout.jsp?${cartItems}`;
+                });
         </script>
     </section>
-
 
     <%@include file="footer.html"%>
 

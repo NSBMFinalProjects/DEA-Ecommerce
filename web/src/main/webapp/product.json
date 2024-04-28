@@ -1,0 +1,20 @@
+{
+    "id": 15,
+    "serchkey": "id-categoyid-colorid",
+    "title": "Tshirts",
+    "slug": "T-shirt",
+    "price": 100.26,
+    "quantity": 5,
+    "categoy": {
+        "id": 12,
+        "title": "Large",
+        "slug": "Large"     
+    },
+    "color": {
+        "id": 1,
+        "title": "grey",
+        "slug": "grey",
+        "hex": "#02454556"
+    }
+    
+}
