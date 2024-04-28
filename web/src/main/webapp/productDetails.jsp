@@ -7,6 +7,7 @@
 <%@ page import="nsbm.dea.web.models.Category" %>
 <%@ page import="nsbm.dea.web.models.Color" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.google.gson.Gson" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,11 +29,19 @@
 <%@include file="header.html"%>
 <%
   ProductDAO productDAO = new ProductDAO();
+  Gson gson = new Gson();
+
   int id = Integer.parseInt(request.getParameter("id"));
   Optional<Product> productDetails = productDAO.getProductById(id);
+
   if (productDetails.isPresent()) {
     Product product = productDetails.get();
 %>
+
+<p id="product" hidden aria-hidden="true"
+>
+  <%= gson.toJson(product)%>
+</p>
 
 <section
         style="
@@ -224,75 +233,31 @@
               >
                 Color :
               </p>
-              <div class="custom-radios" style="padding-left: 40px">
-                <div>
-                  <input
-                          type="radio"
-                          id="color-1"
-                          name="color"
-                          value="color-1"
-                          checked
-                  />
-                  <label for="color-1">
-                        <span>
+              <div id="color-display" class="custom-radios" style="padding-left: 40px">
+                  <% for (Color color : product.getCategories()[0].getColors()) { %>
+                  <div
+                  >
+                      <input
+                              type="radio"
+                              id=<%= color.getSlug()%>
+                              name="colors"
+                              value=<%= color.getSlug()%>
+                              <%= product.getCategories()[0].getColors()[0].getSlug().equals(color.getSlug()) ? "checked" : ""%>
+                      />
+                      <label for=<%= color.getSlug()%>
+                    >
+                        <span
+                                style="background-color: <%= color.getHex()%>"
+                        >
                           <img
                                   src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg"
                                   alt="Checked Icon"
-                          />
-                        </span>
-                  </label>
-                </div>
 
-                <div>
-                  <input
-                          type="radio"
-                          id="color-2"
-                          name="color"
-                          value="color-2"
-                  />
-                  <label for="color-2">
-                        <span>
-                          <img
-                                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg"
-                                  alt="Checked Icon"
                           />
                         </span>
-                  </label>
-                </div>
-
-                <div>
-                  <input
-                          type="radio"
-                          id="color-3"
-                          name="color"
-                          value="color-3"
-                  />
-                  <label for="color-3">
-                        <span>
-                          <img
-                                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg"
-                                  alt="Checked Icon"
-                          />
-                        </span>
-                  </label>
-                </div>
-
-                <div>
-                  <input
-                          type="radio"
-                          id="color-4"
-                          name="color"
-                          value="color-4"
-                  />
-                  <label for="color-4">
-                        <span>
-                          <img
-                                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg"
-                                  alt="Checked Icon"
-                          />
-                        </span>
-                  </label>
-                </div>
+                      </label>
+                  </div>
+                  <% }; %>
               </div>
             </div>
             <div style="display: flex; width: 80%; margin: auto">
@@ -308,47 +273,22 @@
                   Size :
                 </p>
                 <div class="custom-radios" style="padding-left: 40px">
-                  <input
-                          type="radio"
-                          class="btn-check"
-                          name="options-base"
-                          id="option5"
-                          autocomplete="off"
-                          checked=""
-                  />
+                    <% for (Category category : product.getCategories()) { %>
+                      <input
+                            type="radio"
+                            class="btn-check"
+                            name="sizes"
+                            id=<%= category.getSlug()%>
+                            autocomplete="off"
+                            value=<%= category.getSlug()%>
+                            <%= product.getCategories()[0].getSlug().equals(category.getSlug()) ? "checked" : "" %> />
                   <label
                           class="btn btn-outline-secondary"
                           style="border-radius: 0px; width: 40px !important"
-                          for="option5"
-                  >S</label
+                          for=<%= category.getSlug() %>
+                  ><%= category.getName()%></label
                   >
-
-                  <input
-                          type="radio"
-                          class="btn-check"
-                          name="options-base"
-                          id="option6"
-                          autocomplete="off"
-                  />
-                  <label
-                          class="btn btn-outline-secondary"
-                          style="border-radius: 0px; width: 40px !important"
-                          for="option6"
-                  >M</label
-                  >
-                  <input
-                          type="radio"
-                          class="btn-check"
-                          name="options-base"
-                          id="option7"
-                          autocomplete="off"
-                  />
-                  <label
-                          class="btn btn-outline-secondary"
-                          style="border-radius: 0px; width: 40px !important"
-                          for="option7"
-                  >L</label
-                  >
+                    <% }; %>
                 </div>
               </div>
               <div style="width: 80%; margin: auto">
