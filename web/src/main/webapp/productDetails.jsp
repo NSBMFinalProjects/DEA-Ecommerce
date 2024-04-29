@@ -29,14 +29,8 @@
 <body>
 <%@include file="header.html"%>
 <%
-  ProductDAO productDAO = new ProductDAO();
   Gson gson = new Gson();
-
-  int id = Integer.parseInt(request.getParameter("id"));
-  Optional<Product> productDetails = productDAO.getProductById(id);
-
-  if (productDetails.isPresent()) {
-    Product product = productDetails.get();
+  Product product = ((Product) pageContext.getServletContext().getAttribute("product"));
 %>
 
 <p id="product" hidden aria-hidden="true"
@@ -378,12 +372,6 @@
   </div>
 
 </section>
-<%
-  } else {
-    // Handle the case where the product is not found
-  }
-%>
-
 <%@include file="footer.html"%>
 
 <script

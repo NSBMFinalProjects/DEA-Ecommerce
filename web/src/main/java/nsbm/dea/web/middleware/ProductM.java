@@ -34,6 +34,10 @@ public class ProductM implements Filter {
       chain.doFilter(request, response);
       return;
     }
+    if (url.equalsIgnoreCase("/web/product/slug")) {
+      request.getRequestDispatcher("/shopMen").forward(request, response);
+      return;
+    }
     String[] parts = url.split("/");
     if (parts.length != 4) {
       chain.doFilter(request, response);
