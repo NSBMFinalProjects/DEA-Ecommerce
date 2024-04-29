@@ -52,4 +52,8 @@ public class Env {
   public static String getDomain() {
     return dotenv.get("DOMAIN");
   }
+
+  public static String getURL() {
+    return dotenv.get("URL");
+  }
 }
