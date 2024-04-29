@@ -8,6 +8,7 @@
 <%@ page import="nsbm.dea.web.models.Color" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.google.gson.Gson" %>
+<%@ page import="nsbm.dea.web.config.Env" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +89,7 @@
           >
             <div class="carousel-item active">
               <img
-                      src="assets/Products/Men/m1/mp11.jpg"
+                      src=<%= String.format("%s/assets/Products/Men/m1/mp11.jpg", Env.getURL())%>
                       style="max-width: 320px !important; margin: auto"
                       class="d-block w-100"
                       alt="..."
@@ -96,7 +97,7 @@
             </div>
             <div class="carousel-item">
               <img
-                      src="assets/Products/Men/m1/mp12.jpg"
+                      src=<%= String.format("%s/assets/Products/Men/m1/mp12.jpg", Env.getURL())%>
                       style="max-width: 320px !important; margin: auto"
                       class="d-block w-100"
                       alt="..."
@@ -104,7 +105,7 @@
             </div>
             <div class="carousel-item">
               <img
-                      src="assets/Products/Men/m1/mp13.jpg"
+                      src=<%= String.format("%s/assets/Products/Men/m1/mp13.jpg", Env.getURL())%>
                       style="max-width: 320px !important; margin: auto"
                       class="d-block w-100"
                       alt="..."
