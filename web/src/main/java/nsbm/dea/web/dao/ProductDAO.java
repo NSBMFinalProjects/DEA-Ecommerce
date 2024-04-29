@@ -16,7 +16,6 @@ import com.google.gson.JsonParser;
 
 import nsbm.dea.web.connections.DB;
 import nsbm.dea.web.models.Category;
-import nsbm.dea.web.models.Collection;
 import nsbm.dea.web.models.Color;
 import nsbm.dea.web.models.Product;
 
@@ -42,64 +41,17 @@ public class ProductDAO {
         resultSet.getString("description"),
         resultSet.getTimestamp("created"),
         resultSet.getTimestamp("modified"),
-            resultSet.getBigDecimal("price"));
+        resultSet.getBigDecimal("price"));
   }
 
-  public Optional<Product> getProductById(int id) throws SQLException {
-    String sql = """
-        SELECT
-        	jsonb_build_object ('product',
-        		jsonb_build_object ('id',
-        			products.id,
-        			'name',
-        			products.name,
-        			'description',
-        			products.description,
-        			'slug',
-        			products.slug,
-        			'photo_urls',
-        			products.photo_urls,
-        			'created_by',
-        			products.created_by,
-        			'created',
-        			products.created,
-        			'modified',
-        			products.modified,
-			        'price',
-                    products.price,
-        			'categories',
-        			(
-        				SELECT
-        					jsonb_agg(jsonb_build_object ('id', categories.id, 'name', categories.name, 'slug', categories.slug, 'created_by', categories.created_by, 'created', categories.created, 'modified', categories.modified, 'colors', (
-        								SELECT
-        									jsonb_agg(jsonb_build_object ('id', colors.id, 'name', colors.name, 'slug', colors.slug, 'hex', colors.hex, 'qty', colors.qty,  'created_by', colors.created_by, 'created', colors.created, 'modified', colors.modified))
-        									FROM dea.colors colors
-        								WHERE
-        									colors.category_id = categories.id)))
-        				FROM
-        					dea.categories categories
-        				WHERE
-        					categories.product_id = products.id))) AS data
-        	FROM
-        		dea.products products
-        	WHERE
-        		products.id = ?
-        	LIMIT 1;
-                                       """;
-
+  private Optional<Product> getProduct(PreparedStatement statement) throws SQLException {
     JsonObject productJson;
-
-    try (Connection connection = DB.getConnection()) {
-      try (PreparedStatement statement = connection.prepareStatement(sql)) {
-        statement.setInt(1, id);
-        try (ResultSet resultSet = statement.executeQuery()) {
-          if (!resultSet.next()) {
-            return Optional.empty();
-          }
-          JsonObject payload = JsonParser.parseString(resultSet.getString("data")).getAsJsonObject();
-          productJson = payload.getAsJsonObject("product");
-        }
+    try (ResultSet resultSet = statement.executeQuery()) {
+      if (!resultSet.next()) {
+        return Optional.empty();
       }
+      JsonObject payload = JsonParser.parseString(resultSet.getString("data")).getAsJsonObject();
+      productJson = payload.getAsJsonObject("product");
     }
 
     JsonArray categoriesJsonArray = productJson.getAsJsonArray("categories");
@@ -145,6 +97,106 @@ public class ProductDAO {
     return Optional.of(product);
   }
 
+  public Optional<Product> getProductById(int id) throws SQLException {
+    String sql = """
+        SELECT
+        	jsonb_build_object ('product',
+        		jsonb_build_object ('id',
+        			products.id,
+        			'name',
+        			products.name,
+        			'description',
+        			products.description,
+        			'slug',
+        			products.slug,
+        			'photo_urls',
+        			products.photo_urls,
+        			'created_by',
+        			products.created_by,
+        			'created',
+        			products.created,
+        			'modified',
+        			products.modified,
+           'price',
+                    products.price,
+        			'categories',
+        			(
+        				SELECT
+        					jsonb_agg(jsonb_build_object ('id', categories.id, 'name', categories.name, 'slug', categories.slug, 'created_by', categories.created_by, 'created', categories.created, 'modified', categories.modified, 'colors', (
+        								SELECT
+        									jsonb_agg(jsonb_build_object ('id', colors.id, 'name', colors.name, 'slug', colors.slug, 'hex', colors.hex, 'qty', colors.qty,  'created_by', colors.created_by, 'created', colors.created, 'modified', colors.modified))
+        									FROM dea.colors colors
+        								WHERE
+        									colors.category_id = categories.id)))
+        				FROM
+        					dea.categories categories
+        				WHERE
+        					categories.product_id = products.id))) AS data
+        	FROM
+        		dea.products products
+        	WHERE
+        		products.id = ?
+        	LIMIT 1;
+                                       """;
+
+    try (Connection connection = DB.getConnection()) {
+      try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        statement.setInt(1, id);
+        return this.getProduct(statement);
+      }
+    }
+  }
+
+  public Optional<Product> getProductBySlug(String slug) throws SQLException {
+    String sql = """
+        SELECT
+          jsonb_build_object ('product',
+            jsonb_build_object ('id',
+              products.id,
+              'name',
+              products.name,
+              'description',
+              products.description,
+              'slug',
+              products.slug,
+              'photo_urls',
+              products.photo_urls,
+              'created_by',
+              products.created_by,
+              'created',
+              products.created,
+              'modified',
+              products.modified,
+           'price',
+                    products.price,
+              'categories',
+              (
+                SELECT
+                  jsonb_agg(jsonb_build_object ('id', categories.id, 'name', categories.name, 'slug', categories.slug, 'created_by', categories.created_by, 'created', categories.created, 'modified', categories.modified, 'colors', (
+                        SELECT
+                          jsonb_agg(jsonb_build_object ('id', colors.id, 'name', colors.name, 'slug', colors.slug, 'hex', colors.hex, 'qty', colors.qty,  'created_by', colors.created_by, 'created', colors.created, 'modified', colors.modified))
+                          FROM dea.colors colors
+                        WHERE
+                          colors.category_id = categories.id)))
+                FROM
+                  dea.categories categories
+                WHERE
+                  categories.product_id = products.id))) AS data
+          FROM
+            dea.products products
+          WHERE
+            products.slug = ?
+          LIMIT 1;
+                                       """;
+
+    try (Connection connection = DB.getConnection()) {
+      try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        statement.setString(1, slug);
+        return this.getProduct(statement);
+      }
+    }
+  }
+
   public List<Product> getAllProducts(int page) throws SQLException {
     List<Product> products = new ArrayList<Product>();
 
@@ -164,7 +216,6 @@ public class ProductDAO {
   public List<Product> getAllProducts() throws SQLException {
     return this.getAllProducts(1);
   }
-
 
   public List<Product> getProductsByCollection(String slug) throws SQLException {
     List<Product> products = new ArrayList<>();

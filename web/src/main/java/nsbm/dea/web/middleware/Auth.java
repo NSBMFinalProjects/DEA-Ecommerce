@@ -20,7 +20,7 @@ import nsbm.dea.web.tokens.AccessToken;
 import nsbm.dea.web.tokens.SessionToken;
 
 @WebFilter(urlPatterns = {
-    "/product/*",
+    "/somepath/*",
 }, filterName = "AuthFilter", description = "Protect routes by checking for authentication")
 public class Auth implements Filter {
   private ServletContext context;

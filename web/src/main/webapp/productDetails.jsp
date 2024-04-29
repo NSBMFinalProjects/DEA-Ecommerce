@@ -8,6 +8,7 @@
 <%@ page import="nsbm.dea.web.models.Color" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.google.gson.Gson" %>
+<%@ page import="nsbm.dea.web.config.Env" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,14 +29,8 @@
 <body>
 <%@include file="header.html"%>
 <%
-  ProductDAO productDAO = new ProductDAO();
   Gson gson = new Gson();
-
-  int id = Integer.parseInt(request.getParameter("id"));
-  Optional<Product> productDetails = productDAO.getProductById(id);
-
-  if (productDetails.isPresent()) {
-    Product product = productDetails.get();
+  Product product = ((Product) pageContext.getServletContext().getAttribute("product"));
 %>
 
 <p id="product" hidden aria-hidden="true"
@@ -88,7 +83,7 @@
           >
             <div class="carousel-item active">
               <img
-                      src="assets/Products/Men/m1/mp11.jpg"
+                      src=<%= String.format("%s/assets/Products/Men/m1/mp11.jpg", Env.getURL())%>
                       style="max-width: 320px !important; margin: auto"
                       class="d-block w-100"
                       alt="..."
@@ -96,7 +91,7 @@
             </div>
             <div class="carousel-item">
               <img
-                      src="assets/Products/Men/m1/mp12.jpg"
+                      src=<%= String.format("%s/assets/Products/Men/m1/mp12.jpg", Env.getURL())%>
                       style="max-width: 320px !important; margin: auto"
                       class="d-block w-100"
                       alt="..."
@@ -104,7 +99,7 @@
             </div>
             <div class="carousel-item">
               <img
-                      src="assets/Products/Men/m1/mp13.jpg"
+                      src=<%= String.format("%s/assets/Products/Men/m1/mp13.jpg", Env.getURL())%>
                       style="max-width: 320px !important; margin: auto"
                       class="d-block w-100"
                       alt="..."
@@ -377,12 +372,6 @@
   </div>
 
 </section>
-<%
-  } else {
-    // Handle the case where the product is not found
-  }
-%>
-
 <%@include file="footer.html"%>
 
 <script
