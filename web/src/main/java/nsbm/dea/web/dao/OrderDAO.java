@@ -6,12 +6,13 @@ import nsbm.dea.web.models.UserOrder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class OrderDAO {
 
     public int createOrder(Order order) throws SQLException {
-        String sql = "INSERT INTO dea.orders (ordered_by, delivery_address, created, status, qty, total) VALUES (cast(? as ulid), ?, ?, ?, ?, ?) RETURNING id";
+            String sql = "INSERT INTO dea.orders (ordered_by, delivery_address, created, status, qty, total) VALUES (cast(? as ulid), cast(? as ulid), ?, ?::dea.order_status, ?, ?) RETURNING id";
         try(Connection connection= DB.getConnection()){
             try(PreparedStatement preparedStatement=connection.prepareStatement(sql)){
                 preparedStatement.setString(1, order.getOrderedBy());
@@ -20,7 +21,12 @@ public class OrderDAO {
                 preparedStatement.setString(4, order.getStatus());
                 preparedStatement.setInt(5, order.getQty());
                 preparedStatement.setDouble(6, order.getTotal());
-                preparedStatement.executeUpdate();
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    return id;
+                }
             }
         }
         return order.getId();
