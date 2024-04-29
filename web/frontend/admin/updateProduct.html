@@ -22,7 +22,7 @@
         list-style: none;
       }
       a {
-        text-decoration: none !important;
+        text-decoration: none;
       }
       .saveBtn:hover {
         box-shadow: 4px 4px 0px #ffffff !important;
@@ -115,7 +115,7 @@
             letter-spacing: 1px;
           "
         >
-          Manage Sets
+          Update Product
         </p>
       </div>
       <div style="margin-top: 20px">
@@ -132,22 +132,86 @@
             style="width: 100%; display: flex; justify-content: space-evenly"
           >
             <div style="width: 80%; margin-top: 20px">
-              <p style="color: #ffffff; font-weight: 600">Set name ( Collections ):</p>
+              <p style="color: #ffffff; font-weight: 600">
+                Updated product name:
+              </p>
               <input
                 style="
                   width: 100%;
-                  height: 50px;
+                  height: 10px;
                   padding: 20px;
                   border: none;
-                  font-size: 18px;
                   margin-top: -20px;
-                  font-weight: 600;
                 "
                 type="text"
-                name="tagName"
-                placeholder="Enter set name"
+                name="updatedName"
+                placeholder="Enter product name"
+                value="T-shirt 123"
                 id=""
               />
+              <p style="color: #ffffff; font-weight: 600; margin-top: 10px">
+                Updated product description:
+              </p>
+              <input
+                style="
+                  width: 100%;
+                  height: 10px;
+                  padding: 20px;
+                  border: none;
+
+                  margin-top: -20px;
+                "
+                type="text"
+                name="updatedDescription"
+                placeholder="Enter product name"
+                value="T-shirt 123 description"
+                id=""
+              />
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-top: 10px;
+                "
+              >
+                <div style="width: 49%">
+                  <p style="color: #ffffff; font-weight: 600">
+                    Product price :
+                  </p>
+                  <div class="input-group" style="margin-top: -10px">
+                    <span
+                      class="input-group-text"
+                      style="border-radius: 0 !important"
+                      >LKR</span
+                    >
+                    <input
+                      style="border-radius: 0 !important"
+                      type="text"
+                      class="form-control"
+                      aria-label="Amount (to the nearest dollar)"
+                      placeholder="Enter price"
+                    />
+                    <span
+                      class="input-group-text"
+                      style="border-radius: 0 !important"
+                      >.00</span
+                    >
+                  </div>
+                </div>
+                <div style="width: 49%">
+                  <p style="color: #ffffff; font-weight: 600">Quantity :</p>
+                  <div class="input-group mb-3">
+                    <input
+                      style="border-radius: 0; margin-top: -10px"
+                      type="text"
+                      class="form-control"
+                      id="inputGroupFile01"
+                      name="quantity"
+                      placeholder="Enter prodcut quantity"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div
@@ -171,44 +235,9 @@
                   padding: 5px 60px 5px 60px;
                 "
               >
-                Add Set
+                Save changes
               </p>
             </a>
-          </div>
-        </div>
-        <div style="width: 90%; margin: auto; margin-top: 20px">
-          <p
-            style="
-              font-size: 40px;
-              font-weight: 600;
-              color: #203c55;
-              text-align: left;
-              letter-spacing: 1px;
-            "
-          >
-            Current sets
-          </p>
-        </div>
-        <div
-          style="
-            width: 90%;
-            height: 3px;
-            background-color: #203c55;
-            margin: auto;
-            margin-bottom: 20px;
-          "
-        ></div>
-        <!-- loop this divition (class : tagItem) -->
-        <div class="tagItem" style="display: flex; width: 90%; margin: auto">
-          <div style="width: 100%">
-            <div
-              style="display: flex; justify-content: space-between; width: 100%"
-            >
-              <p style="font-size: 22px; font-weight: 600; color: #203c55">
-                Set 1
-              </p>
-              <a href="#"><img src="assets/delete.svg" width="30px" alt="" /></a>
-            </div>
           </div>
         </div>
       </div>

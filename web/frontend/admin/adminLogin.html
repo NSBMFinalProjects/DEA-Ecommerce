@@ -206,7 +206,7 @@
         box-shadow: 8px 8px rgba(104, 100, 100, 0.479);
         transition: 0.4s ease-in-out;
       }
-      .Register-button:hover{
+      .Register-button:hover {
         transform: scale(0.98);
         box-shadow: 3px 3px rgba(104, 100, 100, 0.479);
       }
@@ -431,7 +431,7 @@
         >
           <ul class="navbar-nav mb-2 mb-lg-0" style="margin-left: auto">
             <li class="nav-item px-3 m-auto">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item px-3 m-auto">
               <a class="nav-link" href="#">Collection</a>
@@ -443,15 +443,13 @@
               <a class="nav-link" href="#">Contact</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="#"
-                ><img src="assets/searchIcon.svg" alt=""
-              /></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"
-                ><img src="assets/profileIcon.svg" alt=""
-              /></a>
+            <li class="nav-item px-3 m-auto">
+              <a
+                class="nav-link"
+                href="#"
+                style="color: rgb(255, 83, 83); font-weight: 600"
+                >LOGOUT</a
+              >
             </li>
           </ul>
         </div>
@@ -472,9 +470,9 @@
         <div class="form__container form__container-login">
           <form class="form formLogin">
             <div class="left-column">
-              <h1>Login your Account</h1>
+              <h1>Admin Login</h1>
               <p style="margin-top: 15px">Welcome back</p>
-              <p style="margin-top: 1px">Glad to see you again!</p>
+              <p style="margin-top: 1px">Login with your admin credentials</p>
               <div style="margin-top: 50px; margin-bottom: 60px">
                 <input
                   type="text"
@@ -496,8 +494,11 @@
               <button class="login-btn" id="loginRegisterBtn" type="submit">
                 Login</button
               ><br />
-              <a href="#"><p style="font-size: 14px">Forgot Password ?</p></a>
-              <a href="admin/adminLogin.html"><p style="font-size: 14px; margin-top: -10px;">Admin Login</p></a>
+              <a href="#"
+                ><p style="font-size: 14px">
+                  Forgot Password ? Contact owner
+                </p></a
+              >
             </div>
           </form>
         </div>
@@ -510,7 +511,7 @@
           <form class="form formRegister">
             <div class="right-column">
               <h2 style="margin-top: 50px; margin-bottom: -5px">
-                Create Your Account
+                Create Admin Account
               </h2>
               <p style="margin-bottom: -10px">
                 <span class="subhed">Set up your details</span>
@@ -518,83 +519,61 @@
               <div class="form-group">
                 <input
                   class="regInput"
+                  style="width: 100%"
                   type="text"
                   id="fname"
-                  name="fname"
+                  name="name"
                   required
-                  placeholder="Enter your first name"
+                  placeholder="Enter your name"
                 />
-                <input
-                class="regInput"
-                  type="text"
-                  id="lname"
-                  name="lname"
-                  required
-                  placeholder="Enter your last name"
-                  style="margin-left: 5px;"
-                />
+
                 <br />
                 <input
-                class="regInput"
+                  class="regInput"
+                  style="width: 100%"
                   type="email"
                   id="email"
                   name="email"
                   required
                   placeholder="Enter your email"
                 />
+
                 <input
-                class="regInput"
-                  type="text"
-                  id="number"
-                  name="number"
-                  required
-                  placeholder="Enter your Contact Number"
-                  style="margin-left: 5px;"
-                />
-                <input
-                class="regInput"
+                  class="regInput"
                   style="width: 100%"
                   type="text"
                   id="addres"
-                  name="addres"
+                  name="username"
                   required
-                  placeholder="Enter your Address"
+                  placeholder="Enter your Username"
                 />
                 <br />
-                <div class="upload" style="height: fit-content !important; margin-bottom: -2px;">
-                  <div
-                    class="input-group"
-                    style="padding: 0 !important; align-items: center"
-                  >
-                    <input
-                      style="border-radius: 0px !important"
-                      type="file"
-                      class="form-control hidden"
-                      id="inputGroupFile01"
-                      name="profilePicture"
-                    />
-                  </div>
-                </div>
+                
                 <input
-                class="regInput"
+                  class="regInput"
                   type="password"
                   id="pwd"
-                  name="pwd"
+                  name="password"
                   required
                   placeholder="Password"
                 />
                 <input
-                class="regInput"
+                  class="regInput"
                   type="password"
                   id="confirmPwd"
-                  name="confirmPwd"
+                  name="confirmPassword"
                   required
                   placeholder="Confirm password"
-                  style="margin-left: 5px;"
+                  style="margin-left: 5px"
                 />
               </div>
-              <div class="chekckbox" style="margin-bottom: -30px;">
-                <input type="checkbox" name="termsAndConditions" id="checkbox" required />
+              <div class="chekckbox" style="margin-bottom: -30px">
+                <input
+                  type="checkbox"
+                  name="termsAndConditions"
+                  id="checkbox"
+                  required
+                />
                 <label class="checkbox-text"
                   >Accept our terms and conditions</label
                 >
@@ -613,8 +592,8 @@
           <!-- Right Overlay Start -->
           <div class="overlay overlay--right">
             <h3 class="overlay__heading">New Here ?</h3>
-            <p class="overlay__desc">Sign up and discover a great</p>
-            <p class="overlay__desc">amount of new fashion!</p>
+            <p class="overlay__desc">Sign up as a admin</p>
+            <p class="overlay__desc"></p>
             <button type="button" id="go-register" class="btn--main-outline">
               Sign Up
             </button>
@@ -623,15 +602,15 @@
 
           <!-- Left Overlay Start -->
           <div class="overlay overlay--left">
-            <h3 class="overlay__heading" style="color: #ffffff">Welcome</h3>
+            <h3 class="overlay__heading" style="color: #ffffff">Have an</h3>
             <h3
               class="overlay__heading"
               style="color: #ffffff; margin-top: -32px"
             >
-              Back!
+              account!
             </h3>
             <p class="overlay__desc" style="color: #ffffff">
-              To keep connected with us please with your personal info
+              Login with your credentials
             </p>
             <button type="button" id="go-login" class="btn--main-outline">
               Login
@@ -675,45 +654,46 @@
 
       const formEl = document.querySelector(".formLogin");
 
-      formEl.addEventListener('submit', event => {
+      formEl.addEventListener("submit", (event) => {
         event.preventDefault();
 
         const formData = new FormData(formEl);
         const data = Object.fromEntries(formData);
 
         //console.log(data);
-        fetch('https://reqres.in/api/users', {
-          method: 'POST',
+        fetch("https://reqres.in/api/users", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(data)
-        }).then(res => res.json())
-          .then(data => console.log(data))
-          .catch(err => console.log(err));
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data))
+          .catch((err) => console.log(err));
       });
 
       const formEl2 = document.querySelector(".formRegister");
 
-      formEl2.addEventListener('submit', event => {
+      formEl2.addEventListener("submit", (event) => {
         event.preventDefault();
 
         const formData = new FormData(formEl2);
         const data = Object.fromEntries(formData);
 
         //console.log(data);
-        fetch('https://reqres.in/api/users', {
-          method: 'POST',
+        fetch("https://reqres.in/api/users", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(data)
-        }).then(res => res.json())
-          .then(data => console.log(data))
-          .catch(err => console.log(err));
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data))
+          .catch((err) => console.log(err));
+
       });
-
-
     </script>
 
     <div class="container" style="max-width: 100% !important; padding: 0">

@@ -22,10 +22,27 @@
         list-style: none;
       }
       a {
-        text-decoration: none;
+        text-decoration: none !important;
       }
       .addBtn:hover {
         box-shadow: 4px 4px 0px #cccccc !important;
+        transform: scale(0.98);
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+      }
+
+      th,
+      td {
+        text-align: center;
+        padding: 8px;
+        color: #ffffff;
+        font-size: 16px;
+      }
+      .saveBtn:hover {
+        box-shadow: 4px 4px 0px #ffffff !important;
         transform: scale(0.98);
       }
     </style>
@@ -465,6 +482,87 @@
                   </div>
                 </button>
               </div>
+              <div
+                style="
+                  width: 90%;
+                  margin: auto;
+                  margin-top: 50px;
+                  margin-bottom: -10px;
+                "
+              >
+                <p
+                  style="
+                    font-size: 30px;
+                    font-weight: 600;
+                    color: #ffffff;
+                    text-align: center;
+                    letter-spacing: 1px;
+                  "
+                >
+                  Current products
+                </p>
+              </div>
+              <div
+                style="
+                  width: 90%;
+                  height: 3px;
+                  background-color: #ffffff;
+                  margin: auto;
+                  margin-bottom: 20px;
+                "
+              ></div>
+              <!-- loop this divition (class : tagItem) -->
+              <div
+                class="tagItem"
+                style="display: flex; width: 90%; margin: auto"
+              >
+                <div style="overflow-x: auto; padding-bottom: 40px">
+                  <table>
+                    <tr>
+                      <th style="min-width: 100px">Product Img 1</th>
+                      <th style="min-width: 100px">Product Img 2</th>
+                      <th style="min-width: 100px">Product Img 3</th>
+                      <th style="min-width: 200px">Product name</th>
+                      <th style="min-width: 200px">Description</th>
+                      <th style="min-width: 100px">Price (LKR)</th>
+                      <th style="min-width: 100px">Size</th>
+                      <th style="min-width: 100px">Quantity</th>
+                      <th style="min-width: 100px">Tags</th>
+                      <th style="min-width: 100px">Sets</th>
+                      <th style="min-width: 150px">Actions</th>
+                    </tr>
+                    <!-- loop this table row -->
+                    <tr>
+                      <td><img src="assets/mp16.jpg" width="90" alt="" /></td>
+                      <td><img src="assets/mp16.jpg" width="90" alt="" /></td>
+                      <td><img src="assets/mp16.jpg" width="90" alt="" /></td>
+                      <td>T-shirt 123</td>
+                      <td>T-shirt 123 description testing 12345</td>
+                      <td>1590</td>
+                      <td>Small</td>
+                      <td>100</td>
+                      <td>Tag1</td>
+                      <td>Set1</td>
+                      <td>
+                          <div>
+                            <img onclick="deleteItemMen();" style="cursor: pointer; margin: 8px;" src="assets/delete2.svg" alt="" /> 
+                            <img onclick="editItemMen();" style="cursor: pointer; margin: 8px;" src="assets/edit.svg" alt="">
+                          </div>
+                      </td>
+                    </tr>
+                    
+                  </table>
+                  
+                </div>
+              </div>
+              <script>
+                function deleteItemMen() {
+                    window.location.href = '#' ;
+                }
+                function editItemMen() {
+                    window.location.href = 'updateProduct.html';
+                }
+              </script>
             </div>
             <div
               class="tab-pane fade"
@@ -759,43 +857,88 @@
                   </div>
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
-        <div style="width: 90%; margin: auto; margin-top: 20px">
-          <p
-            style="
-              font-size: 40px;
-              font-weight: 600;
-              color: #203c55;
-              text-align: left;
-              letter-spacing: 1px;
-            "
-          >
-            Current sets
-          </p>
-        </div>
-        <div
-          style="
-            width: 90%;
-            height: 3px;
-            background-color: #203c55;
-            margin: auto;
-            margin-bottom: 20px;
-          "
-        ></div>
-        <!-- loop this divition (class : tagItem) -->
-        <div class="tagItem" style="display: flex; width: 90%; margin: auto">
-          <div style="width: 100%">
-            <div
-              style="display: flex; justify-content: space-between; width: 100%"
-            >
-              <p style="font-size: 22px; font-weight: 600; color: #203c55">
-                Set 1
-              </p>
-              <a href="#"
-                ><img src="assets/delete.svg" width="30px" alt=""
-              /></a>
+              <div
+                style="
+                  width: 90%;
+                  margin: auto;
+                  margin-top: 50px;
+                  margin-bottom: -10px;
+                "
+              >
+                <p
+                  style="
+                    font-size: 30px;
+                    font-weight: 600;
+                    color: #ffffff;
+                    text-align: center;
+                    letter-spacing: 1px;
+                  "
+                >
+                  Current products
+                </p>
+              </div>
+              <div
+                style="
+                  width: 90%;
+                  height: 3px;
+                  background-color: #ffffff;
+                  margin: auto;
+                  margin-bottom: 20px;
+                "
+              ></div>
+              <!-- loop this divition (class : tagItem) -->
+              <div
+                class="tagItem"
+                style="display: flex; width: 90%; margin: auto"
+              >
+                <div style="overflow-x: auto; padding-bottom: 40px">
+                  <table>
+                    <tr>
+                      <th style="min-width: 100px">Product Img 1</th>
+                      <th style="min-width: 100px">Product Img 2</th>
+                      <th style="min-width: 100px">Product Img 3</th>
+                      <th style="min-width: 200px">Product name</th>
+                      <th style="min-width: 200px">Description</th>
+                      <th style="min-width: 100px">Price (LKR)</th>
+                      <th style="min-width: 100px">Size</th>
+                      <th style="min-width: 100px">Quantity</th>
+                      <th style="min-width: 100px">Tags</th>
+                      <th style="min-width: 100px">Sets</th>
+                      <th style="min-width: 150px">Actions</th>
+                    </tr>
+                    <!-- loop this table row -->
+                    <tr>
+                      <td><img src="assets/wp26.jpg" width="90" alt="" /></td>
+                      <td><img src="assets/wp26.jpg" width="90" alt="" /></td>
+                      <td><img src="assets/wp26.jpg" width="90" alt="" /></td>
+                      <td>T-shirt 123</td>
+                      <td>T-shirt 123 description testing 12345</td>
+                      <td>1590</td>
+                      <td>Small</td>
+                      <td>100</td>
+                      <td>Tag1</td>
+                      <td>Set1</td>
+                      <td>
+                          <div>
+                            <img onclick="editItemWomen();" style="cursor: pointer; margin: 8px;" src="assets/delete2.svg" alt="" /> 
+                            <img onclick="editItemWomen();" style="cursor: pointer; margin: 8px;" src="assets/edit.svg" alt="">
+                          </div>
+                      </td>
+                    </tr>
+                    
+                    
+                  </table>
+                  
+                </div>
+              </div>
+              <script>
+                function deleteItemWomen() {
+                    window.location.href = '#' ;
+                }
+                function editItemWomen() {
+                  window.location.href = 'updateProduct.html';
+                }
+              </script>
             </div>
           </div>
         </div>
