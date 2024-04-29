@@ -309,21 +309,20 @@
                         updateCartDisplay(JSON.parse(localStorage.getItem("cart")));
                     })
                     .catch((error) => {
-                        console.error("Error loading cart:", error);
-                        alert("Failed to load cart data");
-                    });
-            });
+                            console.error("Error loading cart:", error);
+                            alert("Failed to load cart data")   ;
+                        });
+                });
 
             document
                 .getElementById("clear-cart")
                 .addEventListener("click", clearCart);
 
-                document.getElementById("proceed-to-checkout").addEventListener("click", function () {
-                    const cart = JSON.parse(localStorage.getItem("cart")) || { cart: [] };
-                    console.log(cart)
-                    const cartData = encodeURIComponent(JSON.stringify(cart));
-                    window.location.href = `checkout.jsp?cartData=${cartData}`;
-                });
+            document.getElementById("proceed-to-checkout").addEventListener("click", function () {
+                window.location.href = 'http://localhost:8080/web/checkout.jsp';
+            });
+
+
 
             window.onload = function() {
 

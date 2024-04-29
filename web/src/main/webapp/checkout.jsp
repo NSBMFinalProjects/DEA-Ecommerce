@@ -1,8 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.Optional" %>
-<%@ page import="nsbm.dea.web.dao.UserDAO" %>
-<%@ page import="nsbm.dea.web.models.User" %>
+<%@ page import="org.json.JSONObject" %>
+<%@ page import="org.json.JSONArray" %>
+<%@ page import="org.json.JSONObject, org.json.JSONArray" %>
+<%@ page import="java.util.stream.Collectors" %>
+
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -59,6 +61,11 @@
             font-size: 18px;
             font-weight: 600;
         }
+        .itemQuantity {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
         .itemPrice {
             color: white;
             font-size: 18px;
@@ -79,60 +86,63 @@
 <section
         class="viewportCheckout"
         style="
-        width: 100%;
-        display: flex;
-        background-color: #e7e7e7;
-        padding: 50px 0px 50px 0px;
-      "
+                width: 100%;
+                display: flex;
+                background-color: #e7e7e7;
+                padding: 50px 0px 50px 0px;
+            "
 >
     <div
             style="
-          width: 80%;
-          background-color: #203c55;
-          margin: auto;
-          box-shadow: 10px 10px 0px #ffffff;
-          padding: 40px;
-        "
+                width: 80%;
+                background-color: #203c55;
+                margin: auto;
+                box-shadow: 10px 10px 0px #ffffff;
+                padding: 40px;
+                "
     >
         <p style="font-size: 40px; color: #ffffff; font-weight: 600">
             Checkout
         </p>
         <p
                 style="
-            font-size: 20px;
-            color: #ffffff;
-            font-weight: normal;
-            margin-top: -20px;
-          "
+                    font-size: 20px;
+                    color: #ffffff;
+                    font-weight: normal;
+                    margin-top: -20px;
+                "
         >
             Enter your checkout details to purchase
         </p>
-        <form>
+        <form id="checkoutForm">
             <div style="display: flex">
                 <div class="inputFieldContainer">
-                    <p class="inputHeadding">First Name:</p>
+                    <p class="inputHeadding">Province:</p>
                     <input
                             type="text"
+                            id="province"
                             class="inputField"
-                            placeholder="  Enter your first name"
+                            placeholder="  Enter your Province"
                     />
                 </div>
                 <div class="inputFieldContainer">
-                    <p class="inputHeadding">Last Name:</p>
+                    <p class="inputHeadding">city:</p>
                     <input
                             type="text"
+                            id="city"
                             class="inputField"
-                            placeholder="  Enter your last name"
+                            placeholder="  Enter your city name"
                     />
                 </div>
             </div>
             <div style="display: flex">
                 <div class="inputFieldContainer">
-                    <p class="inputHeadding">Contact number:</p>
+                    <p class="inputHeadding">Postal Code:</p>
                     <input
                             type="text"
+                            id="postal"
                             class="inputField"
-                            placeholder="  Enter your contact number"
+                            placeholder="  Enter your postal address"
                     />
                 </div>
                 <div class="inputFieldContainer">
@@ -149,6 +159,7 @@
                     <p class="inputHeadding">Address:</p>
                     <input
                             type="text"
+                            id="address"
                             class="inputField"
                             style="width: 100%"
                             placeholder="  Enter your shipping address"
@@ -158,21 +169,21 @@
 
             <p
                     style="
-              font-size: 30px;
-              color: #ffffff;
-              font-weight: 600;
-              margin-top: 20px;
-            "
+                    font-size: 30px;
+                    color: #ffffff;
+                    font-weight: 600;
+                    margin-top: 20px;
+                    "
             >
                 Note:
             </p>
             <p
                     style="
-              font-size: 18px;
-              color: #ffffff;
-              font-weight: normal;
-              margin-top: -15px;
-            "
+                    font-size: 18px;
+                    color: #ffffff;
+                    font-weight: normal;
+                    margin-top: -15px;
+                    "
             >
                 Payment method:Cash On Delivery. <br />
                 Order will delivered within 2 to 4 business days across island wide.
@@ -180,21 +191,21 @@
 
             <div
                     style="
-              display: flex;
-              height: 100%;
-              width: 100%;
-              align-items: center;
-            "
+                    display: flex;
+                    height: 100%;
+                    width: 100%;
+                    align-items: center;
+                    "
             >
                 <input type="checkbox" value="checkbox" />
                 <p
                         style="
-                font-size: 14px;
-                margin-left: 20px;
-                margin-top: 15px;
-                font-weight: bold;
-                color: white;
-              "
+                        font-size: 14px;
+                        margin-left: 20px;
+                        margin-top: 15px;
+                        font-weight: bold;
+                        color: white;
+                    "
                 >
                     Accept our terms and conditions
                 </p>
@@ -202,147 +213,37 @@
 
             <div
                     style="
-              width: 100%;
-              height: 5px;
-              margin-bottom: 30px;
-              background-color: #ffffff;
-            "
+                    width: 100%;
+                    height: 5px;
+                    margin-bottom: 30px;
+                    background-color: #ffffff;
+                    "
             ></div>
 
-            <div>
-                <div class="itemContainer">
-                    <p class="itemName">item 1</p>
-                    <p class="itemPrice">LKR 2490</p>
-                </div>
-                <div class="itemContainer">
-                    <p class="itemName">item 2</p>
-                    <p class="itemPrice">LKR 2490</p>
-                </div>
-                <div class="itemContainer">
-                    <p class="itemName">item 3</p>
-                    <p class="itemPrice">LKR 2490</p>
-                </div>
-            </div>
+            <div id="cartItems"></div>
 
             <div style="display: flex; justify-content: space-between">
-                <p
-                        style="
-                font-size: 18px;
-                color: #ffffff;
-                font-weight: 600;
-                margin-top: 20px;
-              "
-                >
-                    Subtotal
-                </p>
-                <p
-                        style="
-                font-size: 18px;
-                color: #ffffff;
-                font-weight: 600;
-                margin-top: 20px;
-              "
-                >
-                    LKR 5000
-                </p>
-            </div>
-            <div
-                    style="
-              display: flex;
-              justify-content: space-between;
-              margin-top: -35px;
-            "
-            >
-                <p
-                        style="
-                font-size: 18px;
-                color: #ffffff;
-                font-weight: 600;
-                margin-top: 20px;
-              "
-                >
-                    Tax
-                </p>
-                <p
-                        style="
-                font-size: 18px;
-                color: #ffffff;
-                font-weight: 600;
-                margin-top: 20px;
-              "
-                >
-                    -LKR 500
-                </p>
+                <p class="subtotal" style="font-size: 18px; color: #ffffff; font-weight: 600; margin-top: 20px;">Subtotal</p>
+                <p class="subtotalValue" style="font-size: 18px; color: #ffffff; font-weight: 600; margin-top: 20px;">LKR 0</p>
             </div>
 
-            <div
-                    style="
-              width: 100%;
-              height: 5px;
-              margin-bottom: 30px;
-              background-color: #ffffff;
-            "
-            ></div>
+            <div style="width: 100%; height: 5px; margin-bottom: 30px; background-color: #ffffff;"></div>
 
-            <div
-                    style="
-              display: flex;
-              justify-content: space-between;
-              margin-top: -35px;
-            "
-            >
-                <p
-                        style="
-                font-size: 24px;
-                color: #ffffff;
-                font-weight: 600;
-                margin-top: 20px;
-              "
-                >
-                    Total
-                </p>
-                <p
-                        style="
-                font-size: 24px;
-                color: #ffffff;
-                font-weight: 600;
-                margin-top: 20px;
-              "
-                >
-                    LKR 4500
-                </p>
+            <div style="display: flex; justify-content: space-between; margin-top: -35px;">
+                <p class="total" style="font-size: 24px; color: #ffffff; font-weight: 600; margin-top: 20px;">Total</p>
+                <p class="totalValue" style="font-size: 24px; color: #ffffff; font-weight: 600; margin-top: 20px;">LKR 0</p>
             </div>
+
+
 
             <div style="width: 80%; padding: 20px; margin-left: auto; margin-right: auto; margin-top: 50px; background-color: #e7e7e7">
-                <a href="#"
-                ><div
-                        class="buttonCommon"
-                        style="
-                  background-color: #203c55;
-                  width: 80%;
-                  color: white;
-                  font-size: 22px;
-                  font-weight: bold;
-                  padding-left: 15px;
-                  padding-right: 15px;
-                  box-shadow: 6px 6px 0px #ffffff;
-                  transition: 0.4s ease-in-out;
-                  margin-left: auto;
-                  margin-right: auto;
-                  margin-top: 20px;
-                "
-                >
+                <button id="checkoutButton" class="buttonCommon" style="background-color: #203c55; width: 80%; color: white; font-size: 22px; font-weight: bold; padding-left: 15px; padding-right: 15px; box-shadow: 6px 6px 0px #ffffff; transition: 0.4s ease-in-out; margin-left: auto; margin-right: auto; margin-top: 20px;">
                     <center>
-                        <p
-                                class="pe-none"
-                                style="padding-top: 5px; padding-bottom: 5px"
-                        >
-                            Checkout
-                        </p>
+                        <p class="pe-none" style="padding-top: 5px; padding-bottom: 5px">Checkout</p>
                     </center>
-                </div></a
-                >
+                </button>
             </div>
+
         </form>
     </div>
 </section>
@@ -351,5 +252,123 @@
 <%@include file="footer.html"%>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const cartData = JSON.parse(localStorage.getItem("cart")) || { cart: [] };
+        console.log(cartData);
+
+        function populateCartItems(cart) {
+            const cartItemsContainer = document.getElementById("cartItems");
+            cart.cart.forEach(item => {
+                const itemContainer = document.createElement("div");
+                itemContainer.classList.add("itemContainer");
+
+                const itemName = document.createElement("p");
+                itemName.classList.add("itemName");
+                itemName.textContent = item.title;
+
+                const itemQuantity = document.createElement("p");
+                itemQuantity.classList.add("itemQuantity");
+                itemQuantity.textContent = item.quantity;
+
+                const itemPrice = document.createElement("p");
+                itemPrice.classList.add("itemPrice");
+                itemPrice.textContent = item.price;
+
+                itemContainer.appendChild(itemName);
+                itemContainer.appendChild(itemQuantity);
+                itemContainer.appendChild(itemPrice);
+
+                cartItemsContainer.appendChild(itemContainer);
+            });
+        }
+
+        function calculateAndDisplayTotals(cart) {
+            let subtotal = 0;
+            cart.cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+
+            const formattedSubtotal = subtotal.toFixed(2);
+
+
+            document.querySelectorAll(".subtotalValue").forEach(el => el.textContent = formattedSubtotal);
+
+            document.querySelectorAll(".totalValue").forEach(el => el.textContent = formattedSubtotal);
+        }
+
+
+        populateCartItems(cartData);
+        calculateAndDisplayTotals(cartData);
+    });
+
+
+
+
+    document.getElementById('checkoutButton').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const form = document.getElementById('checkoutForm');
+        const formData = new FormData(form);
+
+        const data = {};
+        for (const [key, value] of formData.entries()) {
+            data[key] = value;
+        }
+
+        const cartDataString = localStorage.getItem("cart");
+        let cartDataArray = [];
+        if (cartDataString) {
+
+            cartDataArray = JSON.parse(cartDataString).cart;
+        }
+
+
+        data.cartData = cartDataArray;
+
+        const provinceInput = document.getElementById('province');
+        const cityInput = document.getElementById('city');
+        const postalInput = document.getElementById('postal');
+        const addressInput = document.getElementById('address');
+
+        data.province = provinceInput.value;
+        data.city = cityInput.value;
+        data.postal = postalInput.value;
+        data.address = addressInput.value;
+
+        console.log(data);
+        const jsonData = JSON.stringify(data);
+
+        const url = "http://localhost:8080/web/orders/create";
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: jsonData,
+        })
+            .then(response => {
+                // Check if the response is ok (status in the range 200-299)
+                if (!response.ok) {
+                    // If not ok, throw an error to be caught in the catch block
+                    throw new Error('Network response was not ok');
+                }
+                // If ok, parse the response as JSON
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+
+    });
+
+</script>
+
 </body>
 </html>
