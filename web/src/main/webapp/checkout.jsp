@@ -334,7 +334,7 @@
 
         data.province = provinceInput.value;
         data.city = cityInput.value;
-        data.postal = postalInput.value;
+        data.postalCode = postalInput.value;
         data.address = addressInput.value;
 
         console.log(data);
@@ -350,12 +350,7 @@
             body: jsonData,
         })
             .then(response => {
-                // Check if the response is ok (status in the range 200-299)
-                if (!response.ok) {
-                    // If not ok, throw an error to be caught in the catch block
-                    throw new Error('Network response was not ok');
-                }
-                // If ok, parse the response as JSON
+                response.text().then(text => console.log(text));
                 return response.json();
             })
             .then(data => {
@@ -364,7 +359,6 @@
             .catch((error) => {
                 console.error('Error:', error);
             });
-
 
     });
 
