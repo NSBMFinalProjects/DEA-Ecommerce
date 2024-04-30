@@ -53,12 +53,12 @@
               <a class="nav-link" href="#">Shop</a>
             </li>
             <li class="nav-item px-3 m-auto">
-              <a class="nav-link" href="loginSignup.jsp">Contact</a>
+              <a class="nav-link" href="loginSignup.jsp">Login</a>
             </li>
             <li class="nav-item px-3 m-auto">
-              <a class="nav-link" href="#" style="color: rgb(255, 83, 83);">LOGOUT</a>
+              <button class="btn btn-danger" onclick="logout()" style="color: rgb(255, 83, 83);">LOGOUT</button>
             </li>
-            
+
           </ul>
         </div>
       </div>
@@ -69,5 +69,22 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script>
+      function logout() {
+        fetch('http://localhost:8081/admin/auth/logout', {
+          method: 'POST',
+          credentials: 'include'
+        })
+          .then(response => {
+            if (response.ok) {
+              alert("admin is logout");
+              window.location.href = 'http://localhost:8081/admin/loginSignup.jsp';
+            } else {
+              console.error('Logout failed');
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      }
+    </script>
   </body>
 </html>

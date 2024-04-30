@@ -47,12 +47,13 @@ public class Logout extends HttpServlet {
       e.printStackTrace();
       Auth.removeAuthCookies(request, response);
       Lib.sendJSONResponse(response, HttpServletResponse.SC_UNAUTHORIZED, Status.UNAUTHORIZED,
-          "unable to logout the user");
+              "unable to logout the user");
     } catch (Exception e) {
       e.printStackTrace();
       Lib.sendJSONResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Status.INTERNAL_SERVER_ERROR,
-          "something went wrong");
+              "something went wrong");
       return;
     }
   }
+
 }
