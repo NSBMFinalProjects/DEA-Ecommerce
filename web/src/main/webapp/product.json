@@ -1,11 +1,8 @@
 {
     "id": 40,
-    "serchkey": "id-categoyid-colorid",
     "title": "Tshirts",
-    "slug": "T-shirt",
     "price": 100.26,
     "quantity": 12,
-    "subTotal": 1203.12,
     "categoy": {
         "id": 39,
         "title": "Large",

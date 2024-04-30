@@ -151,7 +151,7 @@
               aria-labelledby="fill-tab-0"
               style="color: #ffffff"
             >
-              <form class="addMen">
+              <form class="addMen" id="productForm">
                 <div style="width: 100%; padding: 20px 20px 20px 20px">
                   <p style="color: #ffffff; font-weight: 600">Product name :</p>
                   <input
@@ -271,6 +271,7 @@
                         style="border-radius: 0 !important"
                         type="text"
                         class="form-control"
+                        name="price"
                         aria-label="Amount (to the nearest dollar)"
                         placeholder="Enter price"
                       />
@@ -310,9 +311,9 @@
                     </p>
                     <div class="input-group" style="margin-top: -10px">
                       <select
-                        class="form-select"
-                        id="inputGroupSelect01"
-                        style="border-radius: 0"
+                              class="form-select"
+                              id="sizeSelect"
+                              style="border-radius: 0"
                       >
                         <option selected>Choose size</option>
                         <option value="1">Small</option>
@@ -326,15 +327,11 @@
                       Product color :
                     </p>
                     <div class="input-group" style="margin-top: -10px">
-                      <select
-                        class="form-select"
-                        id="inputGroupSelect01"
-                        style="border-radius: 0"
-                      >
+                      <select class="form-select" id="colorSelect" style="border-radius: 0">
                         <option selected>Choose color</option>
-                        <option value="1">Red</option>
-                        <option value="2">Blue</option>
-                        <option value="3">Black</option>
+                        <option value="1" data-hex="#FF0000">Red</option>
+                        <option value="2" data-hex="#0000FF">Blue</option>
+                        <option value="3" data-hex="#000000">Black</option>
                       </select>
                     </div>
                   </div>
@@ -700,17 +697,19 @@
                     </p>
                     <div class="input-group" style="margin-top: -10px">
                       <select
-                        class="form-select"
-                        id="inputGroupSelect01"
-                        style="border-radius: 0"
+                              class="form-select"
+                              id="sizeSelect"
+                      style="border-radius: 0"
                       >
-                        <option selected>Choose size</option>
-                        <option value="1">Small</option>
-                        <option value="2">Medium</option>
-                        <option value="3">Large</option>
+                      <option selected>Choose size</option>
+                      <option value="1">Small</option>
+                      <option value="2">Medium</option>
+                      <option value="3">Large</option>
                       </select>
                     </div>
                   </div>
+
+                </div>
                   <div style="width: 49%">
                     <p style="color: #ffffff; font-weight: 600">
                       Product color :
@@ -929,46 +928,68 @@
     </section>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const formEl = document.querySelector(".addMen");
-        formEl.addEventListener("submit", (event) => {
-          event.preventDefault();
+      document.getElementById('productForm').addEventListener('submit', function(event) {
+        event.preventDefault();
 
-          const formData = new FormData(formEl);
-          const data = Object.fromEntries(formData);
+        const formData = new FormData(event.target);
+        const colorSelect = document.getElementById('colorSelect');
+        const selectedColorOption = colorSelect.options[colorSelect.selectedIndex];
+        const selectedColorHex = selectedColorOption.getAttribute('data-hex');
 
-          fetch("http://localhost:8080/web/auth/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          })
-            .then((res) => res.json())
-            .then((data) => console.log(data))
-            .catch((err) => console.log(err));
-        });
 
-        const formEl2 = document.querySelector(".addWomen");
-        formEl.addEventListener("submit", (event) => {
-          event.preventDefault();
+        const sizeSelect = document.getElementById('sizeSelect');
+        const selectedSize = sizeSelect.options[sizeSelect.selectedIndex];
 
-          const formData = new FormData(formEl);
-          const data = Object.fromEntries(formData);
 
-          fetch("http://localhost:8080/web/auth/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          })
-            .then((res) => res.json())
-            .then((data) => console.log(data))
-            .catch((err) => console.log(err));
-        });
+        const product = {
+          name: formData.get('name'),
+          photo_urls: [
+            formData.get('productImage1'),
+            formData.get('productImage2'),
+            formData.get('productImage3')
+          ],
+          description: formData.get('description'),
+          price: formData.get('price'),
+          categories: [
+            {
+              name: selectedSize.text,
+              colors: [
+                {
+                  name: selectedColorOption.text,
+                  qty: formData.get('quantity'),
+                  hex: selectedColorHex
+                }
+              ]
+            }
+          ],
+          tags: [4],
+          collections: [1]
+        };
+        console.log(product)
+        const productJson = JSON.stringify(product);
+
+        fetch('http://localhost:8081/admin/products/create', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: productJson
+        })
+                .then(response => {
+                  console.log(response);
+                  return response.json();
+                })
+                .then(data => {
+                  console.log('Success:', data);
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                });
       });
+
     </script>
+
 
     <%@include file="footerAdmin.html"%>
 

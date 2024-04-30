@@ -350,7 +350,7 @@
             body: jsonData,
         })
             .then(response => {
-                response.text().then(text => console.log(text));
+                console.log(response);
                 return response.json();
             })
             .then(data => {

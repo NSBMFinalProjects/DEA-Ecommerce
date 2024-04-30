@@ -15,7 +15,6 @@
     <title>Document</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
@@ -37,47 +36,29 @@
 
 <section style="background-color: #e7e7e7">
     <div style="width: 100%;">
-<%--        <div class="sidebar">--%>
-<%--            <p style="font-size: 30px;">Women Wear</p>--%>
-<%--            <p>Search:</p>--%>
-<%--            <form id="searchForm" action="search.jsp" method="get">--%>
-<%--                <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Search products...">--%>
-<%--                <button type="submit" class="btn btn-primary">Search</button>--%>
-<%--            </form>--%>
-<%--        </div>--%>
+        <div style="background-color: #d9d9d9; box-shadow: 10px 10px 0px #ffffff; width: 80%; margin: auto; margin-bottom: 15px; padding: 20px 40px 20px 40px;">
+            <div style="background-color: #203c55; width: 100%; margin-bottom:10px; height: fit-content; display: flex; align-items: center; padding: 5px 0px 5px 0px;"><p style="font-size: 24px; margin: auto; width: 100%; height: 100%; text-align: center; font-weight: bold; color: #ffffff;">SHOP WOMEN</p></div>
+            <form id="searchForm" action="search.jsp" method="get" style="display: flex">
+                <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Search products..." style="margin-right: 20px; border-radius: 0px;">
+                <button type="submit" class="btn btn-primary" style="background-color: #203c55 !important; border-radius: 0px !important; border: none !important;">Search</button>
+            </form>
+        </div>
 
-            <div style="background-color: #d9d9d9; box-shadow: 10px 10px 0px #ffffff; width: 80%; margin: auto; margin-bottom: 15px; padding: 20px 40px 20px 40px;">
-                <div style="background-color: #203c55; width: 100%; margin-bottom:10px; height: fit-content; display: flex; align-items: center; padding: 5px 0px 5px 0px;"><p style="font-size: 24px; margin: auto; width: 100%; height: 100%; text-align: center; font-weight: bold; color: #ffffff;">SHOP WOMEN</p></div>
-                <form id="searchForm" action="search.jsp" method="get" style="display: flex">
-                    <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Search products..." style="margin-right: 20px; border-radius: 0px;">
-                    <button type="submit" class="btn btn-primary" style="background-color: #203c55 !important; border-radius: 0px !important; border: none !important;">Search</button>
-                </form>
-            </div>
-
-            <div id="productContainer" style="background-color: #e7e7e7; width: 80%; margin: auto; height: fit-content; padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-around;">
-                <%
-                    ProductDAO productDao = new ProductDAO();
-                    List<Product> maleProducts = productDao.getProductsByCollection("women");
-                    for (Product product : maleProducts) {
-                %>
-                <div class="productCard" style="margin-bottom: 20px; cursor: pointer;" onclick="redirectToProductDetails('<%= product.getId() %>')">
-                    <div class="productInfo">
-                        <img src="<%= product.getPhotoUrls()[0] %>" alt="" style="width: 100%; height: auto;" />
-                    </div>
-                    <p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;"><%= product.getName() %></p>
-                    <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs: <%= product.getPrice() %></p>
+        <div id="productContainer" style="background-color: #e7e7e7; width: 80%; margin: auto; height: fit-content; padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-around;">
+            <%
+                ProductDAO productDao = new ProductDAO();
+                List<Product> maleProducts = productDao.getProductsByCollection("women");
+                for (Product product : maleProducts) {
+            %>
+            <div class="productCard" style="margin-bottom: 20px; cursor: pointer;" onclick="redirectToProductDetails('<%= product.getSlug() %>')">
+                <div class="productInfo">
+                    <img src="<%= product.getPhotoUrls()[0] %>" alt="" style="width: 100%; height: auto;" />
                 </div>
-
-                <script>
-                    function redirectToProductDetails(productId) {
-                        window.location.href = 'productDetails.jsp?id=' + productId;
-                    }
-                </script>
-
-                <% } %>
+                <p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;"><%= product.getName() %></p>
+                <p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs: <%= product.getPrice() %></p>
             </div>
-
-
+            <% } %>
+        </div>
     </div>
 </section>
 
@@ -85,11 +66,17 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
+    var BASE_URL = 'http://localhost:8080/web';
+    function redirectToProductDetails(productSlug) {
+        window.location.href = BASE_URL+'/product/' + encodeURIComponent(productSlug);
+    }
+
     function searchProducts() {
         var searchTerm = $('#searchTerm').val();
         $.ajax({
-            url: "http://localhost:8080/web/search.jsp",
+            url: "http://localhost:8080/web/search.jsp", // Assuming you have a REST API endpoint here
             type: 'GET',
             data: {searchTerm: searchTerm},
             success: function (response) {
@@ -97,7 +84,7 @@
                 var productContainer = $('#productContainer');
                 productContainer.empty();
                 products.forEach(function (product) {
-                    var productCard = $('<div class="productCard" style="margin-bottom: 20px;" onclick="redirectToProductDetails(' + product.id + ')"></div>');
+                    var productCard = $('<div class="productCard" style="margin-bottom: 20px;" onclick="redirectToProductDetails(\'' + product.slug + '\')"></div>');
                     productCard.append('<div class="productInfo"><img src="' + product.photoUrls[0] + '" alt="" style="width: 100%; height: auto;" /></div>');
                     productCard.append('<p style="color: #203c55; font-size: 20px; font-weight: bold; margin-top: 30px;">' + product.name + '</p>');
                     productCard.append('<p style="color: #203c55; font-size: 18px; font-weight: normal; margin-top: -15px;">Rs ' + product.price + '</p>');
@@ -109,9 +96,7 @@
             }
         });
     }
-    function redirectToProductDetails(productId) {
-        window.location.href = 'productDetails.jsp?id=' + productId;
-    }
+
     $('#searchForm').on('submit', function (e) {
         e.preventDefault();
         searchProducts();
