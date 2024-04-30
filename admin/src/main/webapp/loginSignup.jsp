@@ -428,15 +428,15 @@
           <div style="margin-top: 50px; margin-bottom: 60px">
             <input
                     type="text"
-                    name="username"
-                    id="username"
+                    name="email"
+                    id="emails"
                     placeholder="Enter your Email"
                     required
             />
             <br />
             <input
                     type="password"
-                    id="pwd"
+                    id="pwds"
                     name="password"
                     placeholder="Enter your password"
                     required
@@ -613,7 +613,7 @@
     const data = Object.fromEntries(formData);
 
     //console.log(data);
-    fetch("https://reqres.in/api/users", {
+    fetch("http://localhost:8081/admin/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -634,7 +634,7 @@
     const data = Object.fromEntries(formData);
 
     //console.log(data);
-    fetch("https://reqres.in/api/users", {
+    fetch("http://localhost:8081/admin/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
