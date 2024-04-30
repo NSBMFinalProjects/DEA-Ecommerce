@@ -1,9 +1,19 @@
+<%@ page import="nsbm.dea.admin.model.Admin" %>
+<%@ page import="nsbm.dea.admin.dao.AdminDAO" %>
+<%@ page import="java.util.Optional" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
+  <%
+//    Admin admin = ((Admin) request.getSession().getServletContext().getAttribute("admin"));
+    AdminDAO adminDAO=new AdminDAO();
+    Optional<Admin> adminOptional=adminDAO.getByID("01HWQ9GEK65HVN3V4TTZZ52AYK");
+    Admin admin1 = adminOptional.orElse(null);
+  %>
 
   <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -333,11 +343,12 @@
   <div
           style="width: 90%; height: 3px; background-color: #203c55; margin: auto"
   ></div>
+
   <div style="display: flex; width: 90%; margin: auto">
     <div>
       <div
               style="
-              background-image: url(assets/profilePlaceholder.jpg);
+              background-image:
               background-size: cover;
               width: 250px;
               height: 250px;
@@ -347,6 +358,7 @@
             "
       ></div>
     </div>
+
     <div style="width: 100%; margin-top: 20px">
       <div
               style="
@@ -360,7 +372,7 @@
           First Name :
         </p>
         <p style="font-size: 22px; font-weight: 600; color: #203c55">
-          Kavindu
+          <%=admin1.getName()%>
         </p>
       </div>
       <div
@@ -375,7 +387,7 @@
           Last Name :
         </p>
         <p style="font-size: 22px; font-weight: 600; color: #203c55">
-          Dilshan
+          <%=admin1.getUsername()%>
         </p>
       </div>
       <div
@@ -390,7 +402,7 @@
           Admin Email :
         </p>
         <p style="font-size: 22px; font-weight: 600; color: #203c55">
-          Kavindu.a@bloomclothing.com
+          <%=admin1.getEmail()%>
         </p>
       </div>
 

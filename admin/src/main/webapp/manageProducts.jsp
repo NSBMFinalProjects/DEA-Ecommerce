@@ -181,7 +181,7 @@
                 >
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product URL 1 :
+                      Product Img URL 1 :
                     </p>
                     <div class="input-group mb-3">
                       <input
@@ -196,7 +196,7 @@
                   </div>
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product URL 2 :
+                      Product Img URL 2 :
                     </p>
                     <div class="input-group mb-3">
                       <input
@@ -211,7 +211,7 @@
                   </div>
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product URL 3 :
+                      Product Img URL 3 :
                     </p>
                     <div class="input-group mb-3">
                       <input
@@ -940,29 +940,32 @@
 
 
         const product = {
-          name: formData.get('name'),
-          photo_urls: [
-            formData.get('productImage1'),
-            formData.get('productImage2'),
-            formData.get('productImage3')
-          ],
-          description: formData.get('description'),
-          price: formData.get('price'),
-          categories: [
-            {
-              name: selectedSize.text,
-              colors: [
-                {
-                  name: selectedColorOption.text,
-                  qty: formData.get('quantity'),
-                  hex: selectedColorHex
-                }
-              ]
-            }
-          ],
-          tags: [4],
-          collections: [1]
+          product: {
+            name: formData.get('name'),
+            photo_urls: [
+              formData.get('productURL1'),
+              formData.get('productURL2'),
+              formData.get('productURL3')
+            ],
+            description: formData.get('description'),
+            price: formData.get('price'),
+            categories: [
+              {
+                name: selectedSize.text,
+                colors: [
+                  {
+                    name: selectedColorOption.text,
+                    qty: formData.get('quantity'),
+                    hex: selectedColorHex
+                  }
+                ]
+              }
+            ],
+            tags: [4],
+            collections: [1]
+          }
         };
+
         console.log(product)
         const productJson = JSON.stringify(product);
 
