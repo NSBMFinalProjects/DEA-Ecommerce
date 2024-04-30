@@ -181,43 +181,46 @@
                 >
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product image 1 :
+                      Product URL 1 :
                     </p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
-                        type="file"
+                        type="text"
                         class="form-control"
-                        id="inputGroupFile01"
-                        name="productImage1"
+                        id=""
+                        name="productURL1"
+                        placeholder="Enter prodcut URL 1"
                       />
                     </div>
                   </div>
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product image 2 :
+                      Product URL 2 :
                     </p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
-                        type="file"
+                        type="text"
                         class="form-control"
-                        id="inputGroupFile01"
-                        name="productImage2"
+                        id=""
+                        name="productURL2"
+                        placeholder="Enter prodcut URL 2"
                       />
                     </div>
                   </div>
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product image 3 :
+                      Product URL 3 :
                     </p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
-                        type="file"
+                        type="text"
                         class="form-control"
-                        id="inputGroupFile01"
-                        name="productImage3"
+                        id=""
+                        name="productURL3"
+                        placeholder="Enter prodcut URL 3"
                       />
                     </div>
                   </div>
@@ -566,45 +569,46 @@
                     justify-content: space-between;
                   "
                 >
+                <div style="width: 32%">
+                  <p style="color: #ffffff; font-weight: 600">Product URL 1 :</p>
+                  <div class="input-group mb-3">
+                    <input
+                      style="border-radius: 0; margin-top: -10px"
+                      type="text"
+                      class="form-control"
+                      id=""
+                      name="productURL1"
+                      placeholder="Enter prodcut URL 1"
+                    />
+                  </div>
+                </div>
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product image 1 :
+                      Product URL 2 :
                     </p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
-                        type="file"
+                        type="text"
                         class="form-control"
-                        id="inputGroupFile01"
-                        name="productImage1"
+                        id=""
+                        name="productURL2"
+                        placeholder="Enter image URL 2"
                       />
                     </div>
                   </div>
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product image 2 :
+                      Product URL 3 :
                     </p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
-                        type="file"
+                        type="text"
                         class="form-control"
-                        id="inputGroupFile01"
-                        name="productImage2"
-                      />
-                    </div>
-                  </div>
-                  <div style="width: 32%">
-                    <p style="color: #ffffff; font-weight: 600">
-                      Product image 3 :
-                    </p>
-                    <div class="input-group mb-3">
-                      <input
-                        style="border-radius: 0; margin-top: -10px"
-                        type="file"
-                        class="form-control"
-                        id="inputGroupFile01"
-                        name="productImage3"
+                        id=""
+                        name="productURL3"
+                        placeholder="Enter image URL 3"
                       />
                     </div>
                   </div>
@@ -697,9 +701,9 @@
                     </p>
                     <div class="input-group" style="margin-top: -10px">
                       <select
-                              class="form-select"
-                              id="sizeSelect"
-                      style="border-radius: 0"
+                            class="form-select"
+                            id="sizeSelect"
+                            style="border-radius: 0"
                       >
                       <option selected>Choose size</option>
                       <option value="1">Small</option>
@@ -708,18 +712,12 @@
                       </select>
                     </div>
                   </div>
-
-                </div>
                   <div style="width: 49%">
                     <p style="color: #ffffff; font-weight: 600">
                       Product color :
                     </p>
                     <div class="input-group" style="margin-top: -10px">
-                      <select
-                        class="form-select"
-                        id="inputGroupSelect01"
-                        style="border-radius: 0"
-                      >
+                      <select class="form-select" id="inputGroupSelect01" style="border-radius: 0">
                         <option selected>Choose color</option>
                         <option value="1">Red</option>
                         <option value="2">Blue</option>
