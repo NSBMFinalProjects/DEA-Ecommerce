@@ -73,6 +73,9 @@ public class Product {
     this.modified = modified;
     this.categories = categories;
   }
+  public Product(String name) {
+    this.name = name;
+  }
 
   public int getId() {
     return id;
