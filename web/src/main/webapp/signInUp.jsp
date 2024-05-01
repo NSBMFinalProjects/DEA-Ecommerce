@@ -1,3 +1,14 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="jakarta.servlet.http.*" %>
+<%
+  HttpSession session2 = request.getSession(false);
+  String refreshToken = (String) session2.getAttribute("refresh_token");
+  String accessToken = (String) session2.getAttribute("access_token");
+
+  if (session2 != null) {
+    response.sendRedirect("userProfile.jsp");
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -651,7 +662,18 @@
             body: JSON.stringify(data),
           })
             .then((res) => res.json())
-            .then((data) => console.log(data))
+                  .then((data) => {
+                    console.log(data);
+                    const status = data.status;
+                    const message = data.message;
+                    var BASE_URL = 'http://localhost:8080/web';
+                    if(status === 'OK'){
+                      window.location.href = BASE_URL + '/index.jsp';
+                    }else{
+                      alert("Status: " + status + "\nMessage: " + message);
+                    }
+
+                  })
             .catch((err) => console.log(err));
         });
 
@@ -675,7 +697,13 @@
               console.log(data);
               const status = data.status;
               const message = data.message;
-              alert("Status: " + status + "\nMessage: " + message);
+              var BASE_URL = 'http://localhost:8080/web';
+              if(status === 'OK'){
+                window.location.href = BASE_URL + '/signInUp.jsp';
+              }else{
+                alert("Status: " + status + "\nMessage: " + message);
+              }
+
             })
             .catch((err) => console.log(err));
         });

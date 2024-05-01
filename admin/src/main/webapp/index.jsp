@@ -9,9 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
   <%
-//    Admin admin = ((Admin) request.getSession().getServletContext().getAttribute("admin"));
+    //Admin admin = ((Admin) request.getSession().getServletContext().getAttribute("admin"));
     AdminDAO adminDAO=new AdminDAO();
-    Optional<Admin> adminOptional=adminDAO.getByID("01HWQ9GEK65HVN3V4TTZZ52AYK");
+    Optional<Admin> adminOptional=adminDAO.getByID("01HW22G201ZST1WPFHWMT5R0Y3");
     Admin admin1 = adminOptional.orElse(null);
   %>
 
