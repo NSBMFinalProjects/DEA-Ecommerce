@@ -45,7 +45,7 @@
                         <img src="<%= user.getPhotoURL() %>" style="width: auto" alt="User's Photo">
                     </div>
                     <div class="logoutBtn" style="width: 100%; background-color: #ffffff; box-shadow: 10px 10px 0px #c3c3c3; overflow: hidden; margin-top: 20px; padding: 5px 0px 5px 0px; transition: 0.4s ease-in-out; display: flex;">
-                        <p style="font-size: 24px; width: 100%; font-weight: bold; text-align: center; margin: auto;">LOG OUT</p>
+                        <p style="font-size: 24px; width: 100%; font-weight: bold; text-align: center; margin: auto;" onclick="logout()">LOG OUT</p>
                     </div>
                 </div>
                 <div style="width: 75%; padding: 20px 40px">
@@ -96,5 +96,22 @@
 <%@include file="footer.html"%>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    function logout() {
+        fetch('http://localhost:8080/web/auth/logout', { // Adjust the URL to match your server's logout endpoint for users
+            method: 'POST',
+            credentials: 'include'
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert("User is logged out");
+                    window.location.href = 'http://localhost:8080/web/signInUp.jsp'; // Adjust the URL to match your user login page
+                } else {
+                    console.error('Logout failed');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
 </body>
 </html>
