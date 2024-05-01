@@ -1,13 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="jakarta.servlet.http.*" %>
+<%@ page import="jakarta.servlet.http.Cookie" %>
+<%@ page import="jakarta.servlet.http.HttpServletRequest" %>
 <%
-  HttpSession session2 = request.getSession(false);
-  String refreshToken = (String) session2.getAttribute("refresh_token");
-  String accessToken = (String) session2.getAttribute("access_token");
-  if (session2!= null && refreshToken!= null &&!refreshToken.isEmpty() && accessToken!= null &&!accessToken.isEmpty()) {
-    response.sendRedirect("userProfile.jsp");
-  } else {
-    response.sendRedirect("signInUp.jsp");
+  Cookie[] cookies = request.getCookies();
+  if (cookies != null) {
+    for (Cookie cookie : cookies) {
+      if ("session".equals(cookie.getName())) {
+        response.sendRedirect("userProfile.jsp");
+      }
+    }
   }
 %>
 
