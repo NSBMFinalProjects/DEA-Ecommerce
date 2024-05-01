@@ -29,7 +29,9 @@
 <%@include file="header.html"%>
 
 <%
-    String userId = "01HW2TTY9EVZPE1GSHPHGQ5M26";
+    ServletContext context = request.getServletContext();
+    User users = (User) context.getAttribute("user");
+    String userId = users.getId();
     UserDAO userDAO=new UserDAO();
     Optional<User> userOptional = userDAO.getByID(userId);
     User user = userOptional.orElse(null);

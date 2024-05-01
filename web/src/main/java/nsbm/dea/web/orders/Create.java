@@ -3,6 +3,7 @@ package nsbm.dea.web.orders;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,7 +23,10 @@ import java.sql.SQLException;
 public class Create extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String userId = "01HW2TMW12DAVYJ6QGAWF6ZGKV";
+
+            ServletContext context = request.getServletContext();
+            User users = (User) context.getAttribute("user");
+            String userId = users.getId();
 
             JsonObject payload = Lib.getJSONPayloadFromRequest(request);
             JsonArray cartDataArray = payload.getAsJsonArray("cartData");

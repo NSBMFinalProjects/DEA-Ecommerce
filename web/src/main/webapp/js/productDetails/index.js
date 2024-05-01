@@ -3,6 +3,7 @@ const minus = document.getElementById("minus");
 const qty = document.getElementById("qty");
 
 const product = JSON.parse(document.getElementById("product")?.innerText ?? "{}");
+console.log(product);
 
 const categorySelector = document.querySelectorAll("input[name=sizes]");
 const colorDisplay = document.getElementById("color-display");
@@ -118,7 +119,7 @@ formEl.addEventListener("submit", function(event) {
 
   const productName = document.querySelector('input[name="dress-name"]').value;
   const productPrice = document.querySelector('input[name="dress-price"]').value;
-  const quantity = document.querySelector('.num').innerText;
+  const quantity = document.getElementById("qty").innerText;
 
   const sizeRadios = document.querySelectorAll('input[name="options-base"]');
   let selectedSize = '';
@@ -140,13 +141,14 @@ formEl.addEventListener("submit", function(event) {
     }
   });
 
+
   // Create the product object with the selected size
   const product = {
     id: productId, // Assign the product ID
     name: productName,
     price: productPrice,
     quantity: quantity,
-    size: selectedSize // Include the selected size
+    size: selectedSize
   };
 
   // Retrieve the existing products from local storage
