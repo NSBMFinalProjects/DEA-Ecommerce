@@ -1,15 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="jakarta.servlet.http.*" %>
-<%--<%--%>
-<%--  HttpSession session2 = request.getSession(false);--%>
-<%--  String refreshToken = (String) session2.getAttribute("refresh_token");--%>
-<%--  String accessToken = (String) session2.getAttribute("access_token");--%>
-<%--  if (session2!= null && refreshToken!= null &&!refreshToken.isEmpty() && accessToken!= null &&!accessToken.isEmpty()) {--%>
-<%--    response.sendRedirect("userProfile.jsp");--%>
-<%--  } else {--%>
-<%--    response.sendRedirect("signInUp.jsp");--%>
-<%--  }--%>
-<%--%>--%>
+<%
+  HttpSession session2 = request.getSession(false);
+  String refreshToken = (String) session2.getAttribute("refresh_token");
+  String accessToken = (String) session2.getAttribute("access_token");
+  if (session2!= null && refreshToken!= null &&!refreshToken.isEmpty() && accessToken!= null &&!accessToken.isEmpty()) {
+    response.sendRedirect("userProfile.jsp");
+  } else {
+    response.sendRedirect("signInUp.jsp");
+  }
+%>
 
 <!DOCTYPE html>
 <html lang="en">
