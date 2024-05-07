@@ -192,12 +192,12 @@ public class ProductDAO {
 
   public void update(Product product) throws SQLException {
     try (Connection connection = DB.getConnection()) {
-      String sql = "UPDATE dea.products SET name = ?, description = ?, photo_urls = ?, price = ? WHERE id = ?";
+      String sql = "UPDATE dea.products SET name = ?, description = ?, price = ? WHERE id = ?";
       try (PreparedStatement statement = connection.prepareStatement(sql)) {
         statement.setString(1, product.getName());
         statement.setString(2, product.getDescription());
-        statement.setString(3, String.join(",", product.getPhotoUrls()));
-        statement.setBigDecimal(4, product.getPrice());
+        statement.setBigDecimal(3, product.getPrice());
+        statement.setInt(4, product.getId());
         statement.executeUpdate();
       }
     }

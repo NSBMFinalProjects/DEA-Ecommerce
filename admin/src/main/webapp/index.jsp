@@ -10,7 +10,7 @@
   <title>Document</title>
   <%
     ServletContext context = request.getServletContext();
-    Admin admin = (Admin) context.getAttribute("user");
+    Admin admin = (Admin) context.getAttribute("admin");
     String AdminId = admin.getId();
     AdminDAO adminDAO=new AdminDAO();
     Optional<Admin> adminOptional=adminDAO.getByID(AdminId);

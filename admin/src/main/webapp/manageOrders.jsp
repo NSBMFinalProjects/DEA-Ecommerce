@@ -114,8 +114,8 @@
           <th style="min-width: 100px">Order Id</th>
           <th style="min-width: 200px">User Name</th>
           <th style="min-width: 200px">Product Name</th>
-          <th>Quantity</th>
-          <th style="min-width: 200px">Total price</th>
+          <th>Total price</th>
+          <th style="min-width: 200px">Quantity</th>
           <th style="min-width: 100px">Status</th>
           <th style="min-width: 200px">Set Date</th>
         </tr>

@@ -620,9 +620,20 @@
       },
       body: JSON.stringify(data),
     })
-            .then((res) => res.json())
-            .then((data) => console.log(data))
-            .catch((err) => console.log(err));
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      const status = data.status;
+      const message = data.message;
+      var BASE_URL = 'http://localhost:8081/admin';
+      if(status === 'OK'){
+        window.location.href = BASE_URL + '/index.jsp';
+      }else{
+        alert("Status: " + status + "\nMessage: " + message);
+      }
+
+    })
+    .catch((err) => console.log(err));
   });
 
   const formEl2 = document.querySelector(".formRegister");
@@ -641,10 +652,20 @@
       },
       body: JSON.stringify(data),
     })
-            .then((res) => res.json())
-            .then((data) => console.log(data))
-            .catch((err) => console.log(err));
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      const status = data.status;
+      const message = data.message;
+      var BASE_URL = 'http://localhost:8081/admin';
+      if(status === 'OK'){
+        window.location.href = BASE_URL + '/loginSignup.jsp';
+      }else{
+        alert("Status: " + status + "\nMessage: " + message);
+      }
 
+    })
+    .catch((err) => console.log(err));
   });
 </script>
 

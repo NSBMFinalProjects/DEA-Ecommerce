@@ -119,7 +119,9 @@ formEl.addEventListener("submit", function(event) {
 
   const productName = document.querySelector('input[name="dress-name"]').value;
   const productPrice = document.querySelector('input[name="dress-price"]').value;
-  const quantity = document.getElementById("qty").innerText;
+  const quantityString = document.getElementById("qty").innerText;
+  const quantity = parseInt(quantityString, 10);
+  console.log(quantity)
 
   const sizeRadios = document.querySelectorAll('input[name="options-base"]');
   let selectedSize = '';
@@ -140,32 +142,53 @@ formEl.addEventListener("submit", function(event) {
       }
     }
   });
+  function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || {
+      subTotal: 0,
+      totalQuty: 0,
+      cart: [],
+    };
+    let existingProductIndex = cart.cart.findIndex(
+        (item) =>
+            item.id === product.id &&
+            item.categoy.id === product.categoy.id &&
+            item.color.id === product.color.id
+    );
+    if (existingProductIndex >= 0) {
+      cart.cart[existingProductIndex].quantity += product.quantity;
+      cart.cart[existingProductIndex].subTotal =
+          cart.cart[existingProductIndex].price *
+          cart.cart[existingProductIndex].quantity;
+    } else {
+      product.subTotal = product.price * product.quantity;
+      cart.cart.push(product);
+      cart.totalQuty += 1;
+    }
+    cart.subTotal = cart.cart.reduce(
+        (total, item) => total + item.subTotal,
+        0
+    );
+    localStorage.setItem("cart", JSON.stringify(cart));
 
-
-  // Create the product object with the selected size
-  const product = {
-    id: productId, // Assign the product ID
-    name: productName,
-    price: productPrice,
-    quantity: quantity,
-    size: selectedSize
-  };
-
-  // Retrieve the existing products from local storage
-  let products = localStorage.getItem('products');
-  // If there are no products in local storage, initialize an empty array
-  if (!products) {
-    products = [];
-  } else {
-    // If there are products, parse the JSON string back into an array
-    products = JSON.parse(products);
+    alert("Product added to cart successfully!");
   }
 
-  // Append the new product to the array
-  products.push(product);
-
-  // Stringify the updated array and store it back in local storage
-  localStorage.setItem('products', JSON.stringify(products));
-
-  alert('Product added to cart!');
+  const newProduct= {
+    id:product.id,
+    title: product.name,
+    price: product.price,
+    quantity:quantity,
+    categoy:{
+      id:product.categories[0].id,
+      title:product.categories[0].name,
+      slug:product.categories[0].slug,
+    },
+    color:{
+      hex:product.categories[0].colors[0].id,
+      id:product.categories[0].colors[0].id,
+      title:product.categories[0].colors[0].name,
+      slug:product.categories[0].colors[0].slug,
+    }
+  };
+  addToCart(newProduct);
 });

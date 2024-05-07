@@ -217,36 +217,6 @@
                 window.location.href = "productDetails.jsp";
             }
 
-            function addToCart(product) {
-                let cart = JSON.parse(localStorage.getItem("cart")) || {
-                    subTotal: 0,
-                    totalQuty: 0,
-                    cart: [],
-                };
-                let existingProductIndex = cart.cart.findIndex(
-                    (item) =>
-                        item.id === product.id &&
-                        item.categoy.id === product.categoy.id &&
-                        item.color.id === product.color.id
-                );
-                if (existingProductIndex >= 0) {
-                    cart.cart[existingProductIndex].quantity += product.quantity;
-                    cart.cart[existingProductIndex].subTotal =
-                        cart.cart[existingProductIndex].price *
-                        cart.cart[existingProductIndex].quantity;
-                } else {
-                    product.subTotal = product.price * product.quantity;
-                    cart.cart.push(product);
-                    cart.totalQuty += 1;
-                }
-                cart.subTotal = cart.cart.reduce(
-                    (total, item) => total + item.subTotal,
-                    0
-                );
-                localStorage.setItem("cart", JSON.stringify(cart));
-                updateCartDisplay(cart);
-            }
-
             function updateCartDisplay(cart) {
                 const cartContainer = document.getElementById("cart-container");
                 cartContainer.innerHTML = "";
@@ -305,7 +275,6 @@
                         return response.json();
                     })
                     .then((product) => {
-                        addToCart(product);
                         updateCartDisplay(JSON.parse(localStorage.getItem("cart")));
                     })
                     .catch((error) => {

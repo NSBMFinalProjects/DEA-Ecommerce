@@ -20,7 +20,7 @@ import nsbm.dea.admin.tokens.AccessToken;
 import nsbm.dea.admin.tokens.SessionToken;
 
 @WebFilter(urlPatterns = {
-    "/manageProducts.jsp"
+        "/index.jsp"
 }, filterName = "AuthFilter", description = "Protect routes by checking for authentication")
 public class Auth implements Filter {
   private ServletContext context;
@@ -30,7 +30,7 @@ public class Auth implements Filter {
   }
 
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-      throws IOException, ServletException {
+          throws IOException, ServletException {
     HttpServletRequest req = (HttpServletRequest) request;
     HttpServletResponse res = (HttpServletResponse) response;
 

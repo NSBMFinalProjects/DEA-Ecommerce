@@ -5,7 +5,11 @@
   version="5.0">
 
   <display-name>Admin</display-name>
+  <welcome-file-list>
+    <welcome-file>loginSignup.jsp</welcome-file>
+  </welcome-file-list>
   <servlet>
+
     <servlet-name>login</servlet-name>
     <jsp-file>/login.jsp</jsp-file>
   </servlet>
@@ -13,4 +17,5 @@
     <servlet-name>login</servlet-name>
     <url-pattern>/loginman</url-pattern>
   </servlet-mapping>
+
 </web-app>
