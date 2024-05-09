@@ -18,16 +18,20 @@
       * {
         font-family: "Poppins", sans-serif !important;
       }
+
       li {
         list-style: none;
       }
+
       a {
         text-decoration: none !important;
       }
+
       .addBtn:hover {
         box-shadow: 4px 4px 0px #cccccc !important;
         transform: scale(0.98);
       }
+
       table {
         border-collapse: collapse;
         border-spacing: 0;
@@ -41,14 +45,16 @@
         color: #ffffff;
         font-size: 16px;
       }
+
       .saveBtn:hover {
         box-shadow: 4px 4px 0px #ffffff !important;
         transform: scale(0.98);
       }
     </style>
   </head>
+
   <body>
-    <%@include file="headerAdmin.html"%>
+    <%@include file="headerAdmin.html" %>
 
     <section
       style="width: 100%; background-color: #e7e7e7; padding: 20px 0px 40px 0px"
@@ -180,9 +186,7 @@
                   "
                 >
                   <div style="width: 32%">
-                    <p style="color: #ffffff; font-weight: 600">
-                      Image 1:
-                    </p>
+                    <p style="color: #ffffff; font-weight: 600">Image 1:</p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
@@ -195,9 +199,7 @@
                     </div>
                   </div>
                   <div style="width: 32%">
-                    <p style="color: #ffffff; font-weight: 600">
-                      Image 2:
-                    </p>
+                    <p style="color: #ffffff; font-weight: 600">Image 2:</p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
@@ -210,9 +212,7 @@
                     </div>
                   </div>
                   <div style="width: 32%">
-                    <p style="color: #ffffff; font-weight: 600">
-                      Image 3:
-                    </p>
+                    <p style="color: #ffffff; font-weight: 600">Image 3:</p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
@@ -314,9 +314,9 @@
                     </p>
                     <div class="input-group" style="margin-top: -10px">
                       <select
-                              class="form-select"
-                              id="sizeSelect"
-                              style="border-radius: 0"
+                        class="form-select"
+                        id="sizeSelect"
+                        style="border-radius: 0"
                       >
                         <option selected>Choose size</option>
                         <option value="1">Small</option>
@@ -330,7 +330,11 @@
                       Product color :
                     </p>
                     <div class="input-group" style="margin-top: -10px">
-                      <select class="form-select" id="colorSelect" style="border-radius: 0">
+                      <select
+                        class="form-select"
+                        id="colorSelect"
+                        style="border-radius: 0"
+                      >
                         <option selected>Choose color</option>
                         <option value="1" data-hex="#FF0000">Red</option>
                         <option value="2" data-hex="#0000FF">Blue</option>
@@ -443,95 +447,7 @@
                   </button>
                 </div>
               </form>
-              <div
-                style="
-                  width: 90%;
-                  margin: auto;
-                  margin-top: 50px;
-                  margin-bottom: -10px;
-                "
-              >
-                <p
-                  style="
-                    font-size: 30px;
-                    font-weight: 600;
-                    color: #ffffff;
-                    text-align: center;
-                    letter-spacing: 1px;
-                  "
-                >
-                  Current products
-                </p>
-              </div>
-              <div
-                style="
-                  width: 90%;
-                  height: 3px;
-                  background-color: #ffffff;
-                  margin: auto;
-                  margin-bottom: 20px;
-                "
-              ></div>
-              <!-- loop this divition (class : tagItem) -->
-              <div
-                class="tagItem"
-                style="display: flex; width: 90%; margin: auto"
-              >
-                <div style="overflow-x: auto; padding-bottom: 40px">
-                  <table>
-                    <tr>
-                      <th style="min-width: 100px">Product Img 1</th>
-                      <th style="min-width: 100px">Product Img 2</th>
-                      <th style="min-width: 100px">Product Img 3</th>
-                      <th style="min-width: 200px">Product name</th>
-                      <th style="min-width: 200px">Description</th>
-                      <th style="min-width: 100px">Price (LKR)</th>
-                      <th style="min-width: 100px">Size</th>
-                      <th style="min-width: 100px">Quantity</th>
-                      <th style="min-width: 100px">Tags</th>
-                      <th style="min-width: 100px">Sets</th>
-                      <th style="min-width: 150px">Actions</th>
-                    </tr>
-                    <!-- loop this table row -->
-                    <tr>
-                      <td><img src="assets/mp16.jpg" width="90" alt="" /></td>
-                      <td><img src="assets/mp16.jpg" width="90" alt="" /></td>
-                      <td><img src="assets/mp16.jpg" width="90" alt="" /></td>
-                      <td>T-shirt 123</td>
-                      <td>T-shirt 123 description testing 12345</td>
-                      <td>1590</td>
-                      <td>Small</td>
-                      <td>100</td>
-                      <td>Tag1</td>
-                      <td>Set1</td>
-                      <td>
-                        <div>
-                          <img
-                            onclick="deleteItemMen();"
-                            style="cursor: pointer; margin: 8px"
-                            src="assets/delete2.svg"
-                            alt=""
-                          />
-                          <img
-                            onclick="editItemMen();"
-                            style="cursor: pointer; margin: 8px"
-                            src="assets/edit.svg"
-                            alt=""
-                          />
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-              <script>
-                function deleteItemMen() {
-                  window.location.href = "#";
-                }
-                function editItemMen() {
-                  window.location.href = "updateProduct.html";
-                }
-              </script>
+
             </div>
 
             <div
@@ -569,19 +485,21 @@
                     justify-content: space-between;
                   "
                 >
-                <div style="width: 32%">
-                  <p style="color: #ffffff; font-weight: 600">Product URL 1 :</p>
-                  <div class="input-group mb-3">
-                    <input
-                      style="border-radius: 0; margin-top: -10px"
-                      type="text"
-                      class="form-control"
-                      id=""
-                      name="productURL1"
-                      placeholder="Enter prodcut URL 1"
-                    />
+                  <div style="width: 32%">
+                    <p style="color: #ffffff; font-weight: 600">
+                      Product URL 1 :
+                    </p>
+                    <div class="input-group mb-3">
+                      <input
+                        style="border-radius: 0; margin-top: -10px"
+                        type="text"
+                        class="form-control"
+                        id=""
+                        name="productURL1"
+                        placeholder="Enter prodcut URL 1"
+                      />
+                    </div>
                   </div>
-                </div>
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
                       Product URL 2 :
@@ -701,14 +619,14 @@
                     </p>
                     <div class="input-group" style="margin-top: -10px">
                       <select
-                            class="form-select"
-                            id="sizeSelect"
-                            style="border-radius: 0"
+                        class="form-select"
+                        id="sizeSelect"
+                        style="border-radius: 0"
                       >
-                      <option selected>Choose size</option>
-                      <option value="1">Small</option>
-                      <option value="2">Medium</option>
-                      <option value="3">Large</option>
+                        <option selected>Choose size</option>
+                        <option value="1">Small</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Large</option>
                       </select>
                     </div>
                   </div>
@@ -717,7 +635,11 @@
                       Product color :
                     </p>
                     <div class="input-group" style="margin-top: -10px">
-                      <select class="form-select" id="inputGroupSelect01" style="border-radius: 0">
+                      <select
+                        class="form-select"
+                        id="inputGroupSelect01"
+                        style="border-radius: 0"
+                      >
                         <option selected>Choose color</option>
                         <option value="1">Red</option>
                         <option value="2">Blue</option>
@@ -830,102 +752,14 @@
                   </button>
                 </div>
               </form>
-              <div
-                style="
-                  width: 90%;
-                  margin: auto;
-                  margin-top: 50px;
-                  margin-bottom: -10px;
-                "
-              >
-                <p
-                  style="
-                    font-size: 30px;
-                    font-weight: 600;
-                    color: #ffffff;
-                    text-align: center;
-                    letter-spacing: 1px;
-                  "
-                >
-                  Current products
-                </p>
-              </div>
-              <div
-                style="
-                  width: 90%;
-                  height: 3px;
-                  background-color: #ffffff;
-                  margin: auto;
-                  margin-bottom: 20px;
-                "
-              ></div>
-              <!-- loop this divition (class : tagItem) -->
-              <div
-                class="tagItem"
-                style="display: flex; width: 90%; margin: auto"
-              >
-                <div style="overflow-x: auto; padding-bottom: 40px">
-                  <table>
-                    <tr>
-                      <th style="min-width: 100px">Product Img 1</th>
-                      <th style="min-width: 100px">Product Img 2</th>
-                      <th style="min-width: 100px">Product Img 3</th>
-                      <th style="min-width: 200px">Product name</th>
-                      <th style="min-width: 200px">Description</th>
-                      <th style="min-width: 100px">Price (LKR)</th>
-                      <th style="min-width: 100px">Size</th>
-                      <th style="min-width: 100px">Quantity</th>
-                      <th style="min-width: 100px">Tags</th>
-                      <th style="min-width: 100px">Sets</th>
-                      <th style="min-width: 150px">Actions</th>
-                    </tr>
-                    <!-- loop this table row -->
-                    <tr>
-                      <td><img src="assets/wp26.jpg" width="90" alt="" /></td>
-                      <td><img src="assets/wp26.jpg" width="90" alt="" /></td>
-                      <td><img src="assets/wp26.jpg" width="90" alt="" /></td>
-                      <td>T-shirt 123</td>
-                      <td>T-shirt 123 description testing 12345</td>
-                      <td>1590</td>
-                      <td>Small</td>
-                      <td>100</td>
-                      <td>Tag1</td>
-                      <td>Set1</td>
-                      <td>
-                        <div>
-                          <img
-                            onclick="editItemWomen();"
-                            style="cursor: pointer; margin: 8px"
-                            src="assets/delete2.svg"
-                            alt=""
-                          />
-                          <img
-                            onclick="editItemWomen();"
-                            style="cursor: pointer; margin: 8px"
-                            src="assets/edit.svg"
-                            alt=""
-                          />
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-              <script>
-                function deleteItemWomen() {
-                  window.location.href = "#";
-                }
-                function editItemWomen() {
-                  window.location.href = "updateProduct.html";
-                }
-              </script>
+
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <%@include file="footerAdmin.html"%>
+    <%@include file="footerAdmin.html" %>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -933,7 +767,8 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      <%@include file="js/manageProducts/index.js"%>
+      <%@include file="js/manageProducts/index.js" %>
     </script>
+    
   </body>
 </html>

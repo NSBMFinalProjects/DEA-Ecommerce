@@ -272,6 +272,7 @@
         </p>
       </div>
       <div
+              onclick="redirectToEditProducts();"
               class="adminCard"
               style="
               width: 200px;
@@ -283,7 +284,7 @@
       >
         <center>
           <img
-                  src="assets/users.png"
+                  src="assets/editHome.svg"
                   width="150px"
                   style="margin-top: 10px"
                   alt=""
@@ -299,19 +300,18 @@
                 margin-top: 10px;
               "
         >
-          manage
+          edit
         </p>
         <p
                 style="
                 color: #203c55;
                 font-size: 40px;
-                letter-spacing: 3px;
                 font-weight: 600;
                 text-align: center;
                 margin-top: -20px;
               "
         >
-          Users
+          Products
         </p>
       </div>
     </div>
@@ -448,6 +448,9 @@
     }
     function redirectToManageProducts() {
       window.location.href = "manageProducts.jsp";
+    }
+    function redirectToEditProducts() {
+      window.location.href = "editProducts.jsp";
     }
   </script>
 </section>

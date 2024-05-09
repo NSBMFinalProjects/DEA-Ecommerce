@@ -629,7 +629,7 @@
       if(status === 'OK'){
         window.location.href = BASE_URL + '/index.jsp';
       }else{
-        alert("Status: " + status + "\nMessage: " + message);
+        alert(message);
       }
 
     })
@@ -661,7 +661,7 @@
       if(status === 'OK'){
         window.location.href = BASE_URL + '/loginSignup.jsp';
       }else{
-        alert("Status: " + status + "\nMessage: " + message);
+        alert(message);
       }
 
     })

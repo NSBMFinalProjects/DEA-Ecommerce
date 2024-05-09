@@ -35,19 +35,18 @@
     UserDAO userDAO=new UserDAO();
     Optional<User> userOptional = userDAO.getByID(userId);
     User user = userOptional.orElse(null);
-
 %>
 
 <section>
     <div style="width: 100%; background-color: #c7c7c7c7; display: flex; padding: 50px 0;">
-        <div style="width: 80%; padding: 40px; background-color: #203c55; margin: auto;">
+        <div style="width: 80%; padding: 40px; background-color: #203c55; margin: auto; box-shadow: 10px 10px 0px #ffffff;">
             <div style="display: flex; width: 100%">
                 <div style="width: 25%; padding: 20px">
                     <div style="width: 100%; height: 250px; background-color: #ffffff; box-shadow: 10px 10px 0px #c3c3c3; overflow: hidden; justify-content: center; display: flex;">
                         <img src="<%= user.getPhotoURL() %>" style="width: auto" alt="User's Photo">
                     </div>
-                    <div class="logoutBtn" style="width: 100%; background-color: #ffffff; box-shadow: 10px 10px 0px #c3c3c3; overflow: hidden; margin-top: 20px; padding: 5px 0px 5px 0px; transition: 0.4s ease-in-out; display: flex;">
-                        <p style="font-size: 24px; width: 100%; font-weight: bold; text-align: center; margin: auto;" onclick="logout()">LOG OUT</p>
+                    <div onclick="logout()" class="logoutBtn" style="width: 100%; background-color: #ffffff; box-shadow: 10px 10px 0px #c3c3c3; overflow: hidden; margin-top: 20px; padding: 5px 0px 5px 0px; transition: 0.4s ease-in-out; display: flex; cursor: pointer">
+                        <p class="pe-none" style="font-size: 24px; width: 100%; font-weight: bold; text-align: center; margin: auto;" >LOG OUT</p>
                     </div>
                 </div>
                 <div style="width: 75%; padding: 20px 40px">
@@ -75,22 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div style="padding: 20px; margin-top: -10px">
-                <p style="color: #ffffff; font-size: 30px; font-weight: 600">Order Details</p>
-                <div style="background-color: #ffffff; width: 100%; height: 2px"></div>
-                <div style="overflow-x: auto">
-                    <table>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Ordered Date</th>
-                            <th>Quantity</th>
-                            <th>Prize</th>
-                            <th>Current State</th>
-                        </tr>
-                        <!-- Repeat similar structure for other order details -->
-                    </table>
-                </div>
-            </div>
+
         </div>
     </div>
 </section>

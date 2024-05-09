@@ -267,7 +267,7 @@
                 >
                   Size :
                 </p>
-                <div class="custom-radios" style="padding-left: 40px">
+                <div class="custom-radios" style="padding-left: 40px; display: block">
                     <% for (Category category : product.getCategories()) { %>
                       <input
                             type="radio"
@@ -279,7 +279,7 @@
                             <%= product.getCategories()[0].getSlug().equals(category.getSlug()) ? "checked" : "" %> />
                   <label
                           class="btn btn-outline-secondary"
-                          style="border-radius: 0px; width: 40px !important"
+                          style="border-radius: 0px; width: 100px !important"
                           for=<%= category.getSlug() %>
                   ><%= category.getName()%></label
                   >
