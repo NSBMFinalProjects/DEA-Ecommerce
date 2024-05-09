@@ -181,14 +181,14 @@
                 >
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product Img URL 1 :
+                      Image 1:
                     </p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
-                        type="text"
+                        type="file"
                         class="form-control"
-                        id=""
+                        id="productURL1"
                         name="productURL1"
                         placeholder="Enter prodcut URL 1"
                       />
@@ -196,14 +196,14 @@
                   </div>
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product Img URL 2 :
+                      Image 2:
                     </p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
-                        type="text"
+                        type="file"
                         class="form-control"
-                        id=""
+                        id="productURL2"
                         name="productURL2"
                         placeholder="Enter prodcut URL 2"
                       />
@@ -211,14 +211,14 @@
                   </div>
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product Img URL 3 :
+                      Image 3:
                     </p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
-                        type="text"
+                        type="file"
                         class="form-control"
-                        id=""
+                        id="productURL3"
                         name="productURL3"
                         placeholder="Enter prodcut URL 3"
                       />
@@ -925,73 +925,6 @@
       </div>
     </section>
 
-    <script>
-      document.getElementById('productForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(event.target);
-        const colorSelect = document.getElementById('colorSelect');
-        const selectedColorOption = colorSelect.options[colorSelect.selectedIndex];
-        const selectedColorHex = selectedColorOption.getAttribute('data-hex');
-
-
-        const sizeSelect = document.getElementById('sizeSelect');
-        const selectedSize = sizeSelect.options[sizeSelect.selectedIndex];
-
-
-        const product = {
-          product: {
-            name: formData.get('name'),
-            photo_urls: [
-              formData.get('productURL1'),
-              formData.get('productURL2'),
-              formData.get('productURL3')
-            ],
-            description: formData.get('description'),
-            price: formData.get('price'),
-            categories: [
-              {
-                name: selectedSize.text,
-                colors: [
-                  {
-                    name: selectedColorOption.text,
-                    qty: formData.get('quantity'),
-                    hex: selectedColorHex
-                  }
-                ]
-              }
-            ],
-            tags: [4],
-            collections: [1]
-          }
-        };
-
-        console.log(product)
-        const productJson = JSON.stringify(product);
-
-        fetch('http://localhost:8081/admin/products/create', {
-          method: 'POST',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: productJson
-        })
-                .then(response => {
-                  console.log(response);
-                  return response.json();
-                })
-                .then(data => {
-                  console.log('Success:', data);
-                })
-                .catch((error) => {
-                  console.error('Error:', error);
-                });
-      });
-
-    </script>
-
-
     <%@include file="footerAdmin.html"%>
 
     <script
@@ -999,5 +932,8 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script>
+      <%@include file="js/manageProducts/index.js"%>
+    </script>
   </body>
 </html>
