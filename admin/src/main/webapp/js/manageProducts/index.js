@@ -96,7 +96,12 @@ document.getElementById('productForm').addEventListener('submit', async function
     })
     .then(data => {
       console.log('Success:', data);
-    })
+      if (data.status === "OK") {
+        alert("product added Successfully!");
+      } else {
+        console.error('Response did not indicate success:', data);
+      }
+      })
     .catch((error) => {
       console.error('Error:', error);
     });

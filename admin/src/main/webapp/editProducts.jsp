@@ -51,6 +51,7 @@
             transform: scale(0.98);
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -187,13 +188,10 @@
                   margin-bottom: 20px;
                 "
                     ></div>
-                    <!-- loop this divition (class : tagItem) -->
-                    <div
-                            class="tagItem"
-                            style="display: flex; width: 90%; margin: auto"
-                    >
+
+                    <div class="tagItem" style="display: flex; width: 90%; margin: auto">
                         <div style="overflow-x: auto; padding-bottom: 40px">
-                            <table>
+                            <table id="productTable">
                                 <tr>
                                     <th style="min-width: 100px">Product Img 1</th>
                                     <th style="min-width: 100px">Product Img 2</th>
@@ -201,53 +199,13 @@
                                     <th style="min-width: 200px">Product name</th>
                                     <th style="min-width: 200px">Description</th>
                                     <th style="min-width: 100px">Price (LKR)</th>
-                                    <th style="min-width: 100px">Size</th>
-                                    <th style="min-width: 100px">Quantity</th>
-                                    <th style="min-width: 100px">Tags</th>
-                                    <th style="min-width: 100px">Sets</th>
+                                    <th style="min-width: 100px">Created AT</th>
                                     <th style="min-width: 150px">Actions</th>
                                 </tr>
-                                <!-- loop this table row -->
-                                <tr>
-                                    <td><img src="assets/mp16.jpg" width="90" alt="" /></td>
-                                    <td><img src="assets/mp16.jpg" width="90" alt="" /></td>
-                                    <td><img src="assets/mp16.jpg" width="90" alt="" /></td>
-                                    <td>T-shirt 123</td>
-                                    <td>T-shirt 123 description testing 12345</td>
-                                    <td>1590</td>
-                                    <td>Small</td>
-                                    <td>100</td>
-                                    <td>Tag1</td>
-                                    <td>Set1</td>
-                                    <td>
-                                        <div>
-                                            <img
-                                                    onclick="deleteItemMen();"
-                                                    style="cursor: pointer; margin: 8px"
-                                                    src="assets/delete2.svg"
-                                                    alt=""
-                                            />
-                                            <img
-                                                    onclick="editItemMen();"
-                                                    style="cursor: pointer; margin: 8px"
-                                                    src="assets/edit.svg"
-                                                    alt=""
-                                            />
-                                        </div>
-                                    </td>
-                                </tr>
+
                             </table>
                         </div>
                     </div>
-                    <script>
-                        function deleteItemMen() {
-                            window.location.href = "#";
-                        }
-                        function editItemMen() {
-                            window.location.href = "updateProduct.jsp";
-                        }
-                    </script>
-                </div>
 
                 <div
                         class="tab-pane fade"
@@ -362,6 +320,77 @@
 <script>
     <%@include file="js/manageProducts/index.js" %>
 </script>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: 'http://localhost:8081/admin/products/get-all?page=1&limit=10',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                var products = JSON.parse(data.data);
+                if(products>0){
+                    alert("ists is in ");
+                }
+                var table = $('#productTable');
 
+                products.forEach(function(product) {
+                    var row = $('<tr></tr>');
+
+                    var img1 = $('<td></td>').html('<img src="' + product.photoUrls[0] + '" width="90" alt="" />');
+                    var img2 = $('<td></td>').html('<img src="' + product.photoUrls[1] + '" width="90" alt="" />');
+                    var img3 = $('<td></td>').html('<img src="' + product.photoUrls[2] + '" width="90" alt="" />');
+                    var name = $('<td></td>').text(product.name);
+                    var description = $('<td></td>').text(product.description);
+                    var price = $('<td></td>').text(product.price);
+                    var createdAt=$('<td></td>').text(product.created);
+
+                    let productId = product.id;
+
+
+                    var actions = $('<td></td>');
+                    actions.append('<div style="display: flex; align-items: center;">');
+                    actions.append('<img onclick="deleteItemMen(\'' + productId + '\');" style="cursor: pointer; margin: 8px" src="assets/delete2.svg" alt="" />');
+                    actions.append('<img onclick="editItemMen(\'' + productId + '\');" style="cursor: pointer; margin: 8px" src="assets/edit.svg" alt="" />');
+                    actions.append('</div>');
+
+                    row.append(img1, img2, img3, name, description, price,createdAt, actions);
+                    table.append(row);
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Error fetching products: " + textStatus + ", " + errorThrown);
+            }
+        });
+    });
+
+    function deleteItemMen(productId) {
+
+        var url = "http://localhost:8081/admin/products/delete?id=" + productId;
+        console.log(url);
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Product deleted successfully!');
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                alert('Error deleting product: ' + error.message);
+            });
+    }
+
+    function editItemMen(productId) {
+        window.location.href = "updateProduct.jsp?productId=" + productId;
+    }
+</script>
 </body>
 </html>

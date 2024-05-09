@@ -122,7 +122,7 @@
                             type="text"
                             name="updatedName"
                             placeholder="Enter product name"
-                            value="T-shirt 123"
+
                     />
                     <p style="color: #ffffff; font-weight: 600; margin-top: 10px;  margin-bottom: 25px;">
                         Updated product description:
@@ -139,7 +139,6 @@
                             type="text"
                             name="updatedDescription"
                             placeholder="Enter product name"
-                            value="T-shirt 123 description"
                             id=""
                     />
 
@@ -179,6 +178,8 @@
             "
             >
                 <a href="#">
+
+                    <button onclick="editItemMen()">
                     <p
                             style="
                   color: #203c55;
@@ -190,6 +191,7 @@
                     >
                         Save changes
                     </p>
+                    </button>
                 </a>
             </div>
         </div>
@@ -203,5 +205,43 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"
 ></script>
+<script>
+    function editItemMen() {
+
+        var urlParams = new URLSearchParams(window.location.search);
+        var productId = urlParams.get('productId');
+
+        var updatedName = document.getElementsByName('updatedName')[0].value;
+        var updatedDescription = document.getElementsByName('updatedDescription')[0].value;
+        var updatedPrice = document.querySelector('.form-control').value;
+
+        var requestBody = JSON.stringify({
+            name: updatedName,
+            description: updatedDescription,
+            price: updatedPrice
+        });
+
+        fetch('http://localhost:8081/admin/product/update?productId=' + productId, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: requestBody
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Product updated successfully!');
+            })
+            .catch(error => {
+                alert('Error updating product: ' + error.message);
+            });
+    }
+
+</script>
 </body>
 </html>
