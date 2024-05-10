@@ -52,7 +52,7 @@
     </style>
 </head>
 <body>
-<%@include file="headerAdmin.html" %>
+<%@include file="headerAdmin2.html" %>
 
 <section
         style="width: 100%; background-color: #e7e7e7; padding: 20px 0px 40px 0px"
@@ -122,6 +122,7 @@
                             type="text"
                             name="updatedName"
                             placeholder="Enter product name"
+                            required
 
                     />
                     <p style="color: #ffffff; font-weight: 600; margin-top: 10px;  margin-bottom: 25px;">
@@ -140,6 +141,7 @@
                             name="updatedDescription"
                             placeholder="Enter product name"
                             id=""
+                            required
                     />
 
                     <div style="width: 100%; margin-top: 20px;">
@@ -156,6 +158,7 @@
                                     class="form-control"
                                     aria-label="Amount (to the nearest dollar)"
                                     placeholder="Enter price"
+                                    required
                             />
                             <span
                                     class="input-group-text"
@@ -177,9 +180,8 @@
               margin-top: 40px;
             "
             >
-                <a href="#">
 
-                    <button onclick="editItemMen()">
+                    <button style="width: 100%; border: none; margin: auto" onclick="editItemMen()">
                     <p
                             style="
                   color: #203c55;
@@ -192,7 +194,6 @@
                         Save changes
                     </p>
                     </button>
-                </a>
             </div>
         </div>
     </div>

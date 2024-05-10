@@ -118,10 +118,37 @@
                     style="
             width: 100%;
             display: flex;
-            justify-content: end;
+            justify-content: space-between;
             padding-right: 5px;
+            margin-bottom: 20px;
           "
             >
+
+                <div
+                        class="clearButton"
+                        style="
+              padding: 5px 20px 5px 20px;
+              background-color: #e7e7e7;
+              margin-top: 10px;
+              box-shadow: 5px 5px 0px #ffffff;
+              transition: 0.4s ease-in-out;
+              cursor: pointer;
+            "
+                        onclick="back();"
+
+                >
+                    <p
+                            class="pe-none"
+                            style="
+                color: #203c55;
+                font-size: 20px;
+                margin: auto;
+                font-weight: 600;
+              "
+                    >
+                        Back
+                    </p>
+                </div>
                 <div
                         id="clear-cart"
                         class="clearButton"
@@ -131,6 +158,7 @@
               margin-top: 10px;
               box-shadow: 5px 5px 0px #ffffff;
               transition: 0.4s ease-in-out;
+              cursor: pointer;
             "
                 >
                     <p
@@ -309,7 +337,10 @@
                         document.getElementById('header-container').innerHTML = data;
                     })
                     .catch(error => console.error('Error fetching header:', error));
-            };
+            }
+            function back(productSlug) {
+                window.location.href = "index.jsp";
+            }
         </script>
     </section>
 

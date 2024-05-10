@@ -31,7 +31,7 @@
     </style>
   </head>
   <body>
-    <%@include file="headerAdmin.html"%>
+    <%@include file="headerAdmin2.html"%>
 
     <section
       style="width: 100%; background-color: #e7e7e7; padding: 20px 0px 40px 0px"

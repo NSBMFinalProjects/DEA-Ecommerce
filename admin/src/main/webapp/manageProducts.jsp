@@ -54,7 +54,7 @@
   </head>
 
   <body>
-    <%@include file="headerAdmin.html" %>
+    <%@include file="headerAdmin2.html" %>
 
     <section
       style="width: 100%; background-color: #e7e7e7; padding: 20px 0px 40px 0px"
@@ -487,46 +487,43 @@
                 >
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product URL 1 :
+                      Image 1 :
                     </p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
-                        type="text"
+                        type="file"
                         class="form-control"
-                        id=""
                         name="productURL1"
-                        placeholder="Enter prodcut URL 1"
+                        placeholder="Image 1"
                       />
                     </div>
                   </div>
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product URL 2 :
+                      Image 2 :
                     </p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
-                        type="text"
+                        type="file"
                         class="form-control"
-                        id=""
                         name="productURL2"
-                        placeholder="Enter image URL 2"
+                        placeholder="Image 2"
                       />
                     </div>
                   </div>
                   <div style="width: 32%">
                     <p style="color: #ffffff; font-weight: 600">
-                      Product URL 3 :
+                      Image 3 :
                     </p>
                     <div class="input-group mb-3">
                       <input
                         style="border-radius: 0; margin-top: -10px"
-                        type="text"
+                        type="file"
                         class="form-control"
-                        id=""
                         name="productURL3"
-                        placeholder="Enter image URL 3"
+                        placeholder="Image 3"
                       />
                     </div>
                   </div>

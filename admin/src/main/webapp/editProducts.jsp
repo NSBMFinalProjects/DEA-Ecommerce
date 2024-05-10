@@ -55,7 +55,7 @@
 </head>
 
 <body>
-<%@include file="headerAdmin.html" %>
+<%@include file="headerAdmin2.html" %>
 
 <section
         style="width: 100%; background-color: #e7e7e7; padding: 20px 0px 40px 0px"
@@ -114,42 +114,7 @@
                     font-weight: 600;
                 }
             </style>
-            <ul class="nav nav-fill nav-tabs" role="tablist">
-                <li
-                        class="nav-item"
-                        role="presentation"
-                        style="border-radius: 0; background-color: #cccccc; margin: 10px"
-                >
-                    <a
-                            class="nav-link productLink active"
-                            id="fill-tab-0"
-                            data-bs-toggle="tab"
-                            href="#fill-tabpanel-0"
-                            role="tab"
-                            aria-controls="fill-tabpanel-0"
-                            aria-selected="true"
-                    >
-                        MEN'S
-                    </a>
-                </li>
-                <li
-                        class="nav-item"
-                        role="presentation"
-                        style="border-radius: 0; background-color: #cccccc; margin: 10px"
-                >
-                    <a
-                            class="nav-link productLink"
-                            id="fill-tab-1"
-                            data-bs-toggle="tab"
-                            href="#fill-tabpanel-1"
-                            role="tab"
-                            aria-controls="fill-tabpanel-1"
-                            aria-selected="false"
-                    >
-                        WOMAN'S
-                    </a>
-                </li>
-            </ul>
+
             <div class="tab-content" id="tab-content">
                 <div
                         class="tab-pane fade show active"
@@ -207,104 +172,7 @@
                         </div>
                     </div>
 
-                <div
-                        class="tab-pane fade"
-                        id="fill-tabpanel-1"
-                        role="tabpanel"
-                        aria-labelledby="fill-tab-1"
-                        style="color: #ffffff"
-                >
-                    <div
-                            style="
-                  width: 90%;
-                  margin: auto;
-                  margin-top: 50px;
-                  margin-bottom: -10px;
-                "
-                    >
-                        <p
-                                style="
-                    font-size: 30px;
-                    font-weight: 600;
-                    color: #ffffff;
-                    text-align: center;
-                    letter-spacing: 1px;
-                  "
-                        >
-                            Current products
-                        </p>
-                    </div>
-                    <div
-                            style="
-                  width: 90%;
-                  height: 3px;
-                  background-color: #ffffff;
-                  margin: auto;
-                  margin-bottom: 20px;
-                "
-                    ></div>
-                    <!-- loop this divition (class : tagItem) -->
-                    <div
-                            class="tagItem"
-                            style="display: flex; width: 90%; margin: auto"
-                    >
-                        <div style="overflow-x: auto; padding-bottom: 40px">
-                            <table>
-                                <tr>
-                                    <th style="min-width: 100px">Product Img 1</th>
-                                    <th style="min-width: 100px">Product Img 2</th>
-                                    <th style="min-width: 100px">Product Img 3</th>
-                                    <th style="min-width: 200px">Product name</th>
-                                    <th style="min-width: 200px">Description</th>
-                                    <th style="min-width: 100px">Price (LKR)</th>
-                                    <th style="min-width: 100px">Size</th>
-                                    <th style="min-width: 100px">Quantity</th>
-                                    <th style="min-width: 100px">Tags</th>
-                                    <th style="min-width: 100px">Sets</th>
-                                    <th style="min-width: 150px">Actions</th>
-                                </tr>
-                                <!-- loop this table row -->
-                                <tr>
-                                    <td><img src="assets/wp26.jpg" width="90" alt="" /></td>
-                                    <td><img src="assets/wp26.jpg" width="90" alt="" /></td>
-                                    <td><img src="assets/wp26.jpg" width="90" alt="" /></td>
-                                    <td>T-shirt 123</td>
-                                    <td>T-shirt 123 description testing 12345</td>
-                                    <td>1590</td>
-                                    <td>Small</td>
-                                    <td>100</td>
-                                    <td>Tag1</td>
-                                    <td>Set1</td>
-                                    <td>
-                                        <div>
-                                            <img
-                                                    onclick="deleteItemWoman();"
-                                                    style="cursor: pointer; margin: 8px"
-                                                    src="assets/delete2.svg"
-                                                    alt=""
-                                            />
-                                            <img
-                                                    onclick="editItemWoman();"
-                                                    style="cursor: pointer; margin: 8px"
-                                                    src="assets/edit.svg"
-                                                    alt=""
-                                            />
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <script>
-                        function deleteItemWoman() {
-                            window.location.href = "#";
-                        }
-                        function editItemWoman() {
-                            window.location.href = "updateProduct.jsp";
-                        }
-                    </script>
 
-                </div>
             </div>
         </div>
     </div>

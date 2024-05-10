@@ -236,11 +236,9 @@
 
 
 
-            <div style="width: 80%; padding: 20px; margin-left: auto; margin-right: auto; margin-top: 50px; background-color: #e7e7e7">
-                <button id="checkoutButton" class="buttonCommon" style="background-color: #203c55; width: 80%; color: white; font-size: 22px; font-weight: bold; padding-left: 15px; padding-right: 15px; box-shadow: 6px 6px 0px #ffffff; transition: 0.4s ease-in-out; margin-left: auto; margin-right: auto; margin-top: 20px;">
-                    <center>
-                        <p class="pe-none" style="padding-top: 5px; padding-bottom: 5px">Checkout</p>
-                    </center>
+            <div style="width: 80%; display: flex; padding: 20px; margin-left: auto; margin-right: auto; margin-top: 50px; background-color: #e7e7e7">
+                <button id="checkoutButton" class="buttonCommon" style="background-color: #203c55; display: flex; margin: auto; width: 80%; color: white; font-size: 22px; font-weight: bold; padding-left: 15px; padding-right: 15px; box-shadow: 6px 6px 0px #ffffff; transition: 0.4s ease-in-out; ">
+                        <p class="pe-none" style="padding-top: 5px; width: 100%; text-align: center; padding-bottom: 5px">Checkout</p>
                 </button>
             </div>
 
